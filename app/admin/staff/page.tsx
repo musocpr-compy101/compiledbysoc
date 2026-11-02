@@ -1,0 +1,3 @@
+import {Chrome} from '@/components/Chrome';import {AdminNav} from '@/components/AdminNav';import {StaffManager,type StaffRow} from '@/components/StaffManager';import {requireOwner} from '@/lib/require-access';import {db} from '@/lib/supabase/server';
+export const dynamic='force-dynamic';export const metadata={title:'Executive accounts'};
+export default async function Page(){const me=await requireOwner();const {data,error}=await(await db()).rpc('staff_directory');if(error)throw new Error('Staff directory unavailable');return <Chrome><main className="app-main" id="main-content"><h1>Your team.<br/>Their own access.</h1><AdminNav me={me}/><StaffManager staff={data as StaffRow[]} self={me.user.id}/></main></Chrome>;}

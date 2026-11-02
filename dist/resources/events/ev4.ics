@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Compiled By SOC//Reference Schedule//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:ev4@compiled-by-soc
+DTSTAMP:20260926T000000Z
+DTSTART:20260620T080000Z
+DTEND:20260620T160000Z
+RRULE:FREQ=DAILY;COUNT=2
+SUMMARY:[Reference example] Final Year Project Presentations — All Depart
+ ments
+LOCATION:SOC Seminar Room
+DESCRIPTION:Illustrative event from the SOC reference. Confirm details with
+  the school.
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

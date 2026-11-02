@@ -1,0 +1,8 @@
+import 'server-only';
+import {cookies} from 'next/headers';import {serviceDb} from './supabase/admin';import {hashAccess,referenceOK,PAYMENT_COLUMNS,type Payment} from './payments-core';
+export const receiptCookie=(reference:string)=>'soc_pay_'+reference;
+export async function guestPayment(reference:string){if(!referenceOK(reference))return null;const token=(await cookies()).get(receiptCookie(reference))?.value;if(!token)return null;const {data,error}=await serviceDb().from('payments').select(PAYMENT_COLUMNS).eq('reference',reference).eq('receipt_hash',hashAccess(token)).maybeSingle();if(error)throw error;return data as Payment|null;}
+export async function setReceiptCookie(reference:string,token:string){(await cookies()).set(receiptCookie(reference),token,{httpOnly:true,secure:process.env.NODE_ENV==='production',sameSite:'lax',path:'/pay-dues',maxAge:60*60*24*14});}
+export async function limited(key:string){const {data,error}=await serviceDb().rpc('consume_payment_limit',{p_key:hashAccess(key)});return !error&&data===true;}
+export async function boundedJson(request:Request,limit=12000){const reader=request.body?.getReader();if(!reader)throw new Error('Empty request');const parts:Uint8Array[]=[];let length=0;while(true){const r=await reader.read();if(r.done)break;length+=r.value.length;if(length>limit){await reader.cancel();throw new Error('Request too large');}parts.push(r.value);}return JSON.parse(Buffer.concat(parts).toString('utf8'));}
+export function sameOrigin(request:Request){try{return !!process.env.APP_URL&&request.headers.get('origin')===new URL(process.env.APP_URL).origin;}catch{return false;}}

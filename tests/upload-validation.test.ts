@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {detectType,safeFilename} from '../lib/upload-validation';
+test('active HTML and SVG cannot enter the accepted file types',()=>{assert.equal(detectType(Buffer.from('<svg onload=alert(1)>')),null);assert.equal(detectType(Buffer.from('<html>hello</html>')),null);assert.equal(detectType(Buffer.from('%PDF-1.7\n')), 'application/pdf');assert.equal(safeFilename('../../proof".pdf'),'.._.._proof_.pdf');});

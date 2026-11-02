@@ -1,0 +1,4 @@
+import {isStaff} from '@/lib/access';
+import {redirect} from 'next/navigation';import {Chrome} from '@/components/Chrome';import {identity} from '@/lib/supabase/server';import {signOut} from './sign-out';
+export const dynamic='force-dynamic';
+export default async function Account(){const me=await identity();if(!me)redirect('/staff/sign-in');if(!isStaff(me))redirect('/important-stuff/#elections');return <Chrome><main className="app-main app-narrow" id="main-content"><h1>You’re in.</h1><p className="app-lead">{me.user.email}</p><div className="app-card"><h2>Your executive account</h2><p>Open your assigned tools or sign out from this device.</p><div className="app-actions"><a href="/important-stuff" className="app-button">Important Stuff →</a>{me.role!=='student'&&<a className="app-button secondary" href="/admin">Open dashboard</a>}</div></div><form action={signOut}><button className="app-text-button">Sign out</button></form></main></Chrome>;}

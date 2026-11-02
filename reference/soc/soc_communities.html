@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Communities — School of Computing | Maduka University</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#F5F5F5;color:#111;overflow-x:hidden;}
+
+/* ── INFO BAR ── */
+.info-bar{background:#111;height:36px;display:flex;align-items:center;justify-content:center;gap:48px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.info-bar-item{display:flex;align-items:center;gap:7px;font-size:10px;color:rgba(255,255,255,0.4);font-weight:400;letter-spacing:0.2px;}
+.info-bar-item a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.info-bar-item a:hover{color:#fff;}
+.info-bar-dot{width:3px;height:3px;background:rgba(255,255,255,0.2);border-radius:50%;}
+
+/* ── NAV ── */
+.nav{background:#fff;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E8E8E8;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo-ring{width:40px;height:40px;border:1.5px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#111;font-weight:700;}
+.nav-brand{font-size:15px;font-weight:700;color:#111;letter-spacing:-0.3px;}
+.nav-links{display:flex;align-items:center;gap:2px;}
+.nav-links a{font-size:11px;color:#888;padding:0 14px;height:62px;display:flex;align-items:center;cursor:pointer;transition:color 0.2s;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;}
+.nav-links a:hover{color:#111;}
+.nav-links a.active-nav{color:#111;border-bottom-color:#111;font-weight:600;}
+.nav-pay-btn{text-decoration: none; border:1px solid #111;color:#111;background:transparent;padding:7px 18px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.2s;white-space:nowrap;letter-spacing:0.3px;}
+.nav-pay-btn:hover{background:#111;color:#fff;}
+
+/* ── HERO ── */
+.hero-photo {
+  width: 100%;
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  background: url('./IMG_5577.jpg') center/cover no-repeat;
+}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.70) 100%);}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:32px 32px;}
+.hero-icons{position:absolute;inset:0;pointer-events:none;}
+.hero-icon{position:absolute;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.05);font-weight:700;}
+.hero-photo-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.hero-photo-ph span{font-size:9px;color:rgba(255,255,255,0.08);letter-spacing:3px;text-transform:uppercase;}
+.hero-photo-content{position:absolute;bottom:0;left:0;right:0;padding:0 40px 36px;z-index:2;}
+.hero-eyebrow{font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.hero-heading{font-size:52px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;}
+.hero-heading span{color:rgb(135, 135, 135);}
+.hero-rule{width:36px;height:2px;background:#fff;margin-top:14px;}
+
+/* ── SUB-NAV ── */
+.tab-nav{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 40px;display:flex;justify-content: space-between;align-items: center;overflow-x:auto;position:sticky;top:62px;z-index:40;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{background:transparent;border:none;border-bottom:2px solid transparent;color:#AAA;font-size:11px;font-weight:500;padding:15px 18px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all 0.2s;letter-spacing:0.2px;}
+.tab-btn:hover{color:#111;}
+.tab-btn.active{color:#111;border-bottom-color:#111;font-weight:600;}
+
+/* ── TAB CONTENT ── */
+.tab-content{display:none;animation:fadeUp 0.3s ease;}
+.tab-content.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── SHARED ── */
+.section{padding:64px 40px;background:#fff;}
+.section-alt{padding:64px 40px;background:#F5F5F5;}
+.section-dark{padding:64px 40px;background:#111;}
+.eyebrow{font-size:9px;color:#888;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.eyebrow-w{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.sec-title{font-size:30px;font-weight:700;color:#111;letter-spacing:-0.5px;line-height:1.2;}
+.sec-title-w{font-size:30px;font-weight:700;color:#fff;letter-spacing:-0.5px;line-height:1.2;}
+.sec-rule{width:28px;height:2px;background:#111;margin:14px 0;}
+.sec-rule-w{width:28px;height:2px;background:rgba(255,255,255,0.3);margin:14px 0;}
+.sec-sub{font-size:13px;color:#666;line-height:1.85;font-weight:300;max-width:660px;}
+.sec-body{font-size:13px;color:#555;line-height:1.9;font-weight:300;max-width:680px;margin-bottom:16px;}
+
+/* IMG PLACEHOLDER */
+.img-ph{background:#1C1C1C;border-top:3px solid #111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden;}
+.img-ph::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:24px 24px;}
+.img-ph-label{font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1;}
+.img-ph-icon{font-family:'JetBrains Mono',monospace;font-size:22px;color:rgba(255,255,255,0.07);font-weight:700;position:relative;z-index:1;}
+
+/* ═══════════════════════════
+   OVERVIEW TAB
+═══════════════════════════ */
+.overview-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:start;margin-top:36px;}
+.overview-body p{font-size:13px;color:#555;line-height:1.9;font-weight:300;margin-bottom:16px;}
+.overview-body p:last-child{margin-bottom:0;}
+.socials-block{background:#111;padding:28px;}
+.socials-title{font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+.social-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:opacity 0.2s;text-decoration:none;}
+.social-item:last-child{border-bottom:none;}
+.social-item:hover{opacity:0.7;}
+.social-icon{width:36px;height:36px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.5);font-weight:700;flex-shrink:0;}
+.social-name{font-size:12px;color:#fff;font-weight:600;}
+.social-handle{font-size:10px;color:rgba(255,255,255,0.3);font-weight:300;margin-top:1px;}
+.social-arr{margin-left:auto;font-size:14px;color:rgba(255,255,255,0.2);}
+.community-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:32px;}
+.cs-box{background:#fff;padding:20px 16px;text-align:center;}
+.cs-n{font-size:24px;font-weight:800;color:#111;letter-spacing:-0.5px;}
+.cs-l{font-size:8px;color:#AAA;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;}
+
+/* ═══════════════════════════
+   FACULTY TAB
+═══════════════════════════ */
+.faculty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:32px;}
+.faculty-card{background:#fff;overflow:hidden;}
+.fc-photo{height:180px;background:#1C1C1C;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;border-top:3px solid #111;}
+.fc-photo-ph{font-family:'JetBrains Mono',monospace;font-size:32px;color:rgba(255,255,255,0.08);font-weight:700;position:relative;z-index:1;}
+.fc-photo::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:20px 20px;}
+.fc-body{padding:20px;}
+.fc-name{font-size:15px;font-weight:700;color:#111;letter-spacing:-0.2px;margin-bottom:3px;}
+.fc-qual{font-size:10px;color:#AAA;font-weight:300;margin-bottom:10px;font-family:'JetBrains Mono',monospace;}
+.fc-courses-label{font-size:8px;color:#888;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:6px;}
+.fc-course{font-size:10px;color:#555;background:#F5F5F5;border:1px solid #E8E8E8;padding:2px 8px;display:inline-block;margin-right:4px;margin-bottom:4px;}
+
+/* ═══════════════════════════
+   PEOPLE TAB
+═══════════════════════════ */
+.people-section-title{font-size:14px;font-weight:700;color:#111;letter-spacing:-0.2px;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #111;display:inline-block;}
+.exco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-bottom:52px;}
+.exco-card{background:#fff;overflow:hidden;text-align:center;}
+.exco-photo{height:160px;background:#1C1C1C;display:flex;align-items:center;justify-content:center;border-top:3px solid #111;position:relative;overflow:hidden;}
+.exco-photo::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:18px 18px;}
+.exco-photo-ph{font-family:'JetBrains Mono',monospace;font-size:26px;color:rgba(255,255,255,0.08);font-weight:700;position:relative;z-index:1;}
+.exco-body{padding:16px 12px;}
+.exco-name{font-size:13px;font-weight:700;color:#111;margin-bottom:3px;}
+.exco-role{font-size:9px;color:#AAA;letter-spacing:1px;text-transform:uppercase;font-weight:500;}
+
+/* SPOTLIGHT */
+.spotlight-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:24px;}
+.spotlight-featured{background:#fff;border:1px solid #E8E8E8;border-top:3px solid #111;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s;}
+.spotlight-featured:hover{box-shadow:0 4px 22px rgba(0,0,0,0.07);}
+.sf-photo{height:200px;}
+.sf-body{padding:24px;}
+.sf-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.sf-tag{font-size:8px;background:#111;color:#fff;padding:2px 8px;letter-spacing:1px;text-transform:uppercase;font-weight:600;}
+.sf-dept{font-size:9px;color:#BBB;font-weight:300;}
+.sf-name{font-size:18px;font-weight:700;color:#111;letter-spacing:-0.3px;margin-bottom:6px;}
+.sf-story{font-size:12px;color:#777;line-height:1.75;font-weight:300;}
+.spotlight-list{display:flex;flex-direction:column;gap:12px;}
+.sl-item{background:#fff;border:1px solid #E8E8E8;padding:16px;cursor:pointer;transition:background 0.15s;display:flex;gap:14px;align-items:flex-start;}
+.sl-item:hover{background:#F9F9F9;}
+.sl-photo{width:48px;height:48px;background:#1C1C1C;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(255,255,255,0.12);font-weight:700;}
+.sl-name{font-size:12px;font-weight:700;color:#111;margin-bottom:2px;}
+.sl-dept{font-size:9px;color:#AAA;font-weight:300;margin-bottom:5px;font-family:'JetBrains Mono',monospace;}
+.sl-story{font-size:10px;color:#888;line-height:1.6;font-weight:300;}
+.admin-note{background:#F5F5F5;border:1px solid #E8E8E8;border-left:3px solid #555;padding:14px 20px;margin-top:28px;display:flex;align-items:center;gap:12px;}
+.admin-icon{font-family:'JetBrains Mono',monospace;font-size:18px;color:#CCC;}
+.admin-text{font-size:11px;color:#888;line-height:1.6;font-weight:300;}
+.admin-text strong{color:#555;font-weight:600;}
+
+/* ═══════════════════════════
+   AFFILIATIONS TAB
+═══════════════════════════ */
+.affil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.affil-card{background:#fff;border:1px solid #E8E8E8;border-top:3px solid #111;padding:28px 22px;}
+.affil-logo{width:52px;height:52px;background:#F5F5F5;border:1px solid #E8E8E8;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.affil-logo span{font-family:'JetBrains Mono',monospace;font-size:10px;color:#888;font-weight:700;}
+.affil-name{font-size:15px;font-weight:700;color:#111;margin-bottom:6px;letter-spacing:-0.2px;}
+.affil-full{font-size:10px;color:#AAA;font-weight:300;margin-bottom:12px;font-family:'JetBrains Mono',monospace;}
+.affil-desc{font-size:11px;color:#777;line-height:1.7;font-weight:300;}
+
+/* ═══════════════════════════
+   STUDENT GROUPS TAB
+═══════════════════════════ */
+.groups-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.group-card{background:#fff;border:1px solid #E8E8E8;overflow:hidden;transition:box-shadow 0.2s;cursor:pointer;}
+.group-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
+.group-card-top{background:#111;padding:20px 22px;display:flex;align-items:center;gap:14px;}
+.group-icon{width:40px;height:40px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.6);font-weight:700;flex-shrink:0;}
+.group-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.2px;}
+.group-dept{font-size:9px;color:rgba(255,255,255,0.3);font-weight:300;margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.group-body{padding:20px 22px;}
+.group-desc{font-size:12px;color:#666;line-height:1.75;font-weight:300;margin-bottom:14px;}
+.group-meta{display:flex;align-items:center;gap:12px;}
+.group-members{font-size:10px;color:#AAA;font-weight:300;}
+.group-members strong{color:#555;font-weight:600;}
+.join-link{font-size:10px;color:#111;font-weight:700;text-decoration:none;letter-spacing:0.3px;border-bottom:1px solid #111;padding-bottom:1px;margin-left:auto;}
+.join-link:hover{opacity:0.6;}
+
+/* ═══════════════════════════
+   WELFARE TAB
+═══════════════════════════ */
+.welfare-intro{background:#111;padding:36px 40px;margin-bottom:0;}
+.welfare-intro-inner{max-width:700px;}
+.welfare-intro-title{font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.3px;margin-bottom:8px;}
+.welfare-intro-sub{font-size:13px;color:rgba(255,255,255,0.38);line-height:1.8;font-weight:300;}
+.welfare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;}
+.welfare-card{background:#fff;padding:28px 22px;border-top:3px solid #111;}
+.wc-icon{width:40px;height:40px;background:#111;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.wc-icon span{font-family:'JetBrains Mono',monospace;font-size:11px;color:#fff;font-weight:700;}
+.wc-title{font-size:15px;font-weight:700;color:#111;margin-bottom:8px;letter-spacing:-0.2px;}
+.wc-desc{font-size:11px;color:#888;line-height:1.7;font-weight:300;margin-bottom:18px;}
+.wc-btn{display:inline-flex;align-items:center;gap:6px;background:#111;color:#fff;padding:9px 18px;font-size:10px;font-weight:700;cursor:pointer;border:none;font-family:'Inter',sans-serif;text-decoration:none;letter-spacing:0.3px;transition:opacity 0.2s;}
+.wc-btn:hover{opacity:0.82;}
+.welfare-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;border-top:none;}
+.wcontact-card{background:#F9F9F9;padding:22px;}
+.wc-contact-label{font-size:8px;color:#AAA;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+.wc-contact-name{font-size:13px;font-weight:700;color:#111;margin-bottom:2px;}
+.wc-contact-role{font-size:10px;color:#888;font-weight:300;margin-bottom:8px;}
+.wc-contact-info{font-size:11px;color:#555;font-weight:400;}
+
+/* ── FOOTER ── */
+.footer{background:#111;padding:40px 32px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;}
+.f-ring{width:28px;height:28px;border:1.5px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.f-ring span{font-size:9px;font-weight:700;color:#fff;}
+.f-school{font-size:11px;color:#fff;font-weight:500;}
+.f-uni{font-size:9px;color:rgba(255,255,255,0.26);font-weight:300;margin-top:1px;}
+.f-addr{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-top:12px;font-weight:300;}
+.f-ct{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:500;}
+.f-links{display:flex;flex-direction:column;gap:8px;}
+.f-links a{font-size:10px;color:rgba(255,255,255,0.26);cursor:pointer;transition:color 0.2s;font-weight:300;text-decoration:none;}
+.f-links a:hover{color:#fff;}
+.f-bottom{background:#0A0A0A;border-top:1px solid rgba(255,255,255,0.04);padding:11px 32px;display:flex;justify-content:space-between;align-items:center;}
+.f-bottom p{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-powered{display:flex;align-items:center;gap:5px;}
+.f-powered span{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-zekanik{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);cursor:pointer;transition:color 0.2s;}
+.f-zekanik:hover{color:#fff;}
+
+/* ── HAMBURGER & DRAWER ── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;align-items:flex-end;background:transparent;border:none;cursor:pointer;padding:6px;}
+.hb-line{background-color: black; height:1.5px;border-radius:1px;transition:all 0.3s;}
+.hb-line:nth-child(1){width:20px;}
+.hb-line:nth-child(2){width:14px;}
+.hb-line:nth-child(3){width:20px;}
+.nav-hamburger.open .hb-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px;}
+.nav-hamburger.open .hb-line:nth-child(2){opacity:0;width:0;}
+.nav-hamburger.open .hb-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:20px;}
+/* Drawer — hidden on desktop */
+.drawer{display:none;}
+
+@media (max-width: 768px) {
+  .info-bar{display:none;}
+  .nav{padding:0 18px;height:54px;}
+  .nav-links{display:none;}
+  .nav-pay-btn{display:none;}
+  .nav-hamburger{display:flex;}
+  .drawer{display:block;background:#111;overflow:hidden;max-height:0;transition:max-height 0.35s ease;border-bottom:1px solid rgba(255,255,255,0.04);position:sticky;top:54px;z-index:99;}
+  .drawer.open{max-height:500px;}
+  .drawer-label{display:block;font-size:8px;color:rgba(255,255,255,0.25);letter-spacing:3px;text-transform:uppercase;font-weight:500;padding:14px 18px 8px;}
+  .drawer-link{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-top:1px solid rgba(255,255,255,0.05);text-decoration:none;}
+  .drawer-link .link-text{font-size:11px;color:rgba(255,255,255,0.6);}
+  .drawer-link .chev{font-size:13px;color:rgba(255,255,255,0.2);}
+  .drawer-pay{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-top:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);text-decoration:none;}
+  .drawer-pay span{font-size:11px;color:#fff;font-weight:700;}
+  .tab-nav{top:54px;padding:0 4px;}
+  .tab-btn{padding:12px 10px;font-size:10px;}
+  .hero-photo{height:220px;}
+  .hero-photo-content{padding:0 20px 22px;}
+  .hero-heading{font-size:34px;letter-spacing:-1px;}
+  .hero-rule{width:24px;margin-top:10px;}
+  .section{padding:36px 20px;}
+  .section-alt{padding:36px 20px;}
+  .section-dark{padding:36px 20px;}
+  .sec-title{font-size:22px;}
+  .sec-title-w{font-size:22px;}
+  .sec-sub{font-size:12px;}
+  .sec-body{font-size:12px;}
+  .overview-layout{grid-template-columns:1fr;gap:36px;}
+  .community-stats{grid-template-columns:1fr;}
+  .faculty-grid{grid-template-columns:1fr;}
+  .exco-grid{grid-template-columns:1fr 1fr;}
+  .spotlight-grid{grid-template-columns:1fr;}
+  .affil-grid{grid-template-columns:1fr;}
+  .groups-grid{grid-template-columns:1fr;}
+  .welfare-intro{padding:36px 20px;}
+  .welfare-grid{grid-template-columns:1fr;}
+  .welfare-contact-grid{grid-template-columns:1fr;}
+  .footer{grid-template-columns:1fr 1fr;gap:20px;padding:28px 20px;}
+  .f-bottom{padding:11px 20px;flex-direction:column;gap:6px;text-align:center;}
+}
+@media (max-width: 480px) {
+  .hero-heading{font-size:28px;}
+  .footer{grid-template-columns:1fr;}
+  .exco-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="info-bar-item"><a href="#">madukauniversity</a></div>
+  <div class="info-bar-dot"></div>
+  <div class="info-bar-item"><a href="tel:09157893107">09157893107</a></div>
+  <div class="info-bar-dot"></div>
+  <div class="info-bar-item"><a href="mailto:admission@madukauniversity.edu.ng">admission@madukauniversity.edu.ng</a></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-ring"><img style="width: inherit; height: inherit;" src="./SOC Logo.png" alt="SOC"></div>
+    <div class="nav-brand">Communities</div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./soc_about_page.html">About</a>
+    <a href="./acad.html">Academics</a>
+    <a class="active-nav">Communities</a>
+    <a href="./soc_news_events.html">News &amp; Events</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+  <a class="nav-pay-btn" href="pay-dues.html">Pay Dues</a>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <span class="drawer-label">Navigation</span>
+  <a class="drawer-link" href="./index.html"><span class="link-text">Home</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_about_page.html"><span class="link-text">About</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./acad.html"><span class="link-text">Academics</span><span class="chev">›</span></a>
+  <a class="drawer-link active-nav"><span class="link-text">Communities</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_news_events.html"><span class="link-text">News &amp; Events</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./contact.html"><span class="link-text">Contact</span><span class="chev">›</span></a>
+  <a class="drawer-pay" href="./pay-dues.html"><span>Pay Dues →</span></a>
+</div>
+
+<!-- HERO -->
+<div class="hero-photo">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-icons">
+    <div class="hero-icon" style="top:10%;left:6%;font-size:30px;">{ }</div>
+    <div class="hero-icon" style="top:18%;left:20%;font-size:14px;">&lt;/&gt;</div>
+    <div class="hero-icon" style="top:8%;left:36%;font-size:18px;">[ ]</div>
+    <div class="hero-icon" style="top:28%;left:50%;font-size:12px;">01101</div>
+    <div class="hero-icon" style="top:12%;left:63%;font-size:20px;">( )</div>
+    <div class="hero-icon" style="top:32%;left:74%;font-size:13px;">=&gt;</div>
+    <div class="hero-icon" style="top:9%;left:84%;font-size:26px;">{ }</div>
+    <div class="hero-icon" style="top:52%;left:28%;font-size:11px;">&&</div>
+    <div class="hero-icon" style="top:60%;left:56%;font-size:13px;">npm</div>
+    <div class="hero-icon" style="top:42%;left:70%;font-size:11px;">10110</div>
+    <div class="hero-icon" style="top:65%;left:84%;font-size:15px;">//</div>
+    <div class="hero-icon" style="top:38%;left:5%;font-size:12px;">fn()</div>
+  </div>
+  <div class="hero-photo-ph"><span>Community Photo — Coming Soon</span></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="hero-photo-content">
+    <div class="hero-eyebrow">Maduka University — School of Computing</div>
+    <div class="hero-heading">Our <span>Community</span></div>
+    <div class="hero-rule"></div>
+  </div>
+</div>
+
+<!-- SUB-NAV -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="switchTab('faculty',this)">Faculty</button>
+  <button class="tab-btn" onclick="switchTab('people',this)">People</button>
+  <button class="tab-btn" onclick="switchTab('affiliations',this)">Affiliations</button>
+  <button class="tab-btn" onclick="switchTab('groups',this)">Student Groups &amp; Clubs</button>
+  <button class="tab-btn" onclick="switchTab('welfare',this)">Welfare</button>
+</div>
+
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<div class="tab-content active" id="tab-overview">
+  <div class="section">
+    <div class="eyebrow">Who We Are</div>
+    <div class="sec-title">SOC Is a Family</div>
+    <div class="sec-rule"></div>
+    <div class="overview-layout">
+      <div class="overview-body">
+        <p>The School of Computing is more than a faculty — it is a community of thinkers, builders, and problem-solvers who share a common belief: that technology, when built with purpose, can change lives. From the first day of 100 Level to graduation day and beyond, every student becomes part of something bigger than their individual degree.</p>
+        <p>We are a small school with a big heart. Our size is our strength — it means every lecturer knows your name, every student has a voice, and every challenge you face is met by people who genuinely care about your success. The SOC community supports you inside the classroom, outside it, and long after you leave.</p>
+        <p>Whether you are here to build the next great Nigerian startup, secure the country's digital infrastructure, or push the boundaries of computing research — you belong here. And we are glad you are here.</p>
+        <div class="community-stats">
+          <div class="cs-box"><div class="cs-n">200+</div><div class="cs-l">Students</div></div>
+          <div class="cs-box"><div class="cs-n">10+</div><div class="cs-l">Faculty</div></div>
+          <div class="cs-box"><div class="cs-n">3 Yrs</div><div class="cs-l">Excellence</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="socials-block">
+          <div class="socials-title">Find Us Online</div>
+          <a class="social-item" href="#" target="_blank">
+            <div class="social-icon">IG</div>
+            <div><div class="social-name">Instagram</div><div class="social-handle">@soc.maduka</div></div>
+            <div class="social-arr">↗</div>
+          </a>
+          <a class="social-item" href="#" target="_blank">
+            <div class="social-icon">FB</div>
+            <div><div class="social-name">Facebook</div><div class="social-handle">SOC Maduka University</div></div>
+            <div class="social-arr">↗</div>
+          </a>
+          <a class="social-item" href="#" target="_blank">
+            <div class="social-icon">TT</div>
+            <div><div class="social-name">TikTok</div><div class="social-handle">@soc.maduka</div></div>
+            <div class="social-arr">↗</div>
+          </a>
+          <a class="social-item" href="#" target="_blank">
+            <div class="social-icon">LI</div>
+            <div><div class="social-name">LinkedIn</div><div class="social-handle">School of Computing, Maduka</div></div>
+            <div class="social-arr">↗</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /overview -->
+
+
+<!-- ═══════════════ FACULTY ═══════════════ -->
+<div class="tab-content" id="tab-faculty">
+  <div class="section">
+    <div class="eyebrow">Our Lecturers</div>
+    <div class="sec-title">Faculty</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">Our lecturers are not just academics — they are practitioners with real industry experience who invest in every student. Meet the people shaping the next generation of Nigerian computing professionals.</p>
+
+    <div class="faculty-grid">
+
+      <!-- HOD -->
+      <div class="faculty-card">
+        <div class="fc-photo"><div class="fc-photo-ph">OMT</div></div>
+        <div class="fc-body">
+          <div class="fc-name">Dr. Onuoha M. Thomas</div>
+          <div class="fc-qual">Ph.D — HOD, School of Computing</div>
+          <div class="fc-courses-label">Courses Taught</div>
+          <span class="fc-course">Machine Learning</span>
+          <span class="fc-course">Research Methods</span>
+          <span class="fc-course">AI Fundamentals</span>
+        </div>
+      </div>
+
+      <!-- Placeholder lecturers -->
+      <div class="faculty-card">
+        <div class="fc-photo"><div class="fc-photo-ph">LC</div></div>
+        <div class="fc-body">
+          <div class="fc-name">Lecturer Name</div>
+          <div class="fc-qual">M.Sc — Department Placeholder</div>
+          <div class="fc-courses-label">Courses Taught</div>
+          <span class="fc-course">Course 1</span>
+          <span class="fc-course">Course 2</span>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="fc-photo"><div class="fc-photo-ph">LC</div></div>
+        <div class="fc-body">
+          <div class="fc-name">Lecturer Name</div>
+          <div class="fc-qual">M.Sc — Department Placeholder</div>
+          <div class="fc-courses-label">Courses Taught</div>
+          <span class="fc-course">Course 1</span>
+          <span class="fc-course">Course 2</span>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="fc-photo"><div class="fc-photo-ph">LC</div></div>
+        <div class="fc-body">
+          <div class="fc-name">Lecturer Name</div>
+          <div class="fc-qual">Ph.D — Department Placeholder</div>
+          <div class="fc-courses-label">Courses Taught</div>
+          <span class="fc-course">Course 1</span>
+          <span class="fc-course">Course 2</span>
+          <span class="fc-course">Course 3</span>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="fc-photo"><div class="fc-photo-ph">LC</div></div>
+        <div class="fc-body">
+          <div class="fc-name">Lecturer Name</div>
+          <div class="fc-qual">M.Sc — Department Placeholder</div>
+          <div class="fc-courses-label">Courses Taught</div>
+          <span class="fc-course">Course 1</span>
+          <span class="fc-course">Course 2</span>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="fc-photo"><div class="fc-photo-ph">LC</div></div>
+        <div class="fc-body">
+          <div class="fc-name">Lecturer Name</div>
+          <div class="fc-qual">M.Sc — Department Placeholder</div>
+          <div class="fc-courses-label">Courses Taught</div>
+          <span class="fc-course">Course 1</span>
+          <span class="fc-course">Course 2</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /faculty -->
+
+
+<!-- ═══════════════ PEOPLE ═══════════════ -->
+<div class="tab-content" id="tab-people">
+  <div class="section" style="padding-bottom:32px;">
+    <div class="eyebrow">Student Leadership</div>
+    <div class="sec-title">People</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">The student executives who represent the SOC community — and the students doing extraordinary things that make us all proud.</p>
+
+    <!-- EXCO -->
+    <div style="margin-top:36px;"><div class="people-section-title">Student Executives</div></div>
+    <div class="exco-grid">
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">PR</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">President</div></div>
+      </div>
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">VP</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">Vice President</div></div>
+      </div>
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">GS</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">General Secretary</div></div>
+      </div>
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">FO</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">Financial Officer</div></div>
+      </div>
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">PR</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">PRO</div></div>
+      </div>
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">SW</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">Welfare Officer</div></div>
+      </div>
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">SO</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">Social Secretary</div></div>
+      </div>
+      <div class="exco-card">
+        <div class="exco-photo"><div class="exco-photo-ph">SP</div></div>
+        <div class="exco-body"><div class="exco-name">Student Name</div><div class="exco-role">Sports Director</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPOTLIGHT -->
+  <div class="section-alt">
+    <div class="eyebrow">Student Achievements</div>
+    <div class="sec-title">Student Spotlight</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">SOC students doing extraordinary things — winning competitions, building products, earning recognition on the national and international stage.</p>
+
+    <div class="spotlight-grid">
+      <div class="spotlight-featured">
+        <div class="sf-photo img-ph" style="height:200px;"><div class="img-ph-icon">★</div><div class="img-ph-label">Spotlight Photo — Coming Soon</div></div>
+        <div class="sf-body">
+          <div class="sf-meta"><span class="sf-tag">Achievement</span><span class="sf-dept">Software Engineering · 300L</span></div>
+          <div class="sf-name">Student Name Here</div>
+          <div class="sf-story">A brief description of what this student achieved — competition wins, products built, recognition earned, internships secured, or anything else worth celebrating. This is their moment in the spotlight. Editable by admins via the CMS.</div>
+        </div>
+      </div>
+      <div class="spotlight-list">
+        <div class="sl-item">
+          <div class="sl-photo">ST</div>
+          <div><div class="sl-name">Student Name</div><div class="sl-dept">CYB · 200L</div><div class="sl-story">Brief description of what this student did that made us proud. Editable by admins.</div></div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-photo">ST</div>
+          <div><div class="sl-name">Student Name</div><div class="sl-dept">CSC · 400L</div><div class="sl-story">Brief description of what this student did that made us proud. Editable by admins.</div></div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-photo">ST</div>
+          <div><div class="sl-name">Student Name</div><div class="sl-dept">SEN · 300L</div><div class="sl-story">Brief description of what this student did that made us proud. Editable by admins.</div></div>
+        </div>
+        <div class="sl-item">
+          <div class="sl-photo">ST</div>
+          <div><div class="sl-name">Student Name</div><div class="sl-dept">CYB · 400L</div><div class="sl-story">Brief description of what this student did that made us proud. Editable by admins.</div></div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+</div><!-- /people -->
+
+
+<!-- ═══════════════ AFFILIATIONS ═══════════════ -->
+<div class="tab-content" id="tab-affiliations">
+  <div class="section">
+    <div class="eyebrow">Our Partners & Memberships</div>
+    <div class="sec-title">Affiliations</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">The School of Computing is affiliated with leading computing professional bodies, student organisations, and industry partners across Nigeria and beyond.</p>
+
+    <div class="affil-grid">
+      <div class="affil-card">
+        <div class="affil-logo"><span>NACOS</span></div>
+        <div class="affil-name">NACOS</div>
+        <div class="affil-full">Nigeria Association of Computing Students</div>
+        <div class="affil-desc">Our students are active members of NACOS — Nigeria's premier computing student body. Membership opens doors to national competitions, networking events, and industry connections across the country.</div>
+      </div>
+      <div class="affil-card">
+        <div class="affil-logo"><span>AFF</span></div>
+        <div class="affil-name">Affiliation Name</div>
+        <div class="affil-full">Full Organisation Name — Placeholder</div>
+        <div class="affil-desc">Description of what this affiliation is and what it offers to SOC students. Editable by admins via the CMS when the real affiliation details are provided.</div>
+      </div>
+      <div class="affil-card">
+        <div class="affil-logo"><span>AFF</span></div>
+        <div class="affil-name">Affiliation Name</div>
+        <div class="affil-full">Full Organisation Name — Placeholder</div>
+        <div class="affil-desc">Description of what this affiliation is and what it offers to SOC students. Editable by admins via the CMS when the real affiliation details are provided.</div>
+      </div>
+    </div>
+
+    
+  </div>
+</div><!-- /affiliations -->
+
+
+<!-- ═══════════════ STUDENT GROUPS ═══════════════ -->
+<div class="tab-content" id="tab-groups">
+  <div class="section">
+    <div class="eyebrow">Student-Led Initiatives</div>
+    <div class="sec-title">Student Groups &amp; Clubs</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">SOC students don't just attend lectures — they build, collaborate, and lead. These are the groups doing things outside the classroom that shape careers.</p>
+
+    <div class="groups-grid">
+      <div class="group-card">
+        <div class="group-card-top">
+          <div class="group-icon">{ }</div>
+          <div><div class="group-name">Group / Club Name</div><div class="group-dept">Open to All Departments</div></div>
+        </div>
+        <div class="group-body">
+          <div class="group-desc">Description of what this student group does — their focus area, activities, events, hackathons, or community projects. This is editable by admins via the CMS.</div>
+          <div class="group-meta"><span class="group-members"><strong>-- Members</strong></span><a class="join-link">Join Group →</a></div>
+        </div>
+      </div>
+      <div class="group-card">
+        <div class="group-card-top">
+          <div class="group-icon">[ ]</div>
+          <div><div class="group-name">Group / Club Name</div><div class="group-dept">CSC · SEN</div></div>
+        </div>
+        <div class="group-body">
+          <div class="group-desc">Description of what this student group does — their focus area, activities, events, hackathons, or community projects. This is editable by admins via the CMS.</div>
+          <div class="group-meta"><span class="group-members"><strong>-- Members</strong></span><a class="join-link">Join Group →</a></div>
+        </div>
+      </div>
+      <div class="group-card">
+        <div class="group-card-top">
+          <div class="group-icon">&lt;/&gt;</div>
+          <div><div class="group-name">Group / Club Name</div><div class="group-dept">SEN Department</div></div>
+        </div>
+        <div class="group-body">
+          <div class="group-desc">Description of what this student group does — their focus area, activities, events, hackathons, or community projects. This is editable by admins via the CMS.</div>
+          <div class="group-meta"><span class="group-members"><strong>-- Members</strong></span><a class="join-link">Join Group →</a></div>
+        </div>
+      </div>
+      <div class="group-card">
+        <div class="group-card-top">
+          <div class="group-icon">SEC</div>
+          <div><div class="group-name">Group / Club Name</div><div class="group-dept">CYB Department</div></div>
+        </div>
+        <div class="group-body">
+          <div class="group-desc">Description of what this student group does — their focus area, activities, events, hackathons, or community projects. This is editable by admins via the CMS.</div>
+          <div class="group-meta"><span class="group-members"><strong>-- Members</strong></span><a class="join-link">Join Group →</a></div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+</div><!-- /groups -->
+
+
+<!-- ═══════════════ WELFARE ═══════════════ -->
+<div class="tab-content" id="tab-welfare">
+
+  <div class="welfare-intro">
+    <div class="welfare-intro-inner">
+      <div class="welfare-intro-title">We're Here For You</div>
+      <div class="welfare-intro-sub">Your voice matters. Your wellbeing matters. Whether you have a suggestion, a complaint, feedback, or just need someone to talk to — SOC's welfare system is built to listen and act.</div>
+    </div>
+  </div>
+
+  <div class="welfare-grid">
+    <div class="welfare-card">
+      <div class="wc-icon"><span>SUG</span></div>
+      <div class="wc-title">Suggestion Box</div>
+      <div class="wc-desc">Have an idea to improve the School of Computing? A change you'd like to see in how we operate? Drop it here — anonymously if you prefer. We read every submission.</div>
+      <a class="wc-btn" href="#" target="_blank">Open Suggestion Box ↗</a>
+    </div>
+    <div class="welfare-card">
+      <div class="wc-icon"><span>CPL</span></div>
+      <div class="wc-title">Complaint Form</div>
+      <div class="wc-desc">Experiencing an issue with a lecturer, student, facility, or administrative process? Log your complaint formally here. All submissions are treated with confidentiality.</div>
+      <a class="wc-btn" href="#" target="_blank">Submit a Complaint ↗</a>
+    </div>
+    <div class="welfare-card">
+      <div class="wc-icon"><span>FBK</span></div>
+      <div class="wc-title">Feedback Form</div>
+      <div class="wc-desc">Tell us how we're doing. Feedback on lectures, events, the website, student services — all of it helps us improve the SOC experience for everyone.</div>
+      <a class="wc-btn" href="#" target="_blank">Give Feedback ↗</a>
+    </div>
+  </div>
+
+  <!-- Contacts -->
+  <div class="section-alt" style="padding-top:48px;">
+    <div class="eyebrow">Get in Touch Directly</div>
+    <div class="sec-title">Welfare Contacts</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub" style="margin-bottom:32px;">Prefer to speak directly to someone? Here are the people you can reach.</p>
+
+    <div class="welfare-contact-grid">
+      <div class="wcontact-card">
+        <div class="wc-contact-label">Head of Department</div>
+        <div class="wc-contact-name">Dr. Onuoha M. Thomas</div>
+        <div class="wc-contact-role">HOD — School of Computing</div>
+        <div class="wc-contact-info">hod.soc@madukauniversity.edu.ng</div>
+      </div>
+      <div class="wcontact-card">
+        <div class="wc-contact-label">Welfare Officer</div>
+        <div class="wc-contact-name">Student Welfare Officer</div>
+        <div class="wc-contact-role">Student Executive — Welfare</div>
+        <div class="wc-contact-info">welfare.soc@madukauniversity.edu.ng</div>
+      </div>
+      <div class="wcontact-card">
+        <div class="wc-contact-label">Faculty Staff Contact</div>
+        <div class="wc-contact-name">Staff Name Placeholder</div>
+        <div class="wc-contact-role">Staff Role — Department</div>
+        <div class="wc-contact-info">staff@madukauniversity.edu.ng</div>
+      </div>
+      <div class="wcontact-card">
+        <div class="wc-contact-label">General SOC Enquiries</div>
+        <div class="wc-contact-name">School of Computing Office</div>
+        <div class="wc-contact-role">Administrative Support</div>
+        <div class="wc-contact-info">soc@madukauniversity.edu.ng</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /welfare -->
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div style="display:flex;gap:9px;align-items:flex-start;">
+      <div class="f-ring"><img style="width: inherit; height: inherit;" src="./SOC Logo.png" alt="SOC"></div>
+      <div><div class="f-school">School of Computing</div><div class="f-uni">Maduka University</div></div>
+    </div>
+    <div class="f-addr">Along Nsukka–Enugu New Road<br>Ekwegbe, Enugu State, Nigeria<br>soc@madukauniversity.edu.ng</div>
+  </div>
+  <div><div class="f-ct">Communities</div><div class="f-links"><a>Overview</a><a>Faculty</a><a>People</a><a>Affiliations</a><a>Groups</a><a>Welfare</a></div></div>
+  <div><div class="f-ct">University</div><div class="f-links"><a>Main Site</a><a>Student Portal</a><a>E-Learning</a><a>Library</a></div></div>
+  <div><div class="f-ct">Quick</div><div class="f-links"><a>Academics</a><a>News &amp; Events</a><a>Pay Dues</a><a>Contact</a></div></div>
+</div>
+<div class="f-bottom">
+  <p>© 2026 School of Computing, Maduka University. All rights reserved.</p>
+  <div class="f-powered"><span>Powered by</span><span class="f-zekanik">ZekaniK</span></div>
+</div>
+
+<script>
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function switchTab(id, btn) {   
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top: document.querySelector('.tab-nav').offsetTop - 10, behavior:'smooth'});
+}
+</script>
+</body>
+</html>

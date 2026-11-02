@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About — School of Computing | Maduka University</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#F5F5F5;color:#111;overflow-x:hidden;}
+
+/* ── NAV ── */
+.nav{background:#111;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.nav-ring img{width:100%;height:100%;object-fit:cover;}
+.nav-name{font-size:11px;font-weight:600;color:#fff;}
+.nav-sub{font-size:9px;color:rgba(255,255,255,0.3);font-weight:300;margin-top:1px;}
+.nav-links{display:flex;align-items:center;}
+.nav-links a{font-size:11px;color:rgba(255,255,255,0.45);padding:0 11px;height:58px;display:flex;align-items:center;cursor:pointer;transition:color 0.2s;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active-nav{color:#fff;}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.search-wrap{display:flex;align-items:center;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:2px;}
+.search-btn{background:transparent;border:none;cursor:pointer;padding:5px 8px;display:flex;align-items:center;color:rgba(255,255,255,0.5);}
+.search-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+.search-input{background:transparent;border:none;outline:none;color:#fff;font-size:11px;font-family:'Inter',sans-serif;padding:5px 8px 5px 0;width:130px;}
+.search-input::placeholder{color:rgba(255,255,255,0.25);}
+.nav-pay{border:1px solid rgba(255,255,255,0.3);color:#fff;background:transparent;padding:5px 14px;font-size:10px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.2s;white-space:nowrap;}
+.nav-pay:hover{background:#fff;color:#111;}
+
+/* Hamburger — hidden on desktop */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;align-items:flex-end;background:transparent;border:none;cursor:pointer;padding:6px;}
+.hb-line{background:#fff;height:1.5px;border-radius:1px;transition:all 0.3s;}
+.hb-line:nth-child(1){width:20px;}
+.hb-line:nth-child(2){width:14px;}
+.hb-line:nth-child(3){width:20px;}
+.nav-hamburger.open .hb-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px;}
+.nav-hamburger.open .hb-line:nth-child(2){opacity:0;width:0;}
+.nav-hamburger.open .hb-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:20px;}
+
+/* Drawer — hidden on desktop */
+.drawer{display:none;}
+
+/* ── PAGE HERO ── */
+.page-hero{position:relative;height:260px;background:#111;overflow:hidden;display:flex;align-items:flex-end;}
+.hero-bg{position:absolute;inset:0;background:url('./SOC\ Logo.png') center/cover no-repeat;z-index:0;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.85) 40%,rgba(0,0,0,0.4) 100%);z-index:1;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:28px 28px;z-index:1;}
+.hero-icon{position:absolute;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.06);font-weight:700;z-index:2;pointer-events:none;}
+.hero-content{position:relative;z-index:3;padding:0 40px 32px;}
+.hero-heading{font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;}
+.hero-heading span{color:#555;}
+.hero-rule{width:32px;height:2px;background:#fff;margin-top:14px;}
+
+/* ── TAB NAV ── */
+.tab-nav{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 40px;display:flex;overflow-x:auto;position:sticky;top:58px;z-index:40;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{background:transparent;border:none;border-bottom:2px solid transparent;color:#AAA;font-size:11px;font-weight:500;padding:14px 16px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all 0.2s;letter-spacing:0.2px;}
+.tab-btn:hover{color:#111;}
+.tab-btn.active{color:#111;border-bottom-color:#111;font-weight:600;}
+
+/* ── TAB CONTENT ── */
+.tab-content{display:none;animation:fadeUp 0.3s ease;}
+.tab-content.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── SHARED SECTION STYLES ── */
+.section{padding:64px 40px;}
+.section-alt{padding:64px 40px;background:#F5F5F5;}
+.eyebrow{font-size:9px;color:#888;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.sec-title{font-size:30px;font-weight:700;color:#111;letter-spacing:-0.5px;line-height:1.2;}
+.sec-rule{width:28px;height:2px;background:#111;margin:14px 0;}
+.sec-sub{font-size:13px;color:#666;line-height:1.85;font-weight:300;max-width:640px;}
+.sec-body{font-size:13px;color:#555;line-height:1.9;font-weight:300;max-width:680px;margin-bottom:16px;}
+
+/* ── OVERVIEW ── */
+.overview-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:52px;align-items:start;}
+.overview-img{background:#1C1C1C url('./sunset.jpeg') center/cover no-repeat;height:280px;border-top:3px solid #111;}
+.hod-card{background:#111;padding:28px;margin-top:32px;border-top:3px solid #fff;}
+.hod-photo{width:64px;height:72px;background:#2A2A2A;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:rgba(255,255,255,0.15);margin-bottom:16px;}
+.hod-quote{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;font-weight:300;font-style:italic;margin-bottom:14px;}
+.hod-name{font-size:11px;color:#fff;font-weight:600;}
+.hod-role{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;font-weight:300;}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:28px;}
+.stat-box{background:#fff;padding:20px 16px;text-align:center;}
+.stat-big{font-size:24px;font-weight:800;color:#111;letter-spacing:-0.5px;}
+.stat-lbl{font-size:8px;color:#AAA;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;}
+
+/* ── CORE VALUES ── */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:32px;}
+.val-card{background:#fff;padding:28px 22px;}
+.val-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:#BBB;font-weight:400;margin-bottom:12px;letter-spacing:1px;}
+.val-title{font-size:14px;font-weight:700;color:#111;margin-bottom:8px;letter-spacing:-0.2px;}
+.val-desc{font-size:11px;color:#888;line-height:1.7;font-weight:300;}
+
+/* ── VISION / MISSION ── */
+.vm-wrap{max-width:720px;}
+.vm-big{font-size:22px;font-weight:700;color:#111;line-height:1.5;letter-spacing:-0.3px;margin-bottom:20px;border-left:3px solid #111;padding-left:20px;}
+.vm-sub{font-size:13px;color:#666;line-height:1.9;font-weight:300;}
+.vision-dark{background:#111;padding:52px 40px;}
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;}
+.mission-card{background:#fff;padding:24px 20px;}
+.mission-card-title{font-size:11px;font-weight:700;color:#111;margin-bottom:8px;}
+.mission-card-desc{font-size:11px;color:#888;line-height:1.7;font-weight:300;}
+
+/* ── DEPARTMENTS ── */
+.dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.dept-card{background:#fff;border:1px solid #E8E8E8;border-top:3px solid #111;padding:26px 22px;position:relative;cursor:pointer;transition:box-shadow 0.2s;}
+.dept-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
+.dept-code{font-family:'JetBrains Mono',monospace;font-size:10px;color:#AAA;margin-bottom:10px;letter-spacing:1px;}
+.dept-name{font-size:16px;font-weight:700;color:#111;margin-bottom:10px;letter-spacing:-0.3px;line-height:1.3;}
+.dept-desc{font-size:11px;color:#888;line-height:1.7;font-weight:300;margin-bottom:18px;}
+.dept-link{font-size:10px;color:#111;font-weight:600;text-decoration:none;letter-spacing:0.5px;display:flex;align-items:center;gap:4px;}
+.dept-link:hover{text-decoration:underline;}
+.dept-arr{font-size:12px;}
+
+/* ── RULES ── */
+.rules-wrap{max-width:720px;margin-top:24px;}
+.rule-item{background:#fff;border:1px solid #E8E8E8;border-left:3px solid #111;padding:16px 20px;margin-bottom:10px;}
+.rule-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:#AAA;margin-bottom:4px;letter-spacing:1px;}
+.rule-text{font-size:12px;color:#444;line-height:1.65;font-weight:400;}
+.pdf-download{display:inline-flex;align-items:center;gap:10px;background:#111;color:#fff;padding:12px 22px;font-size:11px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;margin-top:24px;letter-spacing:0.3px;transition:opacity 0.2s;}
+.pdf-download:hover{opacity:0.85;}
+.pdf-icon{font-size:14px;}
+
+/* ── DRESS CODE ── */
+.dress-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;}
+.dress-card{background:#fff;border:1px solid #E8E8E8;overflow:hidden;}
+.dress-img{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.dress-swatch{display:flex;height:100%;width:100%;}
+.swatch{flex:1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;}
+.swatch-label{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+.dress-body{padding:18px;}
+.dress-combo{font-size:13px;font-weight:700;color:#111;margin-bottom:6px;letter-spacing:-0.2px;}
+.dress-note{font-size:11px;color:#888;line-height:1.6;font-weight:300;}
+.dress-badge{display:inline-block;background:#111;color:#fff;font-size:9px;padding:2px 8px;font-weight:600;letter-spacing:0.5px;margin-top:8px;}
+.dress-note-box{background:#F5F5F5;border:1px solid #E8E8E8;border-left:3px solid #111;padding:16px 20px;margin-top:24px;max-width:720px;}
+.dress-note-title{font-size:11px;font-weight:700;color:#111;margin-bottom:4px;}
+.dress-note-text{font-size:11px;color:#666;line-height:1.65;font-weight:300;}
+
+/* ── WHY CHOOSE US ── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:32px;}
+.why-card{background:#fff;padding:28px 22px;}
+.why-icon{width:36px;height:36px;background:#111;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.why-icon span{font-family:'JetBrains Mono',monospace;font-size:11px;color:#fff;font-weight:700;}
+.why-title{font-size:14px;font-weight:700;color:#111;margin-bottom:8px;letter-spacing:-0.2px;}
+.why-desc{font-size:11px;color:#888;line-height:1.7;font-weight:300;}
+.why-dark{background:#111;padding:52px 40px;}
+.why-dark-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:900px;margin:0 auto;}
+.why-cta-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;line-height:1.3;margin-bottom:12px;}
+.why-cta-sub{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.8;font-weight:300;}
+.btn-white{background:#fff;color:#111;border:none;padding:11px 24px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:0.3px;transition:opacity 0.2s;}
+.btn-white:hover{opacity:0.88;}
+.btn-ghost-w{background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.2);padding:11px 20px;font-size:11px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.btn-ghost-w:hover{border-color:#fff;color:#fff;}
+
+/* ── FOOTER ── */
+.footer{background:#111;padding:40px 32px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;}
+.f-ring{width:28px;height:28px;border:1.5px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+.f-ring img{width:100%;height:100%;object-fit:cover;}
+.f-school{font-size:11px;color:#fff;font-weight:500;}
+.f-uni{font-size:9px;color:rgba(255,255,255,0.26);font-weight:300;margin-top:1px;}
+.f-addr{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-top:12px;font-weight:300;}
+.f-ct{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:500;}
+.f-links{display:flex;flex-direction:column;gap:8px;}
+.f-links a{font-size:10px;color:rgba(255,255,255,0.26);cursor:pointer;transition:color 0.2s;font-weight:300;text-decoration:none;}
+.f-links a:hover{color:#fff;}
+.f-bottom{background:#0A0A0A;border-top:1px solid rgba(255,255,255,0.04);padding:11px 32px;display:flex;justify-content:space-between;align-items:center;}
+.f-bottom p{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-zekanik{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);letter-spacing:0.5px;cursor:pointer;transition:color 0.2s;}
+.f-zekanik:hover{color:#fff;}
+.f-powered{display:flex;align-items:center;gap:5px;}
+.f-powered span{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+
+/* ══════════════════════════════════════
+   MOBILE RESPONSIVE — max-width: 768px
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* NAV */
+  .nav{padding:0 18px;height:54px;}
+  .nav-links{display:none;}
+  .nav-right{display:none;}
+  .nav-hamburger{display:flex;}
+  .drawer{display:block;background:#111;overflow:hidden;max-height:0;transition:max-height 0.35s ease;border-bottom:1px solid rgba(255,255,255,0.04);position:sticky;top:54px;z-index:99;}
+  .drawer.open{max-height:500px;}
+  .drawer-label{display:block;font-size:8px;color:rgba(255,255,255,0.25);letter-spacing:3px;text-transform:uppercase;font-weight:500;padding:14px 18px 8px;}
+  .drawer-link{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-top:1px solid rgba(255,255,255,0.05);text-decoration:none;}
+  .drawer-link .link-text{font-size:11px;color:rgba(255,255,255,0.6);}
+  .drawer-link .chev{font-size:13px;color:rgba(255,255,255,0.2);}
+  .drawer-pay{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-top:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);text-decoration:none;}
+  .drawer-pay span{font-size:11px;color:#fff;font-weight:700;}
+  .tab-nav{top:54px;padding:0 4px;}
+  .tab-btn{padding:12px 13px;font-size:10px;}
+
+  /* HERO */
+  .page-hero{height:180px;}
+  .hero-content{padding:0 20px 22px;}
+  .hero-heading{font-size:34px;letter-spacing:-1px;}
+  .hero-rule{width:24px;margin-top:10px;}
+  .hero-icon{display:none;}
+  .hero-icon:nth-child(1),
+  .hero-icon:nth-child(3),
+  .hero-icon:nth-child(6){display:block;font-size:13px !important;transform:none !important;}
+
+  /* SECTIONS */
+  .section{padding:36px 20px;}
+  .section-alt{padding:36px 20px;}
+  .sec-title{font-size:22px;}
+  .sec-sub{font-size:12px;}
+  .sec-body{font-size:12px;}
+
+  /* OVERVIEW */
+  .overview-grid{grid-template-columns:1fr;gap:24px;}
+  .overview-img{height:200px;}
+
+  /* VALUES */
+  .values-grid{grid-template-columns:1fr;}
+
+  /* VISION */
+  .vision-dark{padding:32px 20px;}
+  .vision-dark div[style]{padding:0 !important;}
+  .vision-dark [style*="font-size:22px"]{font-size:17px !important;}
+
+  /* MISSION */
+  .mission-grid{grid-template-columns:1fr;}
+  .vm-big{font-size:16px;padding-left:14px;}
+  .vm-sub{font-size:12px;}
+
+  /* DEPARTMENTS */
+  .dept-grid{grid-template-columns:1fr;gap:12px;}
+
+  /* DRESS CODE */
+  .dress-grid{grid-template-columns:1fr;gap:12px;}
+  .dress-note-box{max-width:100%;}
+
+  /* WHY CHOOSE US */
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .why-dark{padding:32px 20px;}
+  .why-dark-inner{grid-template-columns:1fr;gap:20px;}
+  .why-cta-title{font-size:20px;}
+  .btn-ghost-w{margin-left:0;}
+
+  /* FOOTER */
+  .footer{grid-template-columns:1fr 1fr;gap:24px;padding:28px 20px;}
+  .f-bottom{padding:11px 20px;flex-direction:column;gap:6px;text-align:center;}
+}
+
+@media (max-width: 480px) {
+  .why-grid{grid-template-columns:1fr;}
+  .footer{grid-template-columns:1fr 1fr;}
+  .hero-heading{font-size:28px;}
+  .stat-row{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-ring"><img src="./SOC Logo.png" alt="SOC"></div>
+    <div><div class="nav-name">Maduka University</div><div class="nav-sub">School of Computing</div></div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a class="active-nav">About ▾</a>
+    <a href="./acad.html">Academics ▾</a>
+    <a href="./soc_communities.html">Communities ▾</a>
+    <a href="./soc_news_events.html">News & Events</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="search-wrap">
+      <button class="search-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+      <input class="search-input" placeholder="Search SOC..." type="text"/>
+    </div>
+    <button class="nav-pay" onclick="window.location='./pay-dues.html'">Pay Dues</button>
+  </div>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <span class="drawer-label">Navigation</span>
+  <a class="drawer-link" href="./index.html"><span class="link-text">Home</span><span class="chev">›</span></a>
+  <a class="drawer-link active-nav"><span class="link-text">About</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./acad.html"><span class="link-text">Academics</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_communities.html"><span class="link-text">Communities</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_news_events.html"><span class="link-text">News &amp; Events</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./contact.html"><span class="link-text">Contact</span><span class="chev">›</span></a>
+  <a class="drawer-pay" href="./pay-dues.html"><span>Pay Dues →</span></a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-icon" style="top:12%;left:8%;font-size:28px;transform:rotate(-12deg);">{ }</div>
+  <div class="hero-icon" style="top:20%;left:22%;font-size:14px;">&lt;/&gt;</div>
+  <div class="hero-icon" style="top:8%;left:38%;font-size:18px;">[ ]</div>
+  <div class="hero-icon" style="top:25%;left:52%;font-size:12px;">01101</div>
+  <div class="hero-icon" style="top:15%;left:64%;font-size:20px;">( )</div>
+  <div class="hero-icon" style="top:30%;left:75%;font-size:13px;">=&gt;</div>
+  <div class="hero-icon" style="top:10%;left:82%;font-size:24px;transform:rotate(8deg);">{ }</div>
+  <div class="hero-icon" style="top:55%;left:30%;font-size:11px;">&&</div>
+  <div class="hero-icon" style="top:60%;left:55%;font-size:13px;">npm</div>
+  <div class="hero-icon" style="top:45%;left:70%;font-size:11px;">10110</div>
+  <div class="hero-icon" style="top:65%;left:85%;font-size:15px;">//</div>
+  <div class="hero-icon" style="top:40%;left:5%;font-size:12px;">fn()</div>
+  <div class="hero-icon" style="top:70%;left:14%;font-size:11px;">ssh</div>
+  <div class="hero-icon" style="top:50%;left:44%;font-size:22px;transform:rotate(5deg);">[ ]</div>
+  <div class="hero-icon" style="top:18%;left:92%;font-size:11px;">git</div>
+  <div class="hero-content">
+    <div class="hero-heading">About <span>Us</span></div>
+    <div class="hero-rule"></div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="switchTab('values',this)">Core Values</button>
+  <button class="tab-btn" onclick="switchTab('vision',this)">Vision</button>
+  <button class="tab-btn" onclick="switchTab('mission',this)">Mission</button>
+  <button class="tab-btn" onclick="switchTab('departments',this)">Departments</button>
+  <button class="tab-btn" onclick="switchTab('rules',this)">Rules & Regulations</button>
+  <button class="tab-btn" onclick="switchTab('dresscode',this)">Dress Code</button>
+  <button class="tab-btn" onclick="switchTab('whyus',this)">Why Choose Us</button>
+</div>
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="tab-content active" id="tab-overview">
+  <div class="section" style="background:#fff;">
+    <div class="overview-grid">
+      <div>
+        <div class="eyebrow">Faculty Overview</div>
+        <div class="sec-title">Welcome to the School of Computing</div>
+        <div class="sec-rule"></div>
+        <p class="sec-body">The School of Computing at Maduka University is a dynamic and forward-thinking faculty dedicated to producing world-class computing professionals. Established as one of the cornerstone schools of Maduka University, we offer a vibrant academic environment where technology, creativity, and critical thinking converge.</p>
+        <p class="sec-body">Our programmes are fully accredited by the National Universities Commission (NUC) and are designed to meet the demands of Nigeria's rapidly evolving digital economy. We are committed to equipping every student with the technical skills, ethical grounding, and professional mindset needed to excel in the global technology industry.</p>
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-big">3</div><div class="stat-lbl">Programmes</div></div>
+          <div class="stat-box"><div class="stat-big">10+</div><div class="stat-lbl">Faculty</div></div>
+          <div class="stat-box"><div class="stat-big">200+</div><div class="stat-lbl">Students</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="overview-img"></div>
+        <div class="hod-card">
+          <div class="hod-photo">HOD</div>
+          <div class="hod-quote">"The School of Computing is not just an academic institution — it is a launchpad for the next generation of Nigerian tech leaders. We are building minds that will shape Africa's digital future."</div>
+          <div class="hod-name">Dr. Onuoha M Thomas</div>
+          <div class="hod-role">Head of Department — School of Computing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CORE VALUES ═══ -->
+<div class="tab-content" id="tab-values">
+  <div class="section" style="background:#fff;">
+    <div class="eyebrow">What We Stand For</div>
+    <div class="sec-title">Our Core Values</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">These values define who we are, how we operate, and what we expect from every student, lecturer, and staff member of the School of Computing.</p>
+    <div class="values-grid">
+      <div class="val-card"><div class="val-num">01 —</div><div class="val-title">Academic Excellence</div><div class="val-desc">We pursue and uphold the highest standards of academic rigour, intellectual curiosity, and scholarly achievement in everything we do.</div></div>
+      <div class="val-card"><div class="val-num">02 —</div><div class="val-title">Integrity</div><div class="val-desc">We operate with honesty, transparency, and strong ethical principles — in our research, our relationships, and our professional practice.</div></div>
+      <div class="val-card"><div class="val-num">03 —</div><div class="val-title">Innovation</div><div class="val-desc">We encourage creative thinking and problem-solving, pushing boundaries to develop solutions that address real challenges facing Nigeria and the world.</div></div>
+      <div class="val-card"><div class="val-num">04 —</div><div class="val-title">Community</div><div class="val-desc">We foster a strong sense of belonging, mutual support, and collaboration — because the best technology is built by people who work well together.</div></div>
+      <div class="val-card"><div class="val-num">05 —</div><div class="val-title">Industry Relevance</div><div class="val-desc">Our curriculum is continuously aligned with global and Nigerian industry standards so every graduate is job-ready from day one.</div></div>
+      <div class="val-card"><div class="val-num">06 —</div><div class="val-title">Service</div><div class="val-desc">We are committed to using technology as a force for good — serving our communities, our nation, and the African continent with purpose.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VISION ═══ -->
+<div class="tab-content" id="tab-vision">
+  <div class="section" style="background:#fff;">
+    <div class="eyebrow">Looking Ahead</div>
+    <div class="sec-title">Our Vision</div>
+    <div class="sec-rule"></div>
+    <div class="vm-wrap">
+      <div class="vm-big">"To be the foremost School of Computing in Nigeria, recognised for producing world-class technology professionals, groundbreaking research, and meaningful contributions to Africa's digital transformation."</div>
+      <p class="vm-sub">Our vision is not just aspirational — it is a commitment we make to every student who walks through our doors. We are building the infrastructure, the faculty, the partnerships, and the culture required to make Maduka School of Computing a name synonymous with computing excellence across Africa.</p>
+      <p class="vm-sub" style="margin-top:14px;">We envision a school where every graduate is a global competitor, where research moves from classroom to industry, and where the name "Maduka University's School of Computing" opens doors in Lagos, London, and Silicon Valley alike.</p>
+    </div>
+  </div>
+  <div class="vision-dark">
+    <div style="max-width:600px;">
+      <div class="eyebrow" style="color:rgba(255,255,255,0.3);">Where We Are Going</div>
+      <div style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.3px;line-height:1.5;margin-bottom:16px;">Nigeria's next generation of tech leaders starts here.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.38);line-height:1.8;font-weight:300;">From Enugu to the world — the School of Computing is building something that will outlast all of us.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MISSION ═══ -->
+<div class="tab-content" id="tab-mission">
+  <div class="section" style="background:#fff;">
+    <div class="eyebrow">Our Purpose</div>
+    <div class="sec-title">Our Mission</div>
+    <div class="sec-rule"></div>
+    <div class="vm-wrap">
+      <div class="vm-big">"To provide a rigorous, innovative, and inclusive computing education that empowers students with the technical skills, ethical values, and professional mindset to lead Nigeria's digital future."</div>
+      <p class="vm-sub">Our mission guides every decision we make — from how we design our curriculum to how we support students inside and outside the classroom. We are not just here to teach programming and theory. We are here to transform lives, build careers, and produce graduates who make a real difference.</p>
+    </div>
+  </div>
+  <div class="section-alt">
+    <div class="eyebrow">How We Deliver It</div>
+    <div class="sec-title">Mission in Action</div>
+    <div class="sec-rule"></div>
+    <div class="mission-grid">
+      <div class="mission-card"><div class="mission-card-title">Industry-Aligned Curriculum</div><div class="mission-card-desc">Courses designed with input from Nigerian and global tech employers to ensure real-world relevance.</div></div>
+      <div class="mission-card"><div class="mission-card-title">Hands-On Learning</div><div class="mission-card-desc">State-of-the-art computer labs, cybersecurity servers, and practical projects that build real skills.</div></div>
+      <div class="mission-card"><div class="mission-card-title">Research & Innovation</div><div class="mission-card-desc">Active research culture with projects in AI, cybersecurity, and software engineering.</div></div>
+      <div class="mission-card"><div class="mission-card-title">Student Community</div><div class="mission-card-desc">Thriving clubs, societies, and student-led initiatives that build professional networks early.</div></div>
+      <div class="mission-card"><div class="mission-card-title">Qualified Faculty</div><div class="mission-card-desc">Experienced lecturers with academic credentials and industry backgrounds who invest in every student.</div></div>
+      <div class="mission-card"><div class="mission-card-title">Student Welfare</div><div class="mission-card-desc">Dedicated welfare channels ensuring every student's voice is heard and concerns are addressed promptly.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DEPARTMENTS ═══ -->
+<div class="tab-content" id="tab-departments">
+  <div class="section" style="background:#fff;">
+    <div class="eyebrow">Academic Programmes</div>
+    <div class="sec-title">Our Departments</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">The School of Computing runs three NUC-accredited undergraduate programmes, each designed to produce highly skilled professionals ready for Nigeria's digital economy.</p>
+    <div class="dept-grid">
+      <div class="dept-card">
+        <div class="dept-code">CSC — B.Sc</div>
+        <div class="dept-name">Computer Science</div>
+        <div class="dept-desc">A comprehensive study of computation theory, algorithms, data structures, artificial intelligence, and software systems. The foundation for everything computing.</div>
+        <a href="./acad.html" class="dept-link">Learn More on Academics <span class="dept-arr">↗</span></a>
+      </div>
+      <div class="dept-card">
+        <div class="dept-code">SEN — B.Sc</div>
+        <div class="dept-name">Software Engineering</div>
+        <div class="dept-desc">Focused on the full software development lifecycle — from requirements and design to deployment and maintenance. Build real products that work at scale.</div>
+        <a href="./acad.html" class="dept-link">Learn More on Academics <span class="dept-arr">↗</span></a>
+      </div>
+      <div class="dept-card">
+        <div class="dept-code">CYB — B.Sc</div>
+        <div class="dept-name">Cybersecurity</div>
+        <div class="dept-desc">Specialised training in network security, ethical hacking, digital forensics, and cyber defence. Nigeria's most in-demand computing specialisation.</div>
+        <a href="./acad.html" class="dept-link">Learn More on Academics <span class="dept-arr">↗</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RULES & REGULATIONS ═══ -->
+<div class="tab-content" id="tab-rules">
+  <div class="section" style="background:#fff;">
+    <div class="eyebrow">Conduct & Compliance</div>
+    <div class="sec-title">Rules & Regulations</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">Every student, staff member, and visitor of the School of Computing is expected to abide by these rules at all times. Violations may result in disciplinary action.</p>
+    <div class="rules-wrap">
+      <div class="rule-item"><div class="rule-num">Rule 01</div><div class="rule-text">Students must maintain a minimum attendance of 75% in all courses to qualify for end-of-semester examinations.</div></div>
+      <div class="rule-item"><div class="rule-num">Rule 02</div><div class="rule-text">All forms of academic dishonesty — including plagiarism, cheating, and impersonation — are strictly prohibited and will result in immediate disciplinary action.</div></div>
+      <div class="rule-item"><div class="rule-num">Rule 03</div><div class="rule-text">Students must adhere to the approved faculty dress code at all times within school premises. See the Dress Code section for full details.</div></div>
+      <div class="rule-item"><div class="rule-num">Rule 04</div><div class="rule-text">All laboratory equipment must be handled with care. Any damage caused by negligence will be the responsibility of the student involved.</div></div>
+      <div class="rule-item"><div class="rule-num">Rule 05</div><div class="rule-text">Mobile phones must be silenced during lectures. Unauthorized use of devices during examinations is a serious offence.</div></div>
+      <div class="rule-item"><div class="rule-num">Rule 06</div><div class="rule-text">Students are expected to treat all members of the faculty — lecturers, staff, and fellow students — with respect and courtesy at all times.</div></div>
+      <div class="rule-item"><div class="rule-num">Rule 07</div><div class="rule-text">Departmental dues must be paid in full before students can access certain faculty resources, sit for examinations, or participate in school events.</div></div>
+      <div class="rule-item"><div class="rule-num">Rule 08</div><div class="rule-text">The use of the school's computer laboratories is restricted to academic purposes only. Unauthorized software installation is prohibited.</div></div>
+    </div>
+    <button class="pdf-download"><span class="pdf-icon">↓</span> Download Full Rules & Regulations (PDF)</button>
+  </div>
+</div>
+
+<!-- ═══ DRESS CODE ═══ -->
+<div class="tab-content" id="tab-dresscode">
+  <div class="section" style="background:#fff;">
+    <div class="eyebrow">Faculty Appearance Policy</div>
+    <div class="sec-title">Dress Code</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">The School of Computing has an approved dress code that all students must observe on school premises. Two approved combinations are permitted.</p>
+    <div class="dress-grid">
+      <div class="dress-card">
+        <div class="dress-img">
+          <div class="dress-swatch">
+            <div class="swatch" style="background:#111;"><span class="swatch-label" style="color:rgba(255,255,255,0.5);">Black Top</span></div>
+            <div class="swatch" style="background:#888;"><span class="swatch-label" style="color:rgba(255,255,255,0.7);">Grey Bottom</span></div>
+          </div>
+        </div>
+        <div class="dress-body">
+          <div class="dress-combo">Combination A — Black & Grey</div>
+          <div class="dress-note">Black top (corporate shirts and blouse) paired with grey trousers or skirt. This is the most commonly worn combination and the default for formal school events.</div>
+          <span class="dress-badge">Approved</span>
+        </div>
+      </div>
+      <div class="dress-card">
+        <div class="dress-img">
+          <div class="dress-swatch">
+            <div class="swatch" style="background:#F5F5F5;border-right:1px solid #E8E8E8;"><span class="swatch-label" style="color:#AAA;">White Top</span></div>
+            <div class="swatch" style="background:#503c0a;"><span class="swatch-label" style="color:rgba(255,255,255,0.7);">Coffee Brown</span></div>
+          </div>
+        </div>
+        <div class="dress-body">
+          <div class="dress-combo">Combination B — White & Coffee Brown</div>
+          <div class="dress-note">White top (corporate shirts or blouse) paired with coffee brown trousers or skirt. Ideal for hotter days and equally acceptable for all school occasions when specified.</div>
+          <span class="dress-badge">Approved</span>
+        </div>
+      </div>
+    </div>
+    <div class="dress-note-box">
+      <div class="dress-note-title">Important Note</div>
+      <div class="dress-note-text">Students found in violation of the dress code may be asked to leave the premises until they return in appropriate attire. Repeated violations will be escalated to the HOD. Picture examples will be added once provided.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ WHY CHOOSE US ═══ -->
+<div class="tab-content" id="tab-whyus">
+  <div class="section" style="background:#fff;">
+    <div class="eyebrow">Make the Right Choice</div>
+    <div class="sec-title">Why Choose the School of Computing?</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">There are many computing programmes in Nigeria. Here is why Maduka School of Computing stands apart.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon"><span>NUC</span></div><div class="why-title">Fully Accredited</div><div class="why-desc">All three programmes carry full NUC accreditation, meaning your degree is recognised across Nigeria and by international academic institutions.</div></div>
+      <div class="why-card"><div class="why-icon"><span>LAB</span></div><div class="why-title">State-of-the-Art Facilities</div><div class="why-desc">Free Wi-Fi campus, well-stocked computer labs, dedicated cybersecurity servers, and an ICT office supporting every student's technical needs.</div></div>
+      <div class="why-card"><div class="why-icon"><span>JOB</span></div><div class="why-title">Career-Ready Graduates</div><div class="why-desc">Industry-aligned curriculum means our graduates enter the job market with skills employers are actively looking for — not just theory.</div></div>
+      <div class="why-card"><div class="why-icon"><span>COM</span></div><div class="why-title">Strong Community</div><div class="why-desc">Active student associations, tech clubs, and a welfare system that genuinely cares about your experience inside and outside the classroom.</div></div>
+      <div class="why-card"><div class="why-icon"><span>3YR</span></div><div class="why-title">Proven Track Record</div><div class="why-desc">Three years of excellence — students winning national competitions, securing industry placements, and building products that matter.</div></div>
+      <div class="why-card"><div class="why-icon"><span>24/7</span></div><div class="why-title">Always Accessible</div><div class="why-desc">This website, our WhatsApp channels, and our welfare forms mean you can always reach someone when you need support or information.</div></div>
+    </div>
+  </div>
+  <div class="why-dark">
+    <div class="why-dark-inner">
+      <div>
+        <div class="why-cta-title">Ready to be part of something great?</div>
+        <div class="why-cta-sub">Join 200+ students already building their future at the Maduka School of Computing.</div>
+      </div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:10px;">
+        <button class="btn-white">Explore Programmes</button>
+        <button class="btn-ghost-w">Admission Requirements</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div style="display:flex;gap:9px;align-items:flex-start;">
+      <div class="f-ring"><img src="./SOC Logo.png" alt="SOC"></div>
+      <div><div class="f-school">School of Computing</div><div class="f-uni">Maduka University</div></div>
+    </div>
+    <div class="f-addr">Along Nsukka–Enugu New Road<br>Ekwegbe, Enugu State, Nigeria<br>computing@madukauniversity.edu.ng</div>
+  </div>
+  <div><div class="f-ct">About</div><div class="f-links"><a>Overview</a><a>Core Values</a><a>Vision & Mission</a><a>Departments</a><a>Dress Code</a></div></div>
+  <div><div class="f-ct">University</div><div class="f-links"><a>Main Site</a><a>Student Portal</a><a>E-Learning</a><a>Library</a></div></div>
+  <div><div class="f-ct">Quick</div><div class="f-links"><a>Academics</a><a>News & Events</a><a>Pay Dues</a><a>Contact</a></div></div>
+</div>
+<div class="f-bottom">
+  <p>© 2026 School of Computing, Maduka University. All rights reserved.</p>
+  <div class="f-powered"><span>Powered by</span><span class="f-zekanik">ZekaniK</span></div>
+</div>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top: document.querySelector('.tab-nav').offsetTop - 10, behavior:'smooth'});
+}
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}</script>
+</body>
+</html>

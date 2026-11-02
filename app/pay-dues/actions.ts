@@ -1,0 +1,3 @@
+'use server';
+import {revalidatePath} from 'next/cache';import {guestPayment,limited} from '@/lib/payment-auth';import {verifyPayment} from '@/lib/paystack';
+export async function refreshPayment(reference:string){try{if(!await guestPayment(reference))return {ok:false,message:'Use your receipt access code to check this payment.'};if(!await limited('verify:'+reference))return {ok:false,message:'Please wait a few minutes before checking again.'};await verifyPayment(reference);revalidatePath('/pay-dues/receipt/'+reference);return {ok:true,message:'Status checked with Paystack.'};}catch{return {ok:false,message:'Paystack could not confirm the status yet. Keep your reference and avoid paying again if you were charged.'};}}

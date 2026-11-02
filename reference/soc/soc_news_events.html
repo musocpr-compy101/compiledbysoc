@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>News & Events — School of Computing | Maduka University</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#F5F5F5;color:#111;overflow-x:hidden;}
+
+/* ── INFO BAR ── */
+.info-bar{background:#111;height:36px;display:flex;align-items:center;justify-content:center;gap:48px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.info-bar-item{font-size:10px;color:rgba(255,255,255,0.4);font-weight:400;letter-spacing:0.2px;}
+.info-bar-item a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.info-bar-item a:hover{color:#fff;}
+.info-bar-dot{width:3px;height:3px;background:rgba(255,255,255,0.2);border-radius:50%;}
+
+/* ── NAV ── */
+.nav{background:#fff;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E8E8E8;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo-ring{width:40px;height:40px;border:1.5px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#111;font-weight:700;}
+.nav-brand{font-size:15px;font-weight:700;color:#111;letter-spacing:-0.3px;}
+.nav-links{display:flex;align-items:center;gap:2px;}
+.nav-links a{font-size:11px;color:#888;padding:0 14px;height:62px;display:flex;align-items:center;cursor:pointer;transition:color 0.2s;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;}
+.nav-links a:hover{color:#111;}
+.nav-links a.active-nav{color:#111;border-bottom-color:#111;font-weight:600;}
+.nav-pay-btn{text-decoration: none; border:1px solid #111;color:#111;background:transparent;padding:7px 18px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.2s;white-space:nowrap;letter-spacing:0.3px;}
+.nav-pay-btn:hover{background:#111;color:#fff;}
+
+/* ── HERO ── */
+.hero-photo {
+  width: 100%;
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  background: url('./nasa-Q1p7bh3SHj8-unsplash.jpg') center/cover no-repeat;
+}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:32px 32px;}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.65) 100%);}
+.hero-icon{position:absolute;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.05);font-weight:700;}
+.hero-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.hero-ph span{font-size:9px;color:rgba(255,255,255,0.07);letter-spacing:3px;text-transform:uppercase;}
+.hero-photo-content{position:absolute;bottom:0;left:0;right:0;padding:0 40px 36px;z-index:2;}
+.hero-eyebrow{font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.hero-heading{font-size:52px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;}
+.hero-heading span{color:rgba(255, 255, 255, 0.696);}
+.hero-rule{width:36px;height:2px;background:#fff;margin-top:14px;}
+
+/* ── FILTER BAR ── */
+.filter-bar{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:62px;z-index:40;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.filter-tabs{display:flex;}
+.filter-btn{background:transparent;border:none;border-bottom:2px solid transparent;color:#AAA;font-size:11px;font-weight:500;padding:15px 18px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all 0.2s;}
+.filter-btn:hover{color:#111;}
+.filter-btn.active{color:#111;border-bottom-color:#111;font-weight:600;}
+.filter-search{display:flex;align-items:center;gap:0;}
+.filter-search input{background:#F5F5F5;border:1px solid #E8E8E8;outline:none;font-size:11px;font-family:'Inter',sans-serif;color:#111;padding:7px 14px;width:200px;}
+.filter-search input::placeholder{color:#CCC;}
+.filter-search-btn{background:#111;border:none;padding:7px 12px;cursor:pointer;display:flex;align-items:center;}
+.filter-search-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;}
+
+/* ── LAYOUT ── */
+.page-body{max-width:1200px;margin:0 auto;padding:52px 40px;}
+.content-layout{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start;}
+
+/* ── FEATURED POST ── */
+.featured-post{background:#fff;border:1px solid #E8E8E8;border-top:3px solid #111;overflow:hidden;margin-bottom:24px;cursor:pointer;transition:box-shadow 0.2s;}
+.featured-post:hover{box-shadow:0 6px 28px rgba(0,0,0,0.07);}
+.fp-img{height:280px;background:#1C1C1C;position:relative;display:flex;align-items:flex-end;padding:20px;overflow:hidden;}
+.fp-img::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:24px 24px;}
+.fp-img-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:32px;color:rgba(255,255,255,0.05);font-weight:700;}
+.fp-img-label{position:relative;z-index:1;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:2px;text-transform:uppercase;}
+.fp-tag-row{display:flex;align-items:center;gap:8px;position:relative;z-index:1;}
+.fp-body{padding:28px;}
+.post-tag{font-size:8px;background:#111;color:#fff;padding:2px 9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+.post-tag.event{background:#1A1A1A;}
+.post-tag.news{background:#333;}
+.post-tag.announcement{background:#555;}
+.post-tag.achievement{background:#222;}
+.post-date{font-size:9px;color:#BBB;font-weight:300;font-family:'JetBrains Mono',monospace;}
+.fp-title{font-size:22px;font-weight:700;color:#111;letter-spacing:-0.4px;line-height:1.3;margin-bottom:10px;}
+.fp-excerpt{font-size:12px;color:#777;line-height:1.8;font-weight:300;margin-bottom:18px;}
+.fp-read-more{font-size:10px;color:#111;font-weight:700;letter-spacing:0.5px;border-bottom:1px solid #111;padding-bottom:1px;display:inline-block;}
+
+/* ── POST GRID ── */
+.posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;}
+.post-card{background:#fff;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s;}
+.post-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.07);position:relative;z-index:1;}
+.pc-img{height:160px;background:#1C1C1C;position:relative;display:flex;align-items:flex-end;padding:12px;overflow:hidden;}
+.pc-img::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:20px 20px;}
+.pc-img-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:22px;color:rgba(255,255,255,0.05);font-weight:700;}
+.pc-tag-row{display:flex;align-items:center;gap:6px;position:relative;z-index:1;}
+.pc-body{padding:18px;}
+.pc-title{font-size:14px;font-weight:700;color:#111;line-height:1.4;margin-bottom:8px;letter-spacing:-0.2px;}
+.pc-excerpt{font-size:11px;color:#888;line-height:1.7;font-weight:300;margin-bottom:12px;}
+.pc-meta{display:flex;align-items:center;justify-content:space-between;}
+.pc-author{font-size:9px;color:#AAA;font-weight:300;}
+.pc-read{font-size:9px;color:#111;font-weight:700;letter-spacing:0.3px;}
+
+/* ── LIST POSTS ── */
+.posts-list{display:flex;flex-direction:column;margin-top:24px;}
+.list-post{background:#fff;border:1px solid #E8E8E8;border-bottom:none;padding:16px 20px;display:flex;gap:14px;cursor:pointer;transition:background 0.15s;}
+.list-post:last-child{border-bottom:1px solid #E8E8E8;}
+.list-post:hover{background:#F9F9F9;}
+.lp-date{font-family:'JetBrains Mono',monospace;font-size:9px;color:#AAA;min-width:44px;text-align:center;border-right:1px solid #E8E8E8;padding-right:14px;line-height:1.5;flex-shrink:0;padding-top:2px;}
+.lp-body{flex:1;}
+.lp-meta{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.lp-title{font-size:12px;color:#111;font-weight:600;line-height:1.45;margin-bottom:3px;}
+.lp-excerpt{font-size:10px;color:#AAA;font-weight:300;line-height:1.5;}
+.lp-arr{font-size:16px;color:#CCC;flex-shrink:0;display:flex;align-items:center;}
+
+/* ── PAGINATION ── */
+.pagination{display:flex;align-items:center;gap:0;margin-top:32px;border:1px solid #E8E8E8;overflow:hidden;width:fit-content;}
+.page-btn{background:#fff;border:none;border-right:1px solid #E8E8E8;padding:10px 16px;font-size:11px;color:#AAA;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:all 0.2s;}
+.page-btn:last-child{border-right:none;}
+.page-btn:hover{background:#F5F5F5;color:#111;}
+.page-btn.active{background:#111;color:#fff;font-weight:600;}
+
+/* ── SIDEBAR ── */
+.sidebar{display:flex;flex-direction:column;gap:24px;}
+.sidebar-block{background:#fff;border:1px solid #E8E8E8;}
+.sb-header{background:#111;padding:14px 18px;}
+.sb-title{font-size:10px;font-weight:700;color:#fff;letter-spacing:1.5px;text-transform:uppercase;}
+.sb-body{padding:18px;}
+
+/* upcoming events */
+.upcoming-event{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer;transition:opacity 0.15s;}
+.upcoming-event:last-child{border-bottom:none;padding-bottom:0;}
+.upcoming-event:hover{opacity:0.7;}
+.ue-date{background:#111;color:#fff;width:38px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+.ue-day{font-size:16px;font-weight:800;line-height:1;}
+.ue-month{font-size:7px;letter-spacing:1px;text-transform:uppercase;font-weight:500;margin-top:1px;opacity:0.7;}
+.ue-title{font-size:11px;font-weight:600;color:#111;line-height:1.4;margin-bottom:2px;}
+.ue-meta{font-size:9px;color:#BBB;font-weight:300;}
+
+/* categories */
+.cat-item{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #F0F0F0;cursor:pointer;transition:opacity 0.15s;}
+.cat-item:last-child{border-bottom:none;}
+.cat-item:hover{opacity:0.6;}
+.cat-name{font-size:11px;color:#111;font-weight:500;}
+.cat-count{font-family:'JetBrains Mono',monospace;font-size:9px;color:#AAA;background:#F5F5F5;border:1px solid #E8E8E8;padding:1px 7px;}
+
+/* subscribe */
+.subscribe-block{background:#111;padding:22px;}
+.sub-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-0.2px;}
+.sub-desc{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.65;font-weight:300;margin-bottom:16px;}
+.sub-form{display:flex;flex-direction:column;gap:8px;}
+.sub-input{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);outline:none;color:#fff;font-size:11px;font-family:'Inter',sans-serif;padding:9px 12px;width:100%;}
+.sub-input::placeholder{color:rgba(255,255,255,0.25);}
+.sub-btn{background:#fff;color:#111;border:none;padding:10px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:0.3px;transition:opacity 0.2s;}
+.sub-btn:hover{opacity:0.85;}
+
+/* ── NOTICE BAR ── */
+.notice-bar{background:#F5F5F5;border-top:1px solid #E8E8E8;border-bottom:1px solid #E8E8E8;padding:10px 40px;display:flex;align-items:center;gap:14px;}
+.notice-tag{font-size:8px;background:#111;color:#fff;padding:2px 9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;flex-shrink:0;}
+.notice-txt{font-size:11px;color:#666;font-weight:300;}
+
+/* ── FOOTER ── */
+.footer{background:#111;padding:40px 32px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;}
+.f-ring{width:28px;height:28px;border:1.5px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.f-ring span{font-size:9px;font-weight:700;color:#fff;}
+.f-school{font-size:11px;color:#fff;font-weight:500;}
+.f-uni{font-size:9px;color:rgba(255,255,255,0.26);font-weight:300;margin-top:1px;}
+.f-addr{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-top:12px;font-weight:300;}
+.f-ct{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:500;}
+.f-links{display:flex;flex-direction:column;gap:8px;}
+.f-links a{font-size:10px;color:rgba(255,255,255,0.26);cursor:pointer;transition:color 0.2s;font-weight:300;text-decoration:none;}
+.f-links a:hover{color:#fff;}
+.f-bottom{background:#0A0A0A;border-top:1px solid rgba(255,255,255,0.04);padding:11px 32px;display:flex;justify-content:space-between;align-items:center;}
+.f-bottom p{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-powered{display:flex;align-items:center;gap:5px;}
+.f-powered span{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-zekanik{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);cursor:pointer;transition:color 0.2s;}
+.f-zekanik:hover{color:#fff;}
+
+/* ── TAB PANELS ── */
+.posts-panel{display:none;}
+.posts-panel.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.posts-panel.active{animation:fadeUp 0.3s ease;}
+
+/* ── HAMBURGER & DRAWER ── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;align-items:flex-end;background:transparent;border:none;cursor:pointer;padding:6px;}
+.hb-line{background: black;height:1.5px;border-radius:1px;transition:all 0.3s;}
+.hb-line:nth-child(1){width:20px;}
+.hb-line:nth-child(2){width:14px;}
+.hb-line:nth-child(3){width:20px;}
+.nav-hamburger.open .hb-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px;}
+.nav-hamburger.open .hb-line:nth-child(2){opacity:0;width:0;}
+.nav-hamburger.open .hb-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:20px;}
+/* Drawer — hidden on desktop */
+.drawer{display:none;}
+
+@media (max-width: 768px) {
+  .info-bar{display:none;}
+  .nav{padding:0 18px;height:54px;}
+  .nav-links{display:none;}
+  .nav-pay-btn{display:none;}
+  .nav-hamburger{display:flex;}
+  .drawer{display:block;background:#111;overflow:hidden;max-height:0;transition:max-height 0.35s ease;border-bottom:1px solid rgba(255,255,255,0.04);position:sticky;top:54px;z-index:99;}
+  .drawer.open{max-height:500px;}
+  .drawer-label{display:block;font-size:8px;color:rgba(255,255,255,0.25);letter-spacing:3px;text-transform:uppercase;font-weight:500;padding:14px 18px 8px;}
+  .drawer-link{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-top:1px solid rgba(255,255,255,0.05);text-decoration:none;}
+  .drawer-link .link-text{font-size:11px;color:rgba(255,255,255,0.6);}
+  .drawer-link .chev{font-size:13px;color:rgba(255,255,255,0.2);}
+  .drawer-pay{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-top:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);text-decoration:none;}
+  .drawer-pay span{font-size:11px;color:#fff;font-weight:700;}
+  .filter-bar{top:54px;padding:10px 18px;flex-direction:column;gap:12px;align-items:stretch;overflow-x:auto;}
+  .filter-tabs{overflow-x:auto;}
+  .filter-search{width:100%;}
+  .filter-search input{width:100%;}
+  .page-body{padding:36px 20px;}
+  .content-layout{grid-template-columns:1fr;}
+  .hero-photo{height:220px;}
+  .hero-photo-content{padding:0 20px 22px;}
+  .hero-heading{font-size:34px;letter-spacing:-1px;}
+  .hero-rule{width:24px;margin-top:10px;}
+  .notice-bar{padding:10px 20px;flex-direction:column;align-items:flex-start;gap:8px;}
+  .posts-grid{grid-template-columns:1fr;}
+  .footer{grid-template-columns:1fr 1fr;gap:20px;padding:28px 20px;}
+  .f-bottom{padding:11px 20px;flex-direction:column;gap:6px;text-align:center;}
+}
+@media (max-width: 480px) {
+  .hero-heading{font-size:28px;}
+  .footer{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="info-bar-item"><a href="#">madukauniversity</a></div>
+  <div class="info-bar-dot"></div>
+  <div class="info-bar-item"><a href="tel:09157893107">09157893107</a></div>
+  <div class="info-bar-dot"></div>
+  <div class="info-bar-item"><a href="mailto:admission@madukauniversity.edu.ng">admission@madukauniversity.edu.ng</a></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-ring"><img style="width: inherit; height: inherit;" src="./SOC Logo.png" alt="SOC"></div>
+    <div class="nav-brand">News &amp; Events</div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./soc_about_page.html">About</a>
+    <a href="./acad.html">Academics</a>
+    <a href="./soc_communities.html">Communities</a>
+    <a class="active-nav">News &amp; Events</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+  <a class="nav-pay-btn" href="pay-dues.html">Pay Dues</a>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <span class="drawer-label">Navigation</span>
+  <a class="drawer-link" href="./index.html"><span class="link-text">Home</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_about_page.html"><span class="link-text">About</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./acad.html"><span class="link-text">Academics</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_communities.html"><span class="link-text">Communities</span><span class="chev">›</span></a>
+  <a class="drawer-link active-nav"><span class="link-text">News &amp; Events</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./contact.html"><span class="link-text">Contact</span><span class="chev">›</span></a>
+  <a class="drawer-pay" href="./pay-dues.html"><span>Pay Dues →</span></a>
+</div>
+
+<!-- HERO -->
+<div class="hero-photo">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-icon" style="top:10%;left:6%;font-size:30px;">{ }</div>
+  <div class="hero-icon" style="top:18%;left:20%;font-size:14px;">&lt;/&gt;</div>
+  <div class="hero-icon" style="top:8%;left:36%;font-size:18px;">[ ]</div>
+  <div class="hero-icon" style="top:28%;left:50%;font-size:12px;">01101</div>
+  <div class="hero-icon" style="top:12%;left:63%;font-size:20px;">( )</div>
+  <div class="hero-icon" style="top:32%;left:74%;font-size:13px;">=&gt;</div>
+  <div class="hero-icon" style="top:9%;left:84%;font-size:26px;">{ }</div>
+  <div class="hero-icon" style="top:52%;left:28%;font-size:11px;">&&</div>
+  <div class="hero-icon" style="top:60%;left:56%;font-size:13px;">npm</div>
+  <div class="hero-icon" style="top:65%;left:84%;font-size:15px;">//</div>
+  <div class="hero-ph"><span>Hero Photo — Coming Soon</span></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="hero-photo-content">
+    <div class="hero-eyebrow">Maduka University — School of Computing</div>
+    <div class="hero-heading">News <span>&amp; Events</span></div>
+    <div class="hero-rule"></div>
+  </div>
+</div>
+
+<!-- NOTICE BAR -->
+<div class="notice-bar">
+  <span class="notice-tag">Notice</span>
+  <span class="notice-txt">2025/2026 Academic Session — Course registration closes March 25, 2026. Visit the Student Portal now.</span>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-tabs">
+    <button class="filter-btn active" onclick="switchFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="switchFilter('news',this)">News</button>
+    <button class="filter-btn" onclick="switchFilter('events',this)">Events</button>
+    <button class="filter-btn" onclick="switchFilter('announcements',this)">Announcements</button>
+    <button class="filter-btn" onclick="switchFilter('achievements',this)">Achievements</button>
+  </div>
+  <div class="filter-search">
+    <input type="text" placeholder="Search news and events…"/>
+    <button class="filter-search-btn">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+  </div>
+</div>
+
+
+<!-- PAGE BODY -->
+<div class="page-body">
+  <div class="content-layout">
+
+    <!-- MAIN FEED -->
+    <div>
+
+      <!-- ALL POSTS -->
+      <div class="posts-panel active" id="panel-all">
+
+        <!-- Featured -->
+        <div class="featured-post">
+          <div class="fp-img">
+            <div class="fp-img-ph">★</div>
+            <div class="fp-tag-row">
+              <span class="post-tag event">Event</span>
+              <span class="post-date">March 15, 2026</span>
+            </div>
+          </div>
+          <div class="fp-body">
+            <div class="fp-title">Annual Computing Hackathon 2026 — Registration Now Open</div>
+            <div class="fp-excerpt">The SOC Annual Hackathon is back and bigger than ever. This year's theme is "Tech for Nigeria" — challenging students to build solutions that address real problems facing everyday Nigerians. Teams of 2–4 students from any department can register. Prizes, industry judges, and internship opportunities await the top three teams. Registration closes April 5, 2026.</div>
+            <span class="fp-read-more">Read Full Post →</span>
+          </div>
+        </div>
+
+        <!-- 2-col grid -->
+        <div class="posts-grid">
+          <div class="post-card">
+            <div class="pc-img">
+              <div class="pc-img-ph">{ }</div>
+              <div class="pc-tag-row"><span class="post-tag news">News</span><span class="post-date">Mar 08, 2026</span></div>
+            </div>
+            <div class="pc-body">
+              <div class="pc-title">School of Computing Partners with Nigerian Tech Firms</div>
+              <div class="pc-excerpt">SOC signs MoU with two leading Lagos-based tech companies to provide internship placements and curriculum input for all three programmes.</div>
+              <div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img">
+              <div class="pc-img-ph">[ ]</div>
+              <div class="pc-tag-row"><span class="post-tag announcement">Announcement</span><span class="post-date">Feb 20, 2026</span></div>
+            </div>
+            <div class="pc-body">
+              <div class="pc-title">Google Cybersecurity Programme Launches for SOC Students 2026</div>
+              <div class="pc-excerpt">All Cybersecurity students in 200 Level and above are eligible to enrol in the Google Cybersecurity Certificate at no cost through our partnership.</div>
+              <div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img">
+              <div class="pc-img-ph">★</div>
+              <div class="pc-tag-row"><span class="post-tag achievement">Achievement</span><span class="post-date">Feb 05, 2026</span></div>
+            </div>
+            <div class="pc-body">
+              <div class="pc-title">SOC Students Win National App Competition in Abuja</div>
+              <div class="pc-excerpt">A team of four Software Engineering students took first place at the NITDA National App Challenge 2026 with their agritech mobile application.</div>
+              <div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img">
+              <div class="pc-img-ph">( )</div>
+              <div class="pc-tag-row"><span class="post-tag event">Event</span><span class="post-date">Jan 28, 2026</span></div>
+            </div>
+            <div class="pc-body">
+              <div class="pc-title">SOC Welcome Week 2026 — Photos &amp; Highlights</div>
+              <div class="pc-excerpt">A recap of the 2026 Welcome Week orientation — new students were introduced to the faculty, student executives, clubs, and what to expect.</div>
+              <div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- List posts -->
+        <div class="posts-list" style="margin-top:24px;">
+          <div class="list-post">
+            <div class="lp-date">Jan<br>15</div>
+            <div class="lp-body">
+              <div class="lp-meta"><span class="post-tag news" style="font-size:7px;padding:1px 6px;">News</span></div>
+              <div class="lp-title">Semester 2 Timetable Released — Check the Student Portal</div>
+              <div class="lp-excerpt">The 2025/2026 Second Semester lecture timetable is now available on the Maduka University student portal.</div>
+            </div>
+            <div class="lp-arr">›</div>
+          </div>
+          <div class="list-post">
+            <div class="lp-date">Jan<br>08</div>
+            <div class="lp-body">
+              <div class="lp-meta"><span class="post-tag announcement" style="font-size:7px;padding:1px 6px;">Announcement</span></div>
+              <div class="lp-title">Departmental Dues Payment Deadline — January 31, 2026</div>
+              <div class="lp-excerpt">All students are reminded to pay their departmental dues before January 31 to retain access to faculty resources and events.</div>
+            </div>
+            <div class="lp-arr">›</div>
+          </div>
+          <div class="list-post">
+            <div class="lp-date">Dec<br>18</div>
+            <div class="lp-body">
+              <div class="lp-meta"><span class="post-tag achievement" style="font-size:7px;padding:1px 6px;">Achievement</span></div>
+              <div class="lp-title">SOC Students Secure Internships at Flutterwave and Paystack</div>
+              <div class="lp-excerpt">Three of our 300 Level Software Engineering students secured competitive software engineering internships at two of Nigeria's top fintechs.</div>
+            </div>
+            <div class="lp-arr">›</div>
+          </div>
+          <div class="list-post">
+            <div class="lp-date">Dec<br>05</div>
+            <div class="lp-body">
+              <div class="lp-meta"><span class="post-tag news" style="font-size:7px;padding:1px 6px;">News</span></div>
+              <div class="lp-title">First Semester Exams Begin December 10 — Timetable Inside</div>
+              <div class="lp-excerpt">The First Semester 2025/2026 examination timetable has been released. Students are advised to check their schedules and prepare accordingly.</div>
+            </div>
+            <div class="lp-arr">›</div>
+          </div>
+          <div class="list-post">
+            <div class="lp-date">Nov<br>20</div>
+            <div class="lp-body">
+              <div class="lp-meta"><span class="post-tag event" style="font-size:7px;padding:1px 6px;">Event</span></div>
+              <div class="lp-title">SOC Tech Talk Series: "AI in Nigeria — Opportunities & Challenges"</div>
+              <div class="lp-excerpt">The School of Computing hosted its first Tech Talk of the session featuring industry guests from Lagos's AI ecosystem.</div>
+            </div>
+            <div class="lp-arr">›</div>
+          </div>
+          <div class="list-post">
+            <div class="lp-date">Nov<br>04</div>
+            <div class="lp-body">
+              <div class="lp-meta"><span class="post-tag announcement" style="font-size:7px;padding:1px 6px;">Announcement</span></div>
+              <div class="lp-title">New SOC Website Launched — Built by ZekaniK</div>
+              <div class="lp-excerpt">The School of Computing is proud to launch its brand new website — your one-stop hub for all things SOC Maduka University.</div>
+            </div>
+            <div class="lp-arr">›</div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">Next →</button>
+        </div>
+      </div><!-- /panel-all -->
+
+      <!-- NEWS panel -->
+      <div class="posts-panel" id="panel-news">
+        <div class="posts-grid">
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">{ }</div><div class="pc-tag-row"><span class="post-tag news">News</span><span class="post-date">Mar 08, 2026</span></div></div>
+            <div class="pc-body"><div class="pc-title">School of Computing Partners with Nigerian Tech Firms</div><div class="pc-excerpt">SOC signs MoU with two leading Lagos-based tech companies to provide internship placements and curriculum input.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">[ ]</div><div class="pc-tag-row"><span class="post-tag news">News</span><span class="post-date">Jan 15, 2026</span></div></div>
+            <div class="pc-body"><div class="pc-title">Semester 2 Timetable Released — Check the Student Portal</div><div class="pc-excerpt">The 2025/2026 Second Semester lecture timetable is now available on the Maduka University student portal.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">( )</div><div class="pc-tag-row"><span class="post-tag news">News</span><span class="post-date">Dec 05, 2025</span></div></div>
+            <div class="pc-body"><div class="pc-title">First Semester Exams Begin December 10 — Timetable Inside</div><div class="pc-excerpt">The First Semester 2025/2026 examination timetable has been released. Students are advised to check their schedules.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">//</div><div class="pc-tag-row"><span class="post-tag news">News</span><span class="post-date">Nov 04, 2025</span></div></div>
+            <div class="pc-body"><div class="pc-title">New SOC Website Launched — Built by ZekaniK</div><div class="pc-excerpt">The School of Computing is proud to launch its brand new website — your one-stop hub for all things SOC Maduka.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+        </div>
+        <div class="pagination" style="margin-top:24px;">
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+        </div>
+      </div><!-- /panel-news -->
+
+      <!-- EVENTS panel -->
+      <div class="posts-panel" id="panel-events">
+        <div class="featured-post">
+          <div class="fp-img"><div class="fp-img-ph">★</div><div class="fp-tag-row"><span class="post-tag event">Event</span><span class="post-date">March 15, 2026</span></div></div>
+          <div class="fp-body">
+            <div class="fp-title">Annual Computing Hackathon 2026 — Registration Now Open</div>
+            <div class="fp-excerpt">The SOC Annual Hackathon is back and bigger than ever. This year's theme is "Tech for Nigeria." Teams of 2–4 students can register. Prizes, industry judges, and internship opportunities await. Registration closes April 5, 2026.</div>
+            <span class="fp-read-more">Read Full Post →</span>
+          </div>
+        </div>
+        <div class="posts-grid" style="margin-top:16px;">
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">( )</div><div class="pc-tag-row"><span class="post-tag event">Event</span><span class="post-date">Jan 28, 2026</span></div></div>
+            <div class="pc-body"><div class="pc-title">SOC Welcome Week 2026 — Photos &amp; Highlights</div><div class="pc-excerpt">A recap of the 2026 Welcome Week orientation for new and returning students.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">fn()</div><div class="pc-tag-row"><span class="post-tag event">Event</span><span class="post-date">Nov 20, 2025</span></div></div>
+            <div class="pc-body"><div class="pc-title">SOC Tech Talk: "AI in Nigeria — Opportunities &amp; Challenges"</div><div class="pc-excerpt">The School of Computing hosted its first Tech Talk featuring industry guests from Lagos's AI ecosystem.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+        </div>
+      </div><!-- /panel-events -->
+
+      <!-- ANNOUNCEMENTS panel -->
+      <div class="posts-panel" id="panel-announcements">
+        <div class="posts-list">
+          <div class="list-post">
+            <div class="lp-date">Feb<br>20</div>
+            <div class="lp-body"><div class="lp-meta"><span class="post-tag announcement" style="font-size:7px;padding:1px 6px;">Announcement</span></div><div class="lp-title">Google Cybersecurity Programme Launches for SOC Students 2026</div><div class="lp-excerpt">All Cybersecurity students in 200 Level and above are eligible at no cost through our partnership.</div></div>
+            <div class="lp-arr">›</div>
+          </div>
+          <div class="list-post">
+            <div class="lp-date">Jan<br>08</div>
+            <div class="lp-body"><div class="lp-meta"><span class="post-tag announcement" style="font-size:7px;padding:1px 6px;">Announcement</span></div><div class="lp-title">Departmental Dues Payment Deadline — January 31, 2026</div><div class="lp-excerpt">All students are reminded to pay their departmental dues before January 31 to retain access to faculty resources.</div></div>
+            <div class="lp-arr">›</div>
+          </div>
+        </div>
+      </div><!-- /panel-announcements -->
+
+      <!-- ACHIEVEMENTS panel -->
+      <div class="posts-panel" id="panel-achievements">
+        <div class="posts-grid">
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">★</div><div class="pc-tag-row"><span class="post-tag achievement">Achievement</span><span class="post-date">Feb 05, 2026</span></div></div>
+            <div class="pc-body"><div class="pc-title">SOC Students Win National App Competition in Abuja</div><div class="pc-excerpt">A team of four Software Engineering students took first place at the NITDA National App Challenge 2026.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+          <div class="post-card">
+            <div class="pc-img"><div class="pc-img-ph">{ }</div><div class="pc-tag-row"><span class="post-tag achievement">Achievement</span><span class="post-date">Dec 18, 2025</span></div></div>
+            <div class="pc-body"><div class="pc-title">SOC Students Secure Internships at Flutterwave and Paystack</div><div class="pc-excerpt">Three 300 Level Software Engineering students secured competitive internships at two of Nigeria's top fintechs.</div><div class="pc-meta"><span class="pc-author">SOC Admin</span><span class="pc-read">Read More →</span></div></div>
+          </div>
+        </div>
+      </div><!-- /panel-achievements -->
+
+    </div><!-- /main feed -->
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <!-- Upcoming Events -->
+      <div class="sidebar-block">
+        <div class="sb-header"><div class="sb-title">Upcoming Events</div></div>
+        <div class="sb-body">
+          <div class="upcoming-event">
+            <div class="ue-date"><div class="ue-day">05</div><div class="ue-month">Apr</div></div>
+            <div><div class="ue-title">Hackathon Registration Closes</div><div class="ue-meta">Online · All Departments</div></div>
+          </div>
+          <div class="upcoming-event">
+            <div class="ue-date"><div class="ue-day">12</div><div class="ue-month">Apr</div></div>
+            <div><div class="ue-title">Annual Computing Hackathon 2026</div><div class="ue-meta">SOC Hall · All Students</div></div>
+          </div>
+          <div class="upcoming-event">
+            <div class="ue-date"><div class="ue-day">20</div><div class="ue-month">Apr</div></div>
+            <div><div class="ue-title">Tech Talk Series — Episode 2</div><div class="ue-meta">Lecture Hall A · Open Event</div></div>
+          </div>
+          <div class="upcoming-event">
+            <div class="ue-date"><div class="ue-day">10</div><div class="ue-month">May</div></div>
+            <div><div class="ue-title">Semester 2 Exams Begin</div><div class="ue-meta">All Departments</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="sidebar-block">
+        <div class="sb-header"><div class="sb-title">Categories</div></div>
+        <div class="sb-body">
+          <div class="cat-item" onclick="switchFilter('all',document.querySelector('.filter-btn'))">
+            <span class="cat-name">All Posts</span><span class="cat-count">12</span>
+          </div>
+          <div class="cat-item" onclick="switchFilter('news',document.querySelectorAll('.filter-btn')[1])">
+            <span class="cat-name">News</span><span class="cat-count">05</span>
+          </div>
+          <div class="cat-item" onclick="switchFilter('events',document.querySelectorAll('.filter-btn')[2])">
+            <span class="cat-name">Events</span><span class="cat-count">03</span>
+          </div>
+          <div class="cat-item" onclick="switchFilter('announcements',document.querySelectorAll('.filter-btn')[3])">
+            <span class="cat-name">Announcements</span><span class="cat-count">02</span>
+          </div>
+          <div class="cat-item" onclick="switchFilter('achievements',document.querySelectorAll('.filter-btn')[4])">
+            <span class="cat-name">Achievements</span><span class="cat-count">02</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscribe -->
+      <div class="subscribe-block">
+        <div class="sub-title">Stay Updated</div>
+        <div class="sub-desc">Get SOC news, event reminders, and announcements delivered to your email.</div>
+        <div class="sub-form">
+          <input class="sub-input" type="email" placeholder="Your email address"/>
+          <button class="sub-btn">Subscribe to SOC Updates</button>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+
+  </div>
+</div><!-- /page-body -->
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div style="display:flex;gap:9px;align-items:flex-start;">
+      <div class="f-ring"><span>M</span></div>
+      <div><div class="f-school">School of Computing</div><div class="f-uni">Maduka University</div></div>
+    </div>
+    <div class="f-addr">Along Nsukka–Enugu New Road<br>Ekwegbe, Enugu State, Nigeria<br>soc@madukauniversity.edu.ng</div>
+  </div>
+  <div><div class="f-ct">Pages</div><div class="f-links"><a>Home</a><a>About</a><a>Academics</a><a>Communities</a><a>News &amp; Events</a></div></div>
+  <div><div class="f-ct">University</div><div class="f-links"><a>Main Site</a><a>Student Portal</a><a>E-Learning</a><a>Library</a></div></div>
+  <div><div class="f-ct">Quick</div><div class="f-links"><a>Pay Dues</a><a>Contact</a><a>Welfare</a><a>Suggestion Box</a></div></div>
+</div>
+<div class="f-bottom">
+  <p>© 2026 School of Computing, Maduka University. All rights reserved.</p>
+  <div class="f-powered"><span>Powered by</span><span class="f-zekanik">ZekaniK</span></div>
+</div>
+
+<script>
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function switchFilter(id, btn) {
+  document.querySelectorAll('.posts-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+</script>
+</body>
+</html>

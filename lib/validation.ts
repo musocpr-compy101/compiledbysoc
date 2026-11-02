@@ -1,0 +1,12 @@
+import { z } from 'zod';
+export const uuid=z.string().uuid();
+export const postInput=z.object({id:uuid.optional(),kind:z.enum(['announcement','rule','news','journal']),title:z.string().trim().min(3).max(160),excerpt:z.string().trim().max(320),body:z.string().trim().min(10).max(30000),status:z.enum(['draft','published']),pinned:z.boolean(),byline:z.string().trim().min(2).max(100),image_id:uuid.nullable(),attachment_id:uuid.nullable()});
+export const eventInput=z.object({title:z.string().trim().min(3).max(160),description:z.string().trim().min(5).max(5000),location:z.string().trim().min(2).max(160),starts_at:z.iso.datetime({offset:true}),ends_at:z.iso.datetime({offset:true})}).refine(v=>new Date(v.ends_at)>new Date(v.starts_at),'End must be after start.');
+export const electionInput=z.object({title:z.string().trim().min(3).max(160),rules:z.string().trim().min(20).max(15000),starts_at:z.iso.datetime({offset:true}),ends_at:z.iso.datetime({offset:true}),offices:z.array(z.object({title:z.string().trim().min(2).max(100),candidates:z.array(z.object({name:z.string().trim().min(2).max(100),manifesto:z.string().trim().max(5000)})).min(1).max(20)})).min(1).max(20)}).refine(v=>new Date(v.ends_at)>new Date(v.starts_at),'End must be after start.');
+export const rosterInput=z.array(z.object({email:z.email().trim().toLowerCase(),matric:z.string().trim().min(4).max(60).transform(s=>s.toUpperCase().replace(/\s/g,''))})).min(1).max(2000);
+export const ballotInput=z.object({election_id:uuid,choices:z.array(z.object({office_id:uuid,candidate_id:uuid.nullable()})).min(1).max(20)});
+export type Post={id:string;kind:string;title:string;excerpt:string;body:string;status:string;pinned:boolean;byline:string;published_at:string|null;image_id:string|null;attachment_id:string|null};
+export type Election={id:string;title:string;rules:string;starts_at:string;ends_at:string;status:'draft'|'scheduled'|'released'};
+export type Office={id:string;title:string;sort_order:number};
+export type Candidate={id:string;office_id:string;name:string;manifesto:string};
+export type CampusEvent={id:string;title:string;description:string;location:string;starts_at:string;ends_at:string};

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — School of Computing, Maduka University</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#F5F5F5;color:#111;overflow-x:hidden;}
+
+    /* NAV */
+    .nav{background:#111;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:50;}
+    .nav-logo{display:flex;align-items:center;gap:10px;}
+    .nav-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#fff;font-weight:700;}
+    .nav-name{font-size:11px;font-weight:600;color:#fff;}
+    .nav-sub{font-size:9px;color:rgba(255,255,255,0.3);font-weight:300;margin-top:1px;}
+    .nav-links{display:flex;align-items:center;}
+    .nav-links a{font-size:11px;color:rgba(255,255,255,0.45);padding:0 11px;height:58px;display:flex;align-items:center;cursor:pointer;transition:color 0.2s;text-decoration:none;white-space:nowrap;}
+    .nav-links a:hover,.nav-links a.anav{color:#fff;}
+    .search-wrap{display:flex;align-items:center;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:2px;margin-right:10px;}
+    .search-btn{background:transparent;border:none;cursor:pointer;padding:5px 8px;display:flex;align-items:center;color:rgba(255,255,255,0.5);}
+    .search-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+    .search-input{background:transparent;border:none;outline:none;color:#fff;font-size:11px;font-family:'Inter',sans-serif;padding:5px 8px 5px 0;width:130px;}
+    .search-input::placeholder{color:rgba(255,255,255,0.25);}
+    .nav-pay-btn{border:1px solid rgba(255,255,255,0.3);color:#fff;background:transparent;padding:5px 14px;font-size:10px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.2s;text-decoration:none;}
+    .nav-pay-btn:hover{background:#fff;color:#111;}
+
+    /* PAGE SWITCHER */
+    .pager{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 32px;display:flex;gap:0;}
+    .pg-btn{background:transparent;border:none;border-bottom:2px solid transparent;color:#AAA;font-size:11px;padding:11px 18px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:all 0.15s;white-space:nowrap;text-decoration:none;display:flex;align-items:center;}
+    .pg-btn:hover{color:#111;}
+    .pg-btn.active{color:#111;border-bottom-color:#111;font-weight:700;}
+
+    /* PAGE HERO */
+    .page-hero{position:relative;height:200px;background:#111;overflow:hidden;display:flex;align-items:flex-end;}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.9) 40%,rgba(0,0,0,0.5) 100%);z-index:1;}
+    .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:28px 28px;z-index:1;}
+    .hero-icon{position:absolute;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.05);font-weight:700;z-index:2;pointer-events:none;}
+    .hero-content{position:relative;z-index:3;padding:0 40px 28px;}
+    .hero-eyebrow{font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:8px;}
+    .hero-heading{font-size:42px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;}
+    .hero-heading span{color:#555;}
+    .hero-rule{width:28px;height:2px;background:#fff;margin-top:12px;}
+
+    /* SHARED */
+    .section{padding:60px 40px;}
+    .eyebrow{font-size:9px;color:#888;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+    .sec-title{font-size:28px;font-weight:700;color:#111;letter-spacing:-0.5px;}
+    .sec-rule{width:26px;height:2px;background:#111;margin:12px 0 20px;}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;margin-top:32px;}
+    .form-group{margin-bottom:16px;}
+    .form-label{font-size:9px;color:#AAA;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:6px;font-weight:500;}
+    .form-input{width:100%;background:#fff;border:1px solid #E8E8E8;padding:10px 13px;font-size:13px;color:#111;outline:none;font-family:'Inter',sans-serif;border-radius:0;transition:border-color 0.2s;}
+    .form-input:focus{border-color:#111;}
+    .form-select{width:100%;background:#fff;border:1px solid #E8E8E8;padding:10px 13px;font-size:13px;color:#111;outline:none;font-family:'Inter',sans-serif;border-radius:0;appearance:none;}
+    .form-textarea{width:100%;background:#fff;border:1px solid #E8E8E8;padding:10px 13px;font-size:13px;color:#111;outline:none;resize:none;height:110px;font-family:'Inter',sans-serif;border-radius:0;transition:border-color 0.2s;}
+    .form-textarea:focus{border-color:#111;outline:none;}
+    .btn-send{background:#111;color:#fff;border:none;padding:12px 28px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:0.5px;transition:opacity 0.2s;}
+    .btn-send:hover{opacity:0.85;}
+    .contact-info{display:flex;flex-direction:column;gap:0;}
+    .info-block{border-left:2px solid #E8E8E8;padding:0 0 24px 16px;margin-bottom:0;position:relative;}
+    .info-block::before{content:'';position:absolute;left:-5px;top:0;width:8px;height:8px;background:#111;border-radius:50%;}
+    .info-label{font-size:9px;color:#AAA;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;font-weight:500;}
+    .info-val{font-size:13px;color:#333;line-height:1.65;font-weight:400;}
+    .info-val a{color:#111;text-decoration:none;font-weight:500;}
+    .info-val a:hover{text-decoration:underline;}
+
+    /* Map */
+    .map-section{padding:0;background:#fff;}
+    .map-ph{height:200px;background:#1C1C1C;display:flex;align-items:center;justify-content:center;border-top:3px solid #111;position:relative;overflow:hidden;}
+    .map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:24px 24px;}
+    .map-pin{position:relative;z-index:2;text-align:center;}
+    .map-pin-dot{width:12px;height:12px;background:#fff;border-radius:50%;margin:0 auto 6px;}
+    .map-pin-label{font-size:10px;color:rgba(255,255,255,0.5);font-weight:300;letter-spacing:1px;}
+
+    /* Socials */
+    .socials-section{background:#111;padding:52px 40px;}
+    .socials-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;}
+    .social-card{background:#1A1A1A;border:1px solid rgba(255,255,255,0.06);padding:20px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background 0.2s;text-decoration:none;}
+    .social-card:hover{background:#222;}
+    .social-icon{width:36px;height:36px;border:1px solid rgba(255,255,255,0.1);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+    .social-name{font-size:12px;font-weight:600;color:#fff;}
+    .social-handle{font-size:10px;color:rgba(255,255,255,0.3);margin-top:1px;font-weight:300;}
+
+    /* Staff contacts */
+    .staff-contacts{padding:52px 40px;background:#F5F5F5;border-top:1px solid #E8E8E8;}
+    .contacts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;}
+    .contact-card{background:#fff;border:1px solid #E8E8E8;border-top:3px solid #111;padding:22px 20px;}
+    .contact-card-role{font-size:8px;color:#AAA;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-weight:500;}
+    .contact-card-name{font-size:14px;font-weight:700;color:#111;margin-bottom:4px;letter-spacing:-0.2px;}
+    .contact-card-title{font-size:11px;color:#888;margin-bottom:14px;font-weight:300;}
+    .contact-detail{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+    .contact-detail-icon{width:20px;height:20px;background:#F5F5F5;border:1px solid #E8E8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;}
+    .contact-detail-text{font-size:11px;color:#555;font-weight:300;}
+
+    /* FOOTER */
+    .footer{background:#111;padding:40px 32px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;}
+    .f-ring{width:28px;height:28px;border:1.5px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .f-ring span{font-size:9px;font-weight:700;color:#fff;}
+    .f-school{font-size:11px;color:#fff;font-weight:500;}
+    .f-uni{font-size:9px;color:rgba(255,255,255,0.26);font-weight:300;margin-top:1px;}
+    .f-addr{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-top:12px;font-weight:300;}
+    .f-ct{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:500;}
+    .f-links{display:flex;flex-direction:column;gap:8px;}
+    .f-links a{font-size:10px;color:rgba(255,255,255,0.26);cursor:pointer;transition:color 0.2s;font-weight:300;text-decoration:none;}
+    .f-links a:hover{color:#fff;}
+    .f-bottom{background:#0A0A0A;border-top:1px solid rgba(255,255,255,0.04);padding:11px 32px;display:flex;justify-content:space-between;align-items:center;}
+    .f-bottom p{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+    .f-zekanik{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);letter-spacing:0.5px;cursor:pointer;transition:color 0.2s;}
+    .f-zekanik:hover{color:#fff;}
+    .f-powered{display:flex;align-items:center;gap:5px;}
+    .f-powered span{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+
+    /* ── HAMBURGER & DRAWER ── */
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;align-items:flex-end;background:transparent;border:none;cursor:pointer;padding:6px;}
+    .hb-line{background:#fff;height:1.5px;border-radius:1px;transition:all 0.3s;}
+    .hb-line:nth-child(1){width:20px;}
+    .hb-line:nth-child(2){width:14px;}
+    .hb-line:nth-child(3){width:20px;}
+    .nav-hamburger.open .hb-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px;}
+    .nav-hamburger.open .hb-line:nth-child(2){opacity:0;width:0;}
+    .nav-hamburger.open .hb-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:20px;}
+    /* Drawer — hidden on desktop */
+    .drawer{display:none;}
+
+    @media (max-width: 768px) {
+      .nav{padding:0 18px;height:54px;}
+      .nav-links{display:none;}
+      .search-wrap{display:none;}
+      .nav-pay-btn{display:none;}
+      .nav-hamburger{display:flex;}
+      .drawer{display:block;background:#111;overflow:hidden;max-height:0;transition:max-height 0.35s ease;border-bottom:1px solid rgba(255,255,255,0.04);position:sticky;top:54px;z-index:99;}
+      .drawer.open{max-height:500px;}
+      .drawer-label{display:block;font-size:8px;color:rgba(255,255,255,0.25);letter-spacing:3px;text-transform:uppercase;font-weight:500;padding:14px 18px 8px;}
+      .drawer-link{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-top:1px solid rgba(255,255,255,0.05);text-decoration:none;}
+      .drawer-link .link-text{font-size:11px;color:rgba(255,255,255,0.6);}
+      .drawer-link .chev{font-size:13px;color:rgba(255,255,255,0.2);}
+      .drawer-pay{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-top:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);text-decoration:none;}
+      .drawer-pay span{font-size:11px;color:#fff;font-weight:700;}
+      .pager{padding:0 12px;overflow-x:auto;}
+      .pg-btn{padding:11px 12px;font-size:10px;}
+      .page-hero{height:160px;}
+      .hero-content{padding:0 20px 22px;}
+      .hero-heading{font-size:32px;letter-spacing:-1px;}
+      .section{padding:36px 20px;}
+      .contact-grid{grid-template-columns:1fr;gap:32px;}
+      .socials-section{padding:36px 20px;}
+      .socials-grid{grid-template-columns:1fr 1fr;}
+      .staff-contacts{padding:36px 20px;}
+      .contacts-grid{grid-template-columns:1fr;}
+      .footer{grid-template-columns:1fr 1fr;gap:20px;padding:28px 20px;}
+      .f-bottom{padding:11px 20px;flex-direction:column;gap:6px;text-align:center;}
+    }
+    @media (max-width: 480px) {
+      .hero-heading{font-size:28px;}
+      .socials-grid{grid-template-columns:1fr;}
+      .footer{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-ring"><img src="./SOC Logo.png" style="width: inherit; height: inherit;"></div>
+    <div><div class="nav-name">Maduka University</div><div class="nav-sub">School of Computing</div></div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a><a href="./soc_about_page.html">About ▾</a><a href="./acad.html">Academics ▾</a><a href="./soc_communities.html">Communities ▾</a><a href="./soc_news_events.html">News & Events</a><a class="anav">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <div class="search-wrap">
+      <button class="search-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+      <input class="search-input" placeholder="Search SOC..." type="text"/>
+    </div>
+    <a class="nav-pay-btn" href="pay-dues.html">Pay Dues</a>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">
+      <div class="hb-line"></div>
+      <div class="hb-line"></div>
+      <div class="hb-line"></div>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <span class="drawer-label">Navigation</span>
+  <a class="drawer-link" href="./index.html"><span class="link-text">Home</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_about_page.html"><span class="link-text">About</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./acad.html"><span class="link-text">Academics</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_communities.html"><span class="link-text">Communities</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_news_events.html"><span class="link-text">News &amp; Events</span><span class="chev">›</span></a>
+  <a class="drawer-link active-nav"><span class="link-text">Contact</span><span class="chev">›</span></a>
+  <a class="drawer-pay" href="./pay-dues.html"><span>Pay Dues →</span></a>
+</div>
+
+
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-icon" style="top:12%;left:8%;font-size:22px;">{ }</div>
+  <div class="hero-icon" style="top:25%;left:25%;font-size:13px;">&lt;/&gt;</div>
+  <div class="hero-icon" style="top:10%;left:48%;font-size:16px;">[ ]</div>
+  <div class="hero-icon" style="top:30%;left:65%;font-size:11px;">ssh</div>
+  <div class="hero-icon" style="top:15%;left:80%;font-size:18px;">( )</div>
+  <div class="hero-icon" style="top:55%;left:40%;font-size:11px;">&&</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">School of Computing — Reach Out</div>
+    <div class="hero-heading">Get in <span>Touch</span></div>
+    <div class="hero-rule"></div>
+  </div>
+</div>
+
+<!-- Contact form + info -->
+<div class="section" style="background:#fff;">
+  <div class="eyebrow">Send a Message</div>
+  <div class="sec-title">We'd love to hear from you</div>
+  <div class="sec-rule"></div>
+  <div class="contact-grid">
+    <div>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="e.g. Chukwuemeka Obi">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="form-select">
+          <option>General Enquiry</option>
+          <option>Admissions</option>
+          <option>Student Welfare</option>
+          <option>Academic Concerns</option>
+          <option>Technical Support</option>
+          <option>Media & Press</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <input class="form-input" type="text" placeholder="What is this regarding?">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Type your message here..."></textarea>
+      </div>
+      <button class="btn-send">Send Message →</button>
+    </div>
+    <div class="contact-info">
+      <div class="info-block">
+        <div class="info-label">Email</div>
+        <div class="info-val"><a href="mailto:soc@madukauniversity.edu.ng">soc@madukauniversity.edu.ng</a></div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Address</div>
+        <div class="info-val">School of Computing, Maduka University<br>Along Nsukka–Enugu New Road<br>Ekwegbe, Enugu State, Nigeria</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Office Hours</div>
+        <div class="info-val">Monday – Friday<br>8:00am – 4:00pm</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">WhatsApp (Receipts Only)</div>
+        <div class="info-val"><a href="#">+234 XXX XXX XXXX</a></div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Welfare Team</div>
+        <div class="info-val"><a href="#">welfare.soc@madukauniversity.edu.ng</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Map -->
+<div class="map-section">
+  <div class="map-ph">
+    <div class="map-grid"></div>
+    <div class="map-pin">
+      <div class="map-pin-dot"></div>
+      <div class="map-pin-label">Google Maps — Maduka University, Ekwegbe</div>
+    </div>
+  </div>
+</div>
+
+<!-- Socials -->
+<div class="socials-section">
+  <div class="eyebrow" style="color:rgba(255,255,255,0.3);">Find Us Online</div>
+  <div class="sec-title" style="color:#fff;">Follow the School of Computing</div>
+  <div style="width:26px;height:2px;background:#fff;margin:12px 0 20px;"></div>
+  <p style="font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;max-width:500px;line-height:1.8;">Stay connected with the latest news, events, highlights, and community updates across all our social platforms.</p>
+  <div class="socials-grid">
+    <a class="social-card" href="#"><div class="social-icon">f</div><div><div class="social-name">Facebook</div><div class="social-handle">@SOC.MadukaUniversity</div></div></a>
+    <a class="social-card" href="#"><div class="social-icon">ig</div><div><div class="social-name">Instagram</div><div class="social-handle">@soc.maduka</div></div></a>
+    <a class="social-card" href="#"><div class="social-icon">tt</div><div><div class="social-name">TikTok</div><div class="social-handle">@soc.maduka</div></div></a>
+    <a class="social-card" href="#"><div class="social-icon">in</div><div><div class="social-name">LinkedIn</div><div class="social-handle">School of Computing MU</div></div></a>
+  </div>
+</div>
+
+<!-- Staff contacts -->
+<div class="staff-contacts">
+  <div class="eyebrow">Direct Contacts</div>
+  <div class="sec-title">Reach the Right Person</div>
+  <div style="width:26px;height:2px;background:#111;margin:12px 0 20px;"></div>
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="contact-card-role">Head of Department</div>
+      <div class="contact-card-name">Dr. [HOD Name]</div>
+      <div class="contact-card-title">Head of Department, School of Computing</div>
+      <div class="contact-detail"><div class="contact-detail-icon">@</div><div class="contact-detail-text">hod.computing@madukauniversity.edu.ng</div></div>
+      <div class="contact-detail"><div class="contact-detail-icon">📞</div><div class="contact-detail-text">[HOD Phone Number]</div></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-role">Welfare Team</div>
+      <div class="contact-card-name">SOC Welfare Unit</div>
+      <div class="contact-card-title">Student Welfare & Support, School of Computing</div>
+      <div class="contact-detail"><div class="contact-detail-icon">@</div><div class="contact-detail-text">welfare.soc@madukauniversity.edu.ng</div></div>
+      <div class="contact-detail"><div class="contact-detail-icon">💬</div><div class="contact-detail-text">[Welfare WhatsApp Number]</div></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-role">General Enquiries</div>
+      <div class="contact-card-name">School of Computing</div>
+      <div class="contact-card-title">Administrative Office, School of Computing</div>
+      <div class="contact-detail"><div class="contact-detail-icon">@</div><div class="contact-detail-text">soc@madukauniversity.edu.ng</div></div>
+      <div class="contact-detail"><div class="contact-detail-icon">🕐</div><div class="contact-detail-text">Mon–Fri, 8:00am – 4:00pm</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div><div style="display:flex;gap:9px;align-items:flex-start;"><div class="f-ring"><img src="./SOC Logo.png" style="width: inherit; height: inherit;"></div><div><div class="f-school">School of Computing</div><div class="f-uni">Maduka University</div></div></div><div class="f-addr">Along Nsukka–Enugu New Road<br>Ekwegbe, Enugu State, Nigeria</div></div>
+  <div><div class="f-ct">Navigate</div><div class="f-links"><a>Home</a><a>About</a><a>Academics</a><a>Communities</a></div></div>
+  <div><div class="f-ct">University</div><div class="f-links"><a>Main Site</a><a>Student Portal</a><a>E-Learning</a><a>Library</a></div></div>
+  <div><div class="f-ct">Connect</div><div class="f-links"><a>Facebook</a><a>Instagram</a><a>TikTok</a><a>LinkedIn</a></div></div>
+</div>
+<div class="f-bottom"><p>© 2026 School of Computing, Maduka University. All rights reserved.</p><div class="f-powered"><span>Powered by</span><span class="f-zekanik">ZekaniK</span></div></div>
+
+<script>
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+</script>
+</body>
+</html>

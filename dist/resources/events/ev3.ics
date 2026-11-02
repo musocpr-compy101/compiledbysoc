@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Compiled By SOC//Reference Schedule//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:ev3@compiled-by-soc
+DTSTAMP:20260926T000000Z
+DTSTART:20260505T130000Z
+DTEND:20260505T150000Z
+SUMMARY:[Reference example] Industry Guest Lecture — AI in Nigerian Banki
+ ng & Fintech
+LOCATION:Lecture Hall A\, SOC
+DESCRIPTION:Illustrative event from the SOC reference. Confirm details with
+  the school.
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

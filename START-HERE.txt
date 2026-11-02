@@ -1,0 +1,19 @@
+COMPILED BY SOC · NEXT.JS BUILD v34
+
+Deploy this folder as Next.js, not the old static dist folder.
+
+1. Install Node.js 24 and run npm ci in this folder.
+2. Copy .env.example to .env.local.
+3. Follow docs/SETUP.md for Supabase, email codes, R2 and Paystack.
+4. Fresh database: apply migration 001 then 002. Existing v33 database: apply only 002 once.
+5. Run npm run dev and open http://localhost:3000.
+6. Bootstrap the first administrator as described in the setup guide.
+7. Create executive accounts in /admin/staff; edit public content in /admin/content.
+8. Create payment items in /admin/finance and test guest checkout at /pay-dues.
+
+Students do not register to browse or pay. Voting verifies an email code against the approved list.
+No external CMS dashboard. All content management is inside the website admin.
+Live services still require configuration and testing. Voting is disabled by default.
+Read docs/FINANCE.md and docs/ELECTIONS.md before launch.
+
+No private credentials, node_modules, build output or real student records are included.

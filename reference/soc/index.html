@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>School of Computing — Maduka University</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#F5F5F5;color:#111;overflow-x:hidden;}
+
+/* ── NAV ── */
+.nav{background:#111;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.04);}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+.nav-ring img{width:100%;height:100%;object-fit:cover;}
+.nav-name{font-size:11px;font-weight:600;color:#fff;}
+.nav-sub{font-size:9px;color:rgba(255,255,255,0.3);font-weight:300;margin-top:1px;}
+.nav-links{display:flex;align-items:center;}
+.nav-links a{font-size:11px;color:rgba(255,255,255,0.45);padding:0 11px;height:58px;display:flex;align-items:center;cursor:pointer;transition:color 0.2s;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:#fff;}
+
+/* Search */
+.nav-search{display:flex;align-items:center;gap:8px;margin-right:10px;}
+.search-wrap{display:flex;align-items:center;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:2px;overflow:hidden;transition:all 0.3s;}
+.search-wrap:focus-within{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.3);}
+.search-input{background:transparent;border:none;outline:none;color:#fff;font-size:11px;font-family:'Inter',sans-serif;padding:5px 10px;width:0;transition:width 0.3s;opacity:0;}
+.search-input.open{width:160px;opacity:1;}
+.search-input::placeholder{color:rgba(255,255,255,0.3);}
+.search-btn{background:transparent;border:none;cursor:pointer;padding:5px 8px;display:flex;align-items:center;color:rgba(255,255,255,0.5);transition:color 0.2s;}
+.search-btn:hover{color:#fff;}
+.search-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+
+.nav-pay{border:1px solid rgba(255,255,255,0.3);color:#fff;background:transparent;padding:5px 14px;font-size:10px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.2s;white-space:nowrap;}
+.nav-pay a{color:inherit;text-decoration:none;}
+.nav-pay:hover{background:#fff;color:#111;}
+
+/* Hamburger — hidden on desktop */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;align-items:flex-end;background:transparent;border:none;cursor:pointer;padding:6px;}
+.hb-line{background:#fff;height:1.5px;border-radius:1px;transition:all 0.3s;}
+.hb-line:nth-child(1){width:20px;}
+.hb-line:nth-child(2){width:14px;}
+.hb-line:nth-child(3){width:20px;}
+.nav-hamburger.open .hb-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px;}
+.nav-hamburger.open .hb-line:nth-child(2){opacity:0;width:0;}
+.nav-hamburger.open .hb-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:20px;}
+
+/* Drawer — hidden on desktop */
+.drawer{display:none;}
+
+/* ── HERO ── */
+.hero{display:flex;min-height:500px;position:relative;overflow:hidden;}
+
+.hero-l{flex:1.1;background:#111;padding:72px 40px 52px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+
+.tech-canvas{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.tech-icon{position:absolute;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.06);font-weight:700;animation:floatUp linear infinite;}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0deg);opacity:0;}10%{opacity:1;}90%{opacity:0.5;}100%{transform:translateY(-120%) rotate(15deg);opacity:0;}}
+
+.binary-col{position:absolute;top:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.04);line-height:1.4;animation:binaryFall linear infinite;pointer-events:none;}
+@keyframes binaryFall{0%{transform:translateY(-100%);}100%{transform:translateY(100vh);}}
+
+.hero-slides{position:relative;z-index:2;}
+.slide{display:none;animation:slideIn 0.5s ease;}
+.slide.active{display:block;}
+@keyframes slideIn{from{transform:translateX(40px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+.h-ey{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:16px;}
+.h-title{font-size:46px;font-weight:800;color:#fff;line-height:1.08;letter-spacing:-2px;margin-bottom:16px;}
+.h-title span{color:#555;}
+.h-rule{width:32px;height:2px;background:#fff;margin-bottom:16px;}
+.h-sub{font-size:12px;color:rgba(255,255,255,0.38);line-height:1.8;max-width:320px;font-weight:300;margin-bottom:26px;}
+.h-btns{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
+.h-btns a{color:inherit;text-decoration:none;}
+.btn-w{background:#fff;color:#111;border:none;border-radius:2px;padding:9px 22px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:0.4px;transition:opacity 0.2s;}
+.btn-w:hover{opacity:0.88;}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.18);border-radius:2px;padding:9px 18px;font-size:10px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.4);color:#fff;}
+
+.slide-dots{display:flex;gap:6px;position:relative;z-index:2;}
+.dot{width:20px;height:2px;background:rgba(255,255,255,0.2);cursor:pointer;transition:all 0.3s;border:none;padding:0;}
+.dot.active{width:36px;background:#fff;}
+
+/* Right panel */
+.hero-r{flex:0.9;display:flex;flex-direction:column;background:#1C1C1C;position:relative;overflow:hidden;border-left:1px solid rgba(255,255,255,0.04);}
+.hero-img-ph{flex:1;display:flex;align-items:center;justify-content:center;position:relative;min-height:200px;}
+.hero-img-ph span{font-size:9px;color:rgba(255,255,255,0.08);letter-spacing:2px;text-transform:uppercase;z-index:2;position:relative;}
+
+.right-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:32px 32px;}
+.right-accent{position:absolute;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.06);font-size:11px;animation:pulse 3s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:0.04;}50%{opacity:0.12;}}
+
+.bracket{position:absolute;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.08);font-size:80px;font-weight:700;line-height:1;animation:bracketPulse ease-in-out infinite;}
+@keyframes bracketPulse{0%,100%{opacity:0.05;transform:scale(1);}50%{opacity:0.12;transform:scale(1.02);}}
+
+.stats{display:flex;background:#fff;border-top:2px solid #111;}
+.stat{flex:1;padding:14px 8px;text-align:center;border-right:1px solid #EBEBEB;}
+.stat:last-child{border-right:none;}
+.stat-n{font-size:19px;font-weight:800;color:#111;letter-spacing:-0.5px;}
+.stat-l{font-size:7px;color:#AAA;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+
+/* ── ANNOUNCE ── */
+.announce{background:#fff;border-bottom:1px solid #E8E8E8;padding:9px 32px;display:flex;align-items:center;gap:12px;}
+.ann-tag{font-size:8px;background:#111;color:#fff;padding:2px 9px;letter-spacing:1px;text-transform:uppercase;font-weight:600;flex-shrink:0;}
+.ann-txt{font-size:11px;color:#666;font-weight:300;}
+
+/* ── DEAN ── */
+.dean{background:#1A1A1A;padding:48px 32px;display:flex;gap:36px;align-items:flex-start;}
+.dean-ph{width:80px;height:96px;background:#2A2A2A;border-top:3px solid #fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:rgba(255,255,255,0.12);overflow:hidden;}
+.dean-ph img{width:100%;height:100%;object-fit:cover;}
+.dean-qm{font-size:52px;color:rgba(255,255,255,0.06);line-height:0.6;margin-bottom:12px;font-weight:800;}
+.dean-q{font-size:16px;color:#fff;line-height:1.7;margin-bottom:14px;font-weight:300;}
+.dean-name{font-size:10px;color:#fff;font-weight:600;}
+.dean-role{font-size:9px;color:rgba(255,255,255,0.3);margin-top:2px;font-weight:300;}
+
+/* ── NEWS ── */
+.news-sec{padding:52px 32px;background:#fff;border-top:1px solid #E8E8E8;}
+.s-ey{font-size:8px;color:#888;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:8px;}
+.s-title{font-size:26px;font-weight:700;color:#111;letter-spacing:-0.5px;}
+.s-rule{width:26px;height:2px;background:#111;margin:12px 0;}
+.news-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:22px;}
+.nfc{background:#fff;border:1px solid #E8E8E8;cursor:pointer;transition:box-shadow 0.2s;}
+.nfc:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
+.nfc-img{height:150px;background:#1C1C1C;border-top:3px solid #111;display:flex;align-items:flex-end;padding:10px;background-size:cover;background-position:center;}
+.nfc-cat{font-size:8px;color:#fff;letter-spacing:2px;text-transform:uppercase;background:rgba(0,0,0,0.75);padding:2px 7px;font-weight:500;}
+.nfc-body{padding:16px;}
+.nfc-date{font-size:9px;color:#BBB;margin-bottom:5px;font-weight:300;}
+.nfc-title{font-size:14px;color:#111;line-height:1.4;font-weight:600;letter-spacing:-0.2px;}
+.ns-list{display:flex;flex-direction:column;}
+.ns-item{background:#fff;border:1px solid #E8E8E8;border-bottom:none;padding:13px 14px;display:flex;gap:11px;cursor:pointer;transition:background 0.15s;}
+.ns-item:last-child{border-bottom:1px solid #E8E8E8;}
+.ns-item:hover{background:#F9F9F9;}
+.ns-date{font-size:8px;color:#888;text-transform:uppercase;letter-spacing:1px;min-width:28px;text-align:center;border-right:1px solid #E8E8E8;padding-right:11px;line-height:1.4;font-weight:500;flex-shrink:0;}
+.ns-title{font-size:11px;color:#111;line-height:1.5;font-weight:500;}
+.ns-cat{font-size:9px;color:#BBB;margin-top:2px;font-weight:300;}
+
+/* ── FOOTER ── */
+.footer{background:#111;padding:40px 32px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;}
+.f-ring{width:28px;height:28px;border:1.5px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.f-ring img{width:100%;height:100%;object-fit:cover;}
+.f-school{font-size:11px;color:#fff;font-weight:500;}
+.f-uni{font-size:9px;color:rgba(255,255,255,0.26);font-weight:300;margin-top:1px;}
+.f-addr{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-top:12px;font-weight:300;}
+.f-ct{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:500;}
+.f-links{display:flex;flex-direction:column;gap:8px;}
+.f-links a{font-size:10px;color:rgba(255,255,255,0.26);cursor:pointer;transition:color 0.2s;font-weight:300;text-decoration:none;}
+.f-links a:hover{color:#fff;}
+.f-bottom{background:#0A0A0A;border-top:1px solid rgba(255,255,255,0.04);padding:11px 32px;display:flex;justify-content:space-between;align-items:center;}
+.f-bottom p{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-powered{display:flex;align-items:center;gap:5px;}
+.f-powered span{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-zekanik{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);letter-spacing:0.5px;transition:color 0.2s;cursor:pointer;}
+.f-zekanik:hover{color:#fff;}
+
+/* ══════════════════════════════
+   MOBILE — max 768px
+══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* NAV */
+  .nav { padding: 0 18px; height: 54px; }
+  .nav-links { display: none; }
+  .nav-search { display: none; }
+  .nav-pay { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* DRAWER */
+  .drawer {
+    display: block;
+    background: #111;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    position: sticky;
+    top: 54px;
+    z-index: 99;
+  }
+  .drawer.open { max-height: 500px; }
+  .drawer-label {
+    display: block;
+    font-size: 8px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 14px 18px 8px;
+  }
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 18px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-decoration: none;
+  }
+  .drawer-link .link-text { font-size: 11px; color: rgba(255,255,255,0.6); }
+  .drawer-link .chev { font-size: 13px; color: rgba(255,255,255,0.2); }
+  .drawer-pay {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.03);
+    text-decoration: none;
+  }
+  .drawer-pay span { font-size: 11px; color: #fff; font-weight: 700; }
+
+  /* HERO — stack vertically */
+  .hero { flex-direction: column; min-height: unset; }
+  .hero-l { padding: 36px 20px 28px; flex: unset; justify-content: flex-start; }
+  .h-title { font-size: 34px; letter-spacing: -1.5px; }
+  .h-sub { font-size: 12px; max-width: 100%; }
+  .h-btns { flex-wrap: wrap; }
+
+  /* Right panel — show stacked below hero text */
+  .hero-r {
+    display: flex;
+    flex-direction: column;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    flex: unset;
+  }
+  .hero-img-ph { min-height: 200px; }
+
+  /* Hide desktop bracket/accent decorations on mobile for perf */
+  .bracket { font-size: 48px; }
+
+  /* Stats */
+  .stat-n { font-size: 17px; }
+  .stat { padding: 12px 6px; }
+
+  /* ANNOUNCE */
+  .announce { padding: 10px 18px; align-items: flex-start; }
+  .ann-tag { margin-top: 2px; }
+  .ann-txt { font-size: 10px; line-height: 1.55; }
+
+  /* DEAN */
+  .dean { padding: 28px 18px; gap: 14px; }
+  .dean-ph { width: 52px; height: 62px; flex-shrink: 0; }
+  .dean-q { font-size: 12px; line-height: 1.75; }
+  .dean-qm { font-size: 36px; }
+
+  /* NEWS */
+  .news-sec { padding: 36px 18px; }
+  .news-grid { grid-template-columns: 1fr; gap: 12px; }
+  .nfc-title { font-size: 13px; }
+
+  /* FOOTER */
+  .footer {
+    grid-template-columns: 1fr 1fr;
+    padding: 32px 18px 24px;
+    gap: 28px 16px;
+  }
+  .footer > div:first-child { grid-column: 1 / -1; }
+  .f-bottom { padding: 11px 18px; flex-wrap: wrap; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-ring"><img src="./SOC Logo.png" alt="SOC"></div>
+    <div>
+      <div class="nav-name">Maduka University</div>
+      <div class="nav-sub">School of Computing</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a>Home</a>
+    <a href="./soc_about_page.html">About ▾</a>
+    <a href="./acad.html">Academics ▾</a>
+    <a href="./soc_communities.html">Communities ▾</a>
+    <a href="./soc_news_events.html">News &amp; Events</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+  <div class="nav-search">
+    <div class="search-wrap" id="searchWrap">
+      <button class="search-btn" onclick="toggleSearch()" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <input class="search-input" id="searchInput" placeholder="Search SOC..." type="text"/>
+    </div>
+  </div>
+  <button class="nav-pay"><a href="./pay-dues.html">Pay Dues</a></button>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+  </button>
+</nav>
+
+<!-- DRAWER (mobile only) -->
+<div class="drawer" id="drawer">
+  <span class="drawer-label">Navigation</span>
+  <a class="drawer-link" href="./soc_about_page.html"><span class="link-text">About</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./acad.html"><span class="link-text">Academics</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_communities.html"><span class="link-text">Communities</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_news_events.html"><span class="link-text">News &amp; Events</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./contact.html"><span class="link-text">Contact</span><span class="chev">›</span></a>
+  <a class="drawer-pay" href="./pay-dues.html"><span>Pay Dues →</span></a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-l">
+    <div class="tech-canvas" id="techCanvas"></div>
+    <div class="tech-canvas" id="iconCanvas"></div>
+
+    <div class="hero-slides">
+      <div class="slide active" id="slide-0">
+        <div class="h-ey">Maduka University — School of Computing</div>
+        <h1 class="h-title">Shaping<br>the Future<br>of <span>Computing</span></h1>
+        <div class="h-rule"></div>
+        <p class="h-sub">A centre of academic excellence preparing the next generation of computing leaders for Nigeria and the world.</p>
+        <div class="h-btns">
+          <button class="btn-w"><a href="./acad.html">Explore Academics</a></button>
+          <button class="btn-ghost"><a href="./contact.html">Get in Touch</a></button>
+        </div>
+      </div>
+      <div class="slide" id="slide-1">
+        <div class="h-ey">School of Computing</div>
+        <h1 class="h-title">Where Tech<br>Meets <span>Purpose</span></h1>
+        <div class="h-rule"></div>
+        <p class="h-sub">Three world-class programmes — Computer Science, Software Engineering, and Cybersecurity — built for Nigeria's digital age.</p>
+        <div class="h-btns">
+          <button class="btn-w"><a href="./acad.html">Our Programmes</a></button>
+          <button class="btn-ghost"><a href="./soc_communities.html">Learn More</a></button>
+        </div>
+      </div>
+      <div class="slide" id="slide-2">
+        <div class="h-ey">School of Computing</div>
+        <h1 class="h-title">Build.<br>Secure.<br><span>Innovate.</span></h1>
+        <div class="h-rule"></div>
+        <p class="h-sub">From cybersecurity to full-stack development, we equip our students with the skills that matter most now and beyond.</p>
+        <div class="h-btns">
+          <button class="btn-w"><a href="./soc_communities.html">Join Our Community</a></button>
+          <button class="btn-ghost"><a href="./pay-dues.html">Pay Dues</a></button>
+        </div>
+      </div>
+      <div class="slide" id="slide-3">
+        <div class="h-ey">Maduka University — School of Computing</div>
+        <h1 class="h-title">Nigeria's<br>Next Tech<br><span>Leaders</span></h1>
+        <div class="h-rule"></div>
+        <p class="h-sub">School of Computing is building the transformative force the African techspace needs.</p>
+        <div class="h-btns">
+          <button class="btn-w"><a href="./soc_about_page.html">Our Story</a></button>
+          <button class="btn-ghost"><a href="./soc_news_events.html">News &amp; Events</a></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-dots" id="slideDots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+      <button class="dot" onclick="goToSlide(3)"></button>
+    </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="hero-r">
+    <div class="hero-img-ph">
+      <div class="right-grid"></div>
+      <img src="./topview.jpeg" alt="SOC Campus" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0.6;">
+      <div class="bracket" style="left:-10px;top:20px;animation-duration:4s;animation-delay:0s;">{</div>
+      <div class="bracket" style="right:-10px;bottom:30px;animation-duration:5s;animation-delay:1s;">}</div>
+      <div class="right-accent" style="top:15%;left:12%;font-size:10px;animation-delay:0.5s;">&lt;/&gt;</div>
+      <div class="right-accent" style="top:30%;right:14%;font-size:9px;animation-delay:1.2s;">01101</div>
+      <div class="right-accent" style="top:55%;left:18%;font-size:9px;animation-delay:2s;">[ ]</div>
+      <div class="right-accent" style="bottom:25%;right:20%;font-size:10px;animation-delay:0.8s;">( )</div>
+      <div class="right-accent" style="top:70%;left:35%;font-size:9px;animation-delay:1.8s;">{ }</div>
+      <div class="right-accent" style="top:20%;left:45%;font-size:9px;animation-delay:3s;">==</div>
+      <div class="right-accent" style="bottom:40%;left:10%;font-size:9px;animation-delay:2.5s;">&&</div>
+      <div class="right-accent" style="top:45%;right:8%;font-size:9px;animation-delay:1.5s;">||</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Programmes</div></div>
+      <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Faculty</div></div>
+      <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Students</div></div>
+      <div class="stat"><div class="stat-n">3yrs</div><div class="stat-l">Excellence</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ANNOUNCE -->
+<div class="announce">
+  <span class="ann-tag">Notice</span>
+  <span class="ann-txt">2025/2026 Academic Session — Course registration closes March 25, 2026. Visit the Student Portal now.</span>
+</div>
+
+<!-- CHANCELLOR QUOTE -->
+<div class="dean">
+  <div class="dean-ph"><img src="./MU man.jfif" alt="Chancellor"></div>
+  <div>
+    <div class="dean-qm">&ldquo;</div>
+    <div class="dean-q">Our mission is to build computing professionals who will lead Africa's digital future with integrity, creativity, and the highest academic excellence.</div>
+    <div class="dean-name">Samuel Onyishi</div>
+    <div class="dean-role">Chancellor — Maduka University</div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div class="news-sec">
+  <div class="s-ey">Latest</div>
+  <div class="s-title">News &amp; Events</div>
+  <div class="s-rule"></div>
+  <div class="news-grid">
+    <div class="nfc">
+      <div class="nfc-img" style="background-image:url('./Frame 65.png');background-size:cover;background-position:center;">
+        <span class="nfc-cat">Event</span>
+      </div>
+      <div class="nfc-body">
+        <div class="nfc-date">March 15, 2026</div>
+        <div class="nfc-title">Annual Computing Hackathon 2026 — Registration Now Open</div>
+      </div>
+    </div>
+    <div class="ns-list">
+      <div class="ns-item"><div class="ns-date">Mar<br>08</div><div><div class="ns-title">School of Computing Partners with Nigerian Tech Firms</div><div class="ns-cat">News</div></div></div>
+      <div class="ns-item"><div class="ns-date">Feb<br>20</div><div><div class="ns-title">Google Cybersecurity Programme Launches 2026</div><div class="ns-cat">Announcement</div></div></div>
+      <div class="ns-item"><div class="ns-date">Feb<br>05</div><div><div class="ns-title">Computing Students Win National App Competition</div><div class="ns-cat">Achievement</div></div></div>
+      <div class="ns-item"><div class="ns-date">Jan<br>28</div><div><div class="ns-title">SOC Students Fangirl Over Hot PRO 👀</div><div class="ns-cat">Breaking News</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div style="display:flex;gap:9px;align-items:flex-start;">
+      <div class="f-ring"><img src="./SOC Logo.png" alt="SOC"></div>
+      <div><div class="f-school">School of Computing</div><div class="f-uni">Maduka University</div></div>
+    </div>
+    <div class="f-addr">Along Nsukka–Enugu New Road<br>Ekwegbe, Enugu State, Nigeria<br>computing@madukauniversity.edu.ng</div>
+  </div>
+  <div><div class="f-ct">Academics</div><div class="f-links"><a>Programmes</a><a>Resources</a><a>Timetables</a><a>Downloads</a></div></div>
+  <div><div class="f-ct">University</div><div class="f-links"><a>Main Site</a><a>Student Portal</a><a>E-Learning</a><a>Library</a></div></div>
+  <div><div class="f-ct">Quick</div><div class="f-links"><a>Faculty &amp; Staff</a><a>News &amp; Events</a><a>Pay Dues</a><a>Contact</a></div></div>
+</div>
+<div class="f-bottom">
+  <p>© 2026 School of Computing, Maduka University. All rights reserved.</p>
+  <div class="f-powered">
+    <span>Powered by</span>
+    <span class="f-zekanik">ZekaniK</span>
+  </div>
+</div>
+
+<script>
+// ── SLIDESHOW ──
+let current = 0;
+const total = 4;
+let autoTimer;
+
+function goToSlide(n) {
+  document.getElementById('slide-' + current).classList.remove('active');
+  document.querySelectorAll('.dot')[current].classList.remove('active');
+  current = n;
+  document.getElementById('slide-' + current).classList.add('active');
+  document.querySelectorAll('.dot')[current].classList.add('active');
+  resetTimer();
+}
+function nextSlide() { goToSlide((current + 1) % total); }
+function resetTimer() { clearInterval(autoTimer); autoTimer = setInterval(nextSlide, 4500); }
+resetTimer();
+
+// ── SEARCH ──
+function toggleSearch() {
+  const input = document.getElementById('searchInput');
+  input.classList.toggle('open');
+  if (input.classList.contains('open')) input.focus();
+  else input.blur();
+}
+
+// ── DRAWER ──
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// ── BINARY RAIN ──
+const techCanvas = document.getElementById('techCanvas');
+const cols = 12;
+for (let i = 0; i < cols; i++) {
+  const col = document.createElement('div');
+  col.className = 'binary-col';
+  col.style.left = (i * 8.5) + '%';
+  col.style.animationDuration = (6 + Math.random() * 8) + 's';
+  col.style.animationDelay = (-Math.random() * 10) + 's';
+  col.style.fontSize = (9 + Math.floor(Math.random() * 3)) + 'px';
+  let bin = '';
+  for (let j = 0; j < 28; j++) bin += (Math.random() > 0.5 ? '1' : '0') + '<br>';
+  col.innerHTML = bin;
+  techCanvas.appendChild(col);
+}
+
+// ── FLOATING TECH ICONS ──
+const iconCanvas = document.getElementById('iconCanvas');
+const icons = [
+  '{ }','< />','[ ]','( )','&&','||','!=','01','10','11','00','//',
+  'fn()','npm','git','ssh','api','sql','css','jsx','>=','<=','++','--','**','::'
+];
+for (let i = 0; i < 18; i++) {
+  const icon = document.createElement('div');
+  icon.className = 'tech-icon';
+  icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+  icon.style.left = (5 + Math.random() * 88) + '%';
+  icon.style.bottom = (Math.random() * 100) + '%';
+  icon.style.fontSize = (10 + Math.floor(Math.random() * 14)) + 'px';
+  icon.style.animationDuration = (8 + Math.random() * 12) + 's';
+  icon.style.animationDelay = (-Math.random() * 15) + 's';
+  iconCanvas.appendChild(icon);
+}
+</script>
+</body>
+</html>

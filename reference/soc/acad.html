@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Academics — School of Computing | Maduka University</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#F5F5F5;color:#111;overflow-x:hidden;}
+
+/* ── INFO BAR ── */
+.info-bar{background:#111;height:36px;display:flex;align-items:center;justify-content:center;gap:48px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.info-bar-item{display:flex;align-items:center;gap:7px;font-size:10px;color:rgba(255,255,255,0.4);font-weight:400;letter-spacing:0.2px;}
+.info-bar-item a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.info-bar-item a:hover{color:#fff;}
+.info-bar-dot{width:3px;height:3px;background:rgba(255,255,255,0.2);border-radius:50%;}
+
+/* ── NAV ── */
+.nav{background:#fff;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E8E8E8;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo-ring{width:40px;height:40px;border:1.5px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#111;font-weight:700;}
+.nav-brand{font-size:15px;font-weight:700;color:#111;letter-spacing:-0.3px;}
+.nav-links{display:flex;align-items:center;gap:2px;}
+.nav-links a{font-size:11px;color:#888;padding:0 14px;height:62px;display:flex;align-items:center;cursor:pointer;transition:color 0.2s;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;}
+.nav-links a:hover{color:#111;}
+.nav-links a.active-nav{color:#111;border-bottom-color:#111;font-weight:600;}
+.nav-pay-btn{text-decoration: none; border:1px solid #111;color:#111;background:transparent;padding:7px 18px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.2s;white-space:nowrap;letter-spacing:0.3px;}
+.nav-pay-btn:hover{background:#111;color:#fff;}
+
+/* ── HERO — full-width photo ── */
+.hero-photo{width:100%;height:450px;position:relative;overflow:hidden;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.55) 100%);}
+.hero-photo-content{position:absolute;bottom:0;left:0;right:0;padding:0 40px 36px;}
+.hero-eyebrow{font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.hero-heading{font-size:52px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;}
+.hero-heading span{color:rgba(255,255,255,0.45);}
+.hero-rule{width:36px;height:2px;background:#fff;margin-top:14px;}
+
+/* ── SUB-NAV ── */
+.tab-nav{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 40px;display:flex; justify-content:space-between;align-items: center;overflow-x:auto;position:sticky;top:62px;z-index:40;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{background:transparent;border:none;border-bottom:2px solid transparent;color:#AAA;font-size:11px;font-weight:500;padding:15px 18px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all 0.2s;letter-spacing:0.2px;}
+.tab-btn:hover{color:#111;}
+.tab-btn.active{color:#111;border-bottom-color:#111;font-weight:600;}
+
+/* ── TAB CONTENT ── */
+.tab-content{display:none;animation:fadeUp 0.3s ease;}
+.tab-content.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── SHARED SECTION STYLES ── */
+.section{padding:64px 40px;background:#fff;}
+.section-alt{padding:64px 40px;background:#F5F5F5;}
+.section-dark{padding:64px 40px;background:#111;}
+.eyebrow{font-size:9px;color:#888;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.eyebrow-w{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+.sec-title{font-size:30px;font-weight:700;color:#111;letter-spacing:-0.5px;line-height:1.2;}
+.sec-title-w{font-size:30px;font-weight:700;color:#fff;letter-spacing:-0.5px;line-height:1.2;}
+.sec-rule{width:28px;height:2px;background:#111;margin:14px 0;}
+.sec-rule-w{width:28px;height:2px;background:#fff;margin:14px 0;}
+.sec-sub{font-size:13px;color:#666;line-height:1.85;font-weight:300;max-width:640px;}
+
+/* ── IMG PLACEHOLDER ── */
+.img-ph{background:#1C1C1C;border-top:3px solid #111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden;}
+.img-ph::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:24px 24px;}
+.img-ph-label{font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1;}
+.img-ph-icon{font-family:'JetBrains Mono',monospace;font-size:22px;color:rgba(255,255,255,0.07);font-weight:700;position:relative;z-index:1;}
+
+/* ══════════════════════════════════════
+   DEPARTMENTS TAB
+══════════════════════════════════════ */
+.dept-hero-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:32px;}
+.dept-hero-card{background:#fff;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s;}
+.dept-hero-card:hover{box-shadow:0 6px 28px rgba(0,0,0,0.09);}
+.dhc-top{height:5px;background:#111;}
+.dhc-body{padding:28px 24px 32px;}
+.dhc-code{font-family:'JetBrains Mono',monospace;font-size:10px;color:#AAA;margin-bottom:12px;letter-spacing:1px;}
+.dhc-name{font-size:20px;font-weight:800;color:#111;margin-bottom:10px;letter-spacing:-0.5px;line-height:1.2;}
+.dhc-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;color:#fff;background:#111;padding:2px 8px;margin-bottom:14px;font-weight:700;}
+.dhc-desc{font-size:12px;color:#666;line-height:1.75;font-weight:300;margin-bottom:20px;}
+.dhc-skills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px;}
+.dhc-skill{font-size:9px;color:#555;background:#F5F5F5;border:1px solid #E8E8E8;padding:3px 9px;font-weight:500;}
+.dhc-link{font-size:10px;color:#111;font-weight:700;text-decoration:none;letter-spacing:0.5px;display:inline-flex;align-items:center;gap:5px;border-bottom:1px solid #111;padding-bottom:1px;}
+.dhc-link:hover{opacity:0.6;}
+
+.dept-detail{background:#fff;border:1px solid #E8E8E8;margin-top:28px;overflow:hidden;}
+.dept-detail-header{background:#111;padding:28px 32px;display:flex;justify-content:space-between;align-items:flex-end;}
+.ddh-code{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:8px;letter-spacing:1px;}
+.ddh-name{font-size:24px;font-weight:800;color:#fff;letter-spacing:-0.5px;}
+.ddh-right{text-align:right;}
+.ddh-duration{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:4px;}
+.ddh-degree{font-size:10px;color:rgba(255,255,255,0.25);font-weight:300;}
+.dept-detail-body{display:grid;grid-template-columns:1.4fr 1fr;}
+.ddb-main{padding:32px;border-right:1px solid #E8E8E8;}
+.ddb-side{padding:32px;background:#F9F9F9;}
+.ddb-section-title{font-size:10px;font-weight:700;color:#111;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #E8E8E8;}
+.ddb-para{font-size:12px;color:#555;line-height:1.85;font-weight:300;margin-bottom:20px;}
+.outcome-item{display:flex;gap:10px;margin-bottom:10px;}
+.outcome-dot{width:4px;height:4px;background:#111;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.outcome-text{font-size:11px;color:#555;line-height:1.65;font-weight:300;}
+.side-stat{border-bottom:1px solid #E8E8E8;padding-bottom:16px;margin-bottom:16px;}
+.side-stat:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.side-stat-n{font-size:22px;font-weight:800;color:#111;letter-spacing:-0.5px;}
+.side-stat-l{font-size:9px;color:#AAA;letter-spacing:1px;text-transform:uppercase;margin-top:2px;font-weight:400;}
+.side-tag{font-size:10px;font-weight:600;color:#fff;background:#111;padding:3px 10px;display:inline-block;margin-bottom:12px;}
+.side-item{font-size:11px;color:#666;line-height:1.7;font-weight:300;padding-left:10px;border-left:2px solid #E8E8E8;margin-bottom:8px;}
+.dept-admission-link{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:#F5F5F5;border-top:1px solid #E8E8E8;cursor:pointer;transition:background 0.2s;text-decoration:none;}
+.dept-admission-link:hover{background:#EBEBEB;}
+.dal-text{font-size:11px;color:#111;font-weight:600;}
+.dal-sub{font-size:10px;color:#AAA;font-weight:300;margin-top:1px;}
+.dal-arrow{font-size:18px;color:#111;}
+
+/* ══════════════════════════════════════
+   FACILITIES TAB
+══════════════════════════════════════ */
+.facilities-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:32px;}
+.fac-card{background:#fff;overflow:hidden;}
+.fac-card.featured{grid-column:span 2;}
+.fac-body{padding:24px;}
+.fac-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:#CCC;letter-spacing:1px;margin-bottom:10px;}
+.fac-name{font-size:16px;font-weight:700;color:#111;letter-spacing:-0.3px;margin-bottom:10px;}
+.fac-desc{font-size:12px;color:#777;line-height:1.75;font-weight:300;}
+.fac-tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.fac-tag{font-size:9px;background:#F5F5F5;border:1px solid #E8E8E8;color:#555;padding:3px 9px;font-weight:500;}
+
+/* ══════════════════════════════════════
+   ADMISSION TAB
+══════════════════════════════════════ */
+.dept-req-tabs{display:flex;gap:0;border:1px solid #E8E8E8;overflow:hidden;margin-bottom:28px;}
+.drt-btn{flex:1;background:#fff;border:none;border-right:1px solid #E8E8E8;padding:12px;font-size:11px;font-weight:500;color:#AAA;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.drt-btn:last-child{border-right:none;}
+.drt-btn:hover{color:#111;}
+.drt-btn.active{background:#111;color:#fff;font-weight:600;}
+.req-tab-content{display:none;}
+.req-tab-content.active{display:block;}
+.req-block{background:#fff;border:1px solid #E8E8E8;border-top:3px solid #111;padding:28px;margin-bottom:16px;}
+.req-block-title{font-size:13px;font-weight:700;color:#111;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.req-badge{font-family:'JetBrains Mono',monospace;font-size:9px;background:#111;color:#fff;padding:2px 8px;font-weight:700;}
+.req-list{display:flex;flex-direction:column;gap:8px;}
+.req-item{display:flex;gap:10px;align-items:flex-start;}
+.req-check{font-family:'JetBrains Mono',monospace;font-size:10px;color:#BBB;flex-shrink:0;margin-top:1px;}
+.req-text{font-size:12px;color:#555;line-height:1.65;font-weight:300;}
+.req-note{background:#F5F5F5;border:1px solid #E8E8E8;border-left:3px solid #111;padding:16px 20px;margin-top:24px;}
+.req-note-title{font-size:10px;font-weight:700;color:#111;margin-bottom:5px;}
+.req-note-text{font-size:11px;color:#666;line-height:1.65;font-weight:300;}
+
+/* ══════════════════════════════════════
+   RESEARCH TAB
+══════════════════════════════════════ */
+.research-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:28px;}
+.res-featured{background:#fff;border:1px solid #E8E8E8;border-top:3px solid #111;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s;}
+.res-featured:hover{box-shadow:0 4px 22px rgba(0,0,0,0.07);}
+.res-feat-body{padding:24px;}
+.res-feat-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.res-cat{font-size:8px;background:#111;color:#fff;padding:2px 8px;letter-spacing:1px;text-transform:uppercase;font-weight:600;}
+.res-date{font-size:9px;color:#BBB;font-weight:300;}
+.res-feat-title{font-size:18px;font-weight:700;color:#111;letter-spacing:-0.3px;line-height:1.3;margin-bottom:10px;}
+.res-feat-excerpt{font-size:12px;color:#777;line-height:1.75;font-weight:300;margin-bottom:18px;}
+.res-authors{font-size:10px;color:#AAA;font-weight:300;}
+.res-authors strong{color:#555;font-weight:600;}
+.res-list{display:flex;flex-direction:column;gap:12px;}
+.res-item{background:#fff;border:1px solid #E8E8E8;padding:18px;cursor:pointer;transition:background 0.15s;}
+.res-item:hover{background:#F9F9F9;}
+.res-item-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.res-item-cat{font-size:8px;background:#F5F5F5;border:1px solid #E8E8E8;color:#777;padding:2px 7px;letter-spacing:0.5px;text-transform:uppercase;font-weight:500;}
+.res-item-date{font-size:9px;color:#CCC;font-weight:300;}
+.res-item-title{font-size:13px;font-weight:600;color:#111;line-height:1.4;margin-bottom:6px;letter-spacing:-0.2px;}
+.res-item-authors{font-size:10px;color:#AAA;font-weight:300;}
+.res-admin-note{background:#F5F5F5;border:1px solid #E8E8E8;border-left:3px solid #555;padding:14px 20px;margin-top:28px;display:flex;align-items:center;gap:12px;}
+.res-admin-icon{font-family:'JetBrains Mono',monospace;font-size:18px;color:#CCC;}
+.res-admin-text{font-size:11px;color:#888;line-height:1.6;font-weight:300;}
+.res-admin-text strong{color:#555;font-weight:600;}
+
+/* ══════════════════════════════════════
+   COURSE INFO TAB
+══════════════════════════════════════ */
+.course-dept-sel{display:flex;gap:0;border:1px solid #E8E8E8;overflow:hidden;margin-bottom:32px;max-width:600px;}
+.cds-btn{flex:1;background:#fff;border:none;border-right:1px solid #E8E8E8;padding:12px 8px;font-size:11px;font-weight:500;color:#AAA;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;text-align:center;}
+.cds-btn:last-child{border-right:none;}
+.cds-btn.active{background:#111;color:#fff;font-weight:600;}
+.course-dept-panel{display:none;}
+.course-dept-panel.active{display:block;}
+.semester-block{margin-bottom:32px;}
+.sem-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.sem-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;background:#111;padding:4px 12px;font-weight:700;letter-spacing:0.5px;}
+.sem-line{flex:1;height:1px;background:#E8E8E8;}
+.course-table{width:100%;border-collapse:collapse;border:1px solid #E8E8E8;}
+.course-table th{background:#F5F5F5;font-size:9px;color:#888;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;padding:10px 14px;text-align:left;border-bottom:1px solid #E8E8E8;}
+.course-table td{font-size:11px;color:#555;padding:11px 14px;border-bottom:1px solid #F0F0F0;vertical-align:top;}
+.course-table tr:last-child td{border-bottom:none;}
+.course-table tr:hover td{background:#FAFAFA;}
+.course-code{font-family:'JetBrains Mono',monospace;font-size:10px;color:#AAA;font-weight:400;}
+.course-title-cell{color:#111;font-weight:500;}
+.course-units{font-family:'JetBrains Mono',monospace;font-size:10px;color:#555;}
+.ct-core{font-size:9px;padding:2px 7px;font-weight:500;background:#111;color:#fff;}
+.ct-elective{font-size:9px;padding:2px 7px;font-weight:500;background:#F5F5F5;border:1px solid #E8E8E8;color:#777;}
+.drive-link-box{background:#111;padding:24px 28px;margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.dlb-icon{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:8px;}
+.dlb-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
+.dlb-sub{font-size:11px;color:rgba(255,255,255,0.35);font-weight:300;}
+.dlb-btn{background:#fff;color:#111;border:none;padding:11px 22px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:opacity 0.2s;}
+.dlb-btn:hover{opacity:0.85;}
+
+/* ══════════════════════════════════════
+   CAREER TAB
+══════════════════════════════════════ */
+.career-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E8;border:1px solid #E8E8E8;margin-top:32px;}
+.career-dept{background:#fff;overflow:hidden;}
+.career-dept-header{background:#111;padding:20px 22px;}
+.cdh-code{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:6px;letter-spacing:1px;}
+.cdh-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.3px;}
+.career-dept-body{padding:22px;}
+.career-path{display:flex;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #F0F0F0;}
+.career-path:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.cp-icon{width:32px;height:32px;background:#F5F5F5;border:1px solid #E8E8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cp-icon span{font-family:'JetBrains Mono',monospace;font-size:9px;color:#888;font-weight:700;}
+.cp-title{font-size:12px;font-weight:700;color:#111;margin-bottom:3px;}
+.cp-desc{font-size:10px;color:#888;line-height:1.6;font-weight:300;}
+.inspo-section{background:#1A1A1A;padding:52px 40px;}
+.inspo-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;margin-bottom:8px;}
+.inspo-sub{font-size:13px;color:rgba(255,255,255,0.35);font-weight:300;line-height:1.8;max-width:560px;margin-bottom:36px;}
+.inspo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);}
+.inspo-card{background:#222;padding:24px 20px;}
+.inspo-quote{font-size:36px;color:rgba(255,255,255,0.06);font-weight:800;line-height:0.7;margin-bottom:10px;}
+.inspo-text{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;font-weight:300;font-style:italic;margin-bottom:14px;}
+.inspo-name{font-size:10px;color:#fff;font-weight:600;}
+.inspo-title-sm{font-size:9px;color:rgba(255,255,255,0.3);font-weight:300;margin-top:2px;}
+
+/* ── FOOTER ── */
+.footer{background:#111;padding:40px 32px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;}
+.f-ring{width:28px;height:28px;border:1.5px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.f-ring span{font-size:9px;font-weight:700;color:#fff;}
+.f-school{font-size:11px;color:#fff;font-weight:500;}
+.f-uni{font-size:9px;color:rgba(255,255,255,0.26);font-weight:300;margin-top:1px;}
+.f-addr{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-top:12px;font-weight:300;}
+.f-ct{font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:500;}
+.f-links{display:flex;flex-direction:column;gap:8px;}
+.f-links a{font-size:10px;color:rgba(255,255,255,0.26);cursor:pointer;transition:color 0.2s;font-weight:300;text-decoration:none;}
+.f-links a:hover{color:#fff;}
+.f-bottom{background:#0A0A0A;border-top:1px solid rgba(255,255,255,0.04);padding:11px 32px;display:flex;justify-content:space-between;align-items:center;}
+.f-bottom p{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-powered{display:flex;align-items:center;gap:5px;}
+.f-powered span{font-size:9px;color:rgba(255,255,255,0.15);font-weight:300;}
+.f-zekanik{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);cursor:pointer;transition:color 0.2s;}
+.f-zekanik:hover{color:#fff;}
+
+/* ── HAMBURGER & DRAWER ── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;align-items:flex-end;background:transparent;border:none;cursor:pointer;padding:6px;}
+.hb-line{background-color: black; height:1.5px;border-radius:1px;transition:all 0.3s;}
+.hb-line:nth-child(1){width:20px;}
+.hb-line:nth-child(2){width:14px;}
+.hb-line:nth-child(3){width:20px;}
+.nav-hamburger.open .hb-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px;}
+.nav-hamburger.open .hb-line:nth-child(2){opacity:0;width:0;}
+.nav-hamburger.open .hb-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:20px;}
+/* Drawer — hidden on desktop */
+.drawer{display:none;}
+
+@media (max-width: 768px) {
+  .info-bar{display:none;}
+  .nav{padding:0 18px;height:54px;}
+  .nav-links{display:none;}
+  .nav-pay-btn{display:none;}
+  .nav-hamburger{display:flex;}
+  .drawer{display:block;background:#111;overflow:hidden;max-height:0;transition:max-height 0.35s ease;border-bottom:1px solid rgba(255,255,255,0.04);position:sticky;top:54px;z-index:99;}
+  .drawer.open{max-height:500px;}
+  .drawer-label{display:block;font-size:8px;color:rgba(255,255,255,0.25);letter-spacing:3px;text-transform:uppercase;font-weight:500;padding:14px 18px 8px;}
+  .drawer-link{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-top:1px solid rgba(255,255,255,0.05);text-decoration:none;}
+  .drawer-link .link-text{font-size:11px;color:rgba(255,255,255,0.6);}
+  .drawer-link .chev{font-size:13px;color:rgba(255,255,255,0.2);}
+  .drawer-pay{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-top:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);text-decoration:none;}
+  .drawer-pay span{font-size:11px;color:#fff;font-weight:700;}
+  .tab-nav{top:54px;padding:0 4px;}
+  .tab-btn{padding:12px 10px;font-size:10px;}
+  .hero-photo{height:220px;}
+  .hero-photo-content{padding:0 20px 22px;}
+  .hero-heading{font-size:34px;letter-spacing:-1px;}
+  .hero-rule{width:24px;margin-top:10px;}
+  .section{padding:36px 20px;}
+  .section-alt{padding:36px 20px;}
+  .section-dark{padding:36px 20px;}
+  .sec-title{font-size:22px;}
+  .sec-sub{font-size:12px;}
+  .dept-hero-grid{grid-template-columns:1fr;}
+  .dept-detail-body{grid-template-columns:1fr;}
+  .ddb-side{border-top:1px solid #E8E8E8;border-right:none;}
+  .facilities-grid{grid-template-columns:1fr;}
+  .fac-card.featured{grid-column:span 1;}
+  .dept-req-tabs{flex-wrap:wrap;}
+  .drt-btn{flex:none;width:50%;}
+  .research-grid{grid-template-columns:1fr;}
+  .course-dept-sel{max-width:100%;}
+  .career-grid{grid-template-columns:1fr;}
+  .inspo-grid{grid-template-columns:1fr;}
+  .inspo-section{padding:36px 20px;}
+  .drive-link-box{flex-direction:column;gap:16px;}
+  .footer{grid-template-columns:1fr 1fr;gap:20px;padding:28px 20px;}
+  .f-bottom{padding:11px 20px;flex-direction:column;gap:6px;text-align:center;}
+}
+@media (max-width: 480px) {
+  .dept-req-tabs{flex-direction:column;}
+  .drt-btn{width:100%;}
+  .footer{grid-template-columns:1fr;}
+  .hero-heading{font-size:28px;}
+}
+</style>
+</head>
+<body>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="info-bar-item">
+    <a href="./mu">madukauniversity</a>
+  </div>
+  <div class="info-bar-dot"></div>
+  <div class="info-bar-item">
+    <a href="tel:09157893107">09157893107</a>
+  </div>
+  <div class="info-bar-dot"></div>
+  <div class="info-bar-item">
+    <a href="mailto:admission@madukauniversity.edu.ng">admission@madukauniversity.edu.ng</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-ring"><img src="./SOC Logo.png" style="width: inherit; height: inherit;"></div>
+    <div class="nav-brand">Academics</div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./soc_about_page.html">About</a>
+    <a class="active-nav">Academics</a>
+    <a href="./soc_communities.html">Communities</a>
+    <a href="./soc_news_events.html">News &amp; Events</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+  <a class="nav-pay-btn" href="pay-dues.html">Pay Dues</a>
+ <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+    <div class="hb-line"></div>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <span class="drawer-label">Navigation</span>
+  <a class="drawer-link" href="./index.html"><span class="link-text">Home</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_about_page.html"><span class="link-text">About</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./acad.html"><span class="link-text">Academics</span><span class="chev">›</span></a>
+  <a class="drawer-link active-nav"><span class="link-text">Communities</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./soc_news_events.html"><span class="link-text">News &amp; Events</span><span class="chev">›</span></a>
+  <a class="drawer-link" href="./contact.html"><span class="link-text">Contact</span><span class="chev">›</span></a>
+  <a class="drawer-pay" href="./pay-dues.html"><span>Pay Dues →</span></a>
+</div>
+
+<!-- HERO — full-width MacBook/code photo -->
+<div class="hero-photo">
+  <img src="./Frame 103.png" alt="School of Computing — Academics"/>
+  <div class="hero-photo-overlay"></div>
+  <div class="hero-photo-content">
+    <div class="hero-eyebrow">School of Computing</div>
+    <div class="hero-heading">Academics &amp; Programmes</div>
+    <div class="hero-rule"></div>
+  </div>
+</div>
+
+<!-- SUB-NAV -->
+<div class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="switchTab('departments',this)">Departments</button>
+  <button class="tab-btn" onclick="switchTab('facilities',this)">Facilities</button>
+  <button class="tab-btn" onclick="switchTab('admission',this)">Admission Requirements</button>
+  <button class="tab-btn" onclick="switchTab('research',this)">Research</button>
+  <button class="tab-btn" onclick="switchTab('courses',this)">Course Information</button>
+  <button class="tab-btn" onclick="switchTab('careers',this)">Career Opportunities</button>
+</div>
+
+
+<!-- ═══════════════════ DEPARTMENTS ═══════════════════ -->
+<div class="tab-content active" id="tab-departments">
+  <div class="section" style="padding-bottom:32px;">
+    <div class="eyebrow">Academic Programmes</div>
+    <div class="sec-title">Our Departments</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">Three NUC-accredited undergraduate programmes, each engineered to produce the kind of computing professional Nigeria's digital economy demands.</p>
+    <div class="dept-hero-grid">
+      <div class="dept-hero-card">
+        <div class="dhc-top"></div>
+        <div class="dhc-body">
+          <div class="dhc-code">CSC — B.Sc (Hons)</div>
+          <div class="dhc-name">Computer Science</div>
+          <div class="dhc-tag">4 Years</div>
+          <div class="dhc-desc">The theoretical backbone of everything computing. Algorithms, data structures, AI and operating systems — the foundation all tech is built on.</div>
+          <div class="dhc-skills"><span class="dhc-skill">Algorithms</span><span class="dhc-skill">AI & ML</span><span class="dhc-skill">Data Structures</span><span class="dhc-skill">Databases</span></div>
+          <a class="dhc-link">View Full Programme ↓</a>
+        </div>
+      </div>
+      <div class="dept-hero-card">
+        <div class="dhc-top"></div>
+        <div class="dhc-body">
+          <div class="dhc-code">SEN — B.Sc (Hons)</div>
+          <div class="dhc-name">Software Engineering</div>
+          <div class="dhc-tag">4 Years</div>
+          <div class="dhc-desc">Ship real products. Requirements to deployment — the full lifecycle. Build things that scale in the real world.</div>
+          <div class="dhc-skills"><span class="dhc-skill">Full-Stack</span><span class="dhc-skill">Agile/Scrum</span><span class="dhc-skill">DevOps</span><span class="dhc-skill">Testing</span></div>
+          <a class="dhc-link">View Full Programme ↓</a>
+        </div>
+      </div>
+      <div class="dept-hero-card">
+        <div class="dhc-top"></div>
+        <div class="dhc-body">
+          <div class="dhc-code">CYB — B.Sc (Hons)</div>
+          <div class="dhc-name">Cybersecurity</div>
+          <div class="dhc-tag">4 Years</div>
+          <div class="dhc-desc">Protect the systems the world runs on. Nigeria's fastest-growing computing specialisation — ethical hacking, forensics, cyber defence.</div>
+          <div class="dhc-skills"><span class="dhc-skill">Ethical Hacking</span><span class="dhc-skill">Forensics</span><span class="dhc-skill">Cryptography</span></div>
+          <a class="dhc-link">View Full Programme ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CS Deep Dive -->
+  <div class="section-alt">
+    <div class="eyebrow">Programme Deep-Dive</div>
+    <div class="sec-title">Computer Science</div>
+    <div class="sec-rule"></div>
+    <div class="dept-detail">
+      <div class="dept-detail-header">
+        <div><div class="ddh-code">CSC — COMPUTER SCIENCE</div><div class="ddh-name">B.Sc (Hons) Computer Science</div></div>
+        <div class="ddh-right"><div class="ddh-duration">4 Years / 8 Semesters</div><div class="ddh-degree">NUC Accredited · Full-Time</div></div>
+      </div>
+      <div class="dept-detail-body">
+        <div class="ddb-main">
+          <div class="ddb-section-title">Programme Overview</div>
+          <p class="ddb-para">Computer Science provides a rigorous foundation in computational theory combined with applied technical skills directly relevant to today's industry. Students develop deep expertise in algorithms, programming paradigms, database management, artificial intelligence, and human-computer interaction.</p>
+          <p class="ddb-para">The programme blends foundational research methods with hands-on lab work — ensuring graduates can think both theoretically and apply what they know in real engineering environments.</p>
+          <div class="ddb-section-title" style="margin-top:24px;">Graduate Outcomes</div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Design and implement efficient algorithms and data structures for complex computational problems</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Develop intelligent systems leveraging machine learning and artificial intelligence</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Design, query, and optimise relational and non-relational database systems</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Understand and apply operating system concepts including process management and concurrency</div></div>
+        </div>
+        <div class="ddb-side">
+          <div class="ddb-section-title">Programme Stats</div>
+          <div class="side-stat"><div class="side-stat-n">4 Yrs</div><div class="side-stat-l">Duration</div></div>
+          <div class="side-stat"><div class="side-stat-n">120+</div><div class="side-stat-l">Credit Units</div></div>
+          <div class="side-stat"><div class="side-stat-n">NUC</div><div class="side-stat-l">Accredited</div></div>
+          <div class="ddb-section-title" style="margin-top:24px;">Core Areas</div>
+          <div class="side-tag">Technical Focus</div>
+          <div class="side-item">Algorithms & Data Structures</div>
+          <div class="side-item">Artificial Intelligence & ML</div>
+          <div class="side-item">Database Management Systems</div>
+          <div class="side-item">Computer Networks & Architecture</div>
+          <div class="side-item">Operating Systems</div>
+        </div>
+      </div>
+      <a class="dept-admission-link" onclick="switchTab('admission',document.querySelector('.tab-btn:nth-child(3)'))">
+        <div><div class="dal-text">View Admission Requirements for Computer Science</div><div class="dal-sub">O'Level, UTME, Direct Entry</div></div>
+        <div class="dal-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- SE Deep Dive -->
+  <div class="section">
+    <div class="eyebrow">Programme Deep-Dive</div>
+    <div class="sec-title">Software Engineering</div>
+    <div class="sec-rule"></div>
+    <div class="dept-detail">
+      <div class="dept-detail-header">
+        <div><div class="ddh-code">SEN — SOFTWARE ENGINEERING</div><div class="ddh-name">B.Sc (Hons) Software Engineering</div></div>
+        <div class="ddh-right"><div class="ddh-duration">4 Years / 8 Semesters</div><div class="ddh-degree">NUC Accredited · Full-Time</div></div>
+      </div>
+      <div class="dept-detail-body">
+        <div class="ddb-main">
+          <div class="ddb-section-title">Programme Overview</div>
+          <p class="ddb-para">Software Engineering is where ideas become products. This programme focuses on the systematic design, development, testing, and deployment of software systems — preparing graduates to build everything from mobile apps to enterprise systems.</p>
+          <p class="ddb-para">Students work in Agile and DevOps environments, collaborate in teams, and tackle real-world software challenges. By graduation, they have shipped real, functional software.</p>
+          <div class="ddb-section-title" style="margin-top:24px;">Graduate Outcomes</div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Design scalable software architectures using industry-standard patterns</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Develop full-stack web and mobile applications using modern frameworks</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Apply Agile methodologies to manage and deliver software projects</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Write comprehensive test suites and implement CI/CD pipelines</div></div>
+        </div>
+        <div class="ddb-side">
+          <div class="ddb-section-title">Programme Stats</div>
+          <div class="side-stat"><div class="side-stat-n">4 Yrs</div><div class="side-stat-l">Duration</div></div>
+          <div class="side-stat"><div class="side-stat-n">120+</div><div class="side-stat-l">Credit Units</div></div>
+          <div class="side-stat"><div class="side-stat-n">NUC</div><div class="side-stat-l">Accredited</div></div>
+          <div class="ddb-section-title" style="margin-top:24px;">Core Areas</div>
+          <div class="side-tag">Technical Focus</div>
+          <div class="side-item">Software Architecture & Design</div>
+          <div class="side-item">Web & Mobile Development</div>
+          <div class="side-item">Agile & Project Management</div>
+          <div class="side-item">DevOps, CI/CD & Cloud</div>
+          <div class="side-item">Testing & Quality Assurance</div>
+        </div>
+      </div>
+      <a class="dept-admission-link" onclick="switchTab('admission',document.querySelector('.tab-btn:nth-child(3)'))">
+        <div><div class="dal-text">View Admission Requirements for Software Engineering</div><div class="dal-sub">O'Level, UTME, Direct Entry</div></div>
+        <div class="dal-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CYB Deep Dive -->
+  <div class="section-alt">
+    <div class="eyebrow">Programme Deep-Dive</div>
+    <div class="sec-title">Cybersecurity</div>
+    <div class="sec-rule"></div>
+    <div class="dept-detail">
+      <div class="dept-detail-header">
+        <div><div class="ddh-code">CYB — CYBERSECURITY</div><div class="ddh-name">B.Sc (Hons) Cybersecurity</div></div>
+        <div class="ddh-right"><div class="ddh-duration">4 Years / 8 Semesters</div><div class="ddh-degree">NUC Accredited · Full-Time</div></div>
+      </div>
+      <div class="dept-detail-body">
+        <div class="ddb-main">
+          <div class="ddb-section-title">Programme Overview</div>
+          <p class="ddb-para">Cybersecurity is Nigeria's fastest-growing, highest-demand computing discipline. From network security and ethical hacking to digital forensics and cyber law, this programme builds defenders and hunters ready for the real threat landscape.</p>
+          <p class="ddb-para">Students have exclusive access to our dedicated cybersecurity server infrastructure — a hands-on lab where they practise penetration testing, defensive systems, malware analysis, and attack simulations in a safe environment.</p>
+          <div class="ddb-section-title" style="margin-top:24px;">Graduate Outcomes</div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Conduct authorised penetration tests and vulnerability assessments on systems and networks</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Design and implement network security architectures and intrusion detection systems</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Perform digital forensics investigations on compromised systems</div></div>
+          <div class="outcome-item"><div class="outcome-dot"></div><div class="outcome-text">Apply cryptographic principles to secure data in transit and at rest</div></div>
+        </div>
+        <div class="ddb-side">
+          <div class="ddb-section-title">Programme Stats</div>
+          <div class="side-stat"><div class="side-stat-n">4 Yrs</div><div class="side-stat-l">Duration</div></div>
+          <div class="side-stat"><div class="side-stat-n">120+</div><div class="side-stat-l">Credit Units</div></div>
+          <div class="side-stat"><div class="side-stat-n">NUC</div><div class="side-stat-l">Accredited</div></div>
+          <div class="ddb-section-title" style="margin-top:24px;">Core Areas</div>
+          <div class="side-tag">Technical Focus</div>
+          <div class="side-item">Ethical Hacking & Pentesting</div>
+          <div class="side-item">Network Security & Firewalls</div>
+          <div class="side-item">Digital Forensics & Incident Response</div>
+          <div class="side-item">Cryptography & PKI</div>
+          <div class="side-item">Malware Analysis</div>
+        </div>
+      </div>
+      <a class="dept-admission-link" onclick="switchTab('admission',document.querySelector('.tab-btn:nth-child(3)'))">
+        <div><div class="dal-text">View Admission Requirements for Cybersecurity</div><div class="dal-sub">O'Level, UTME, Direct Entry</div></div>
+        <div class="dal-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+</div><!-- /departments -->
+
+
+<!-- ═══════════════════ FACILITIES ═══════════════════ -->
+<div class="tab-content" id="tab-facilities">
+  <div class="section">
+    <div class="eyebrow">Infrastructure & Resources</div>
+    <div class="sec-title">Our Facilities</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">The School of Computing provides every student with access to world-class infrastructure. We believe great engineers are shaped by the tools they work with.</p>
+    <div class="facilities-grid">
+      <div class="fac-card featured">
+        <div class="img-ph" style="height:260px;"><div class="img-ph-icon">[ ]</div><div class="img-ph-label">Computer Lab — Photo Coming Soon</div></div>
+        <div class="fac-body">
+          <div class="fac-num">FAC — 01</div>
+          <div class="fac-name">State-of-the-Art Computer Laboratory</div>
+          <div class="fac-desc">Our flagship computer lab is equipped with modern high-performance workstations running both Windows and Linux. Every machine is loaded with IDEs, compilers, network simulators, and design software. Open during school hours with trained ICT staff always on hand.</div>
+          <div class="fac-tag-row"><span class="fac-tag">High-Performance Workstations</span><span class="fac-tag">Windows & Linux</span><span class="fac-tag">IDEs & Dev Tools</span><span class="fac-tag">Network Simulators</span></div>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="img-ph" style="height:180px;"><div class="img-ph-icon">( )</div><div class="img-ph-label">Wi-Fi Infrastructure</div></div>
+        <div class="fac-body">
+          <div class="fac-num">FAC — 02</div>
+          <div class="fac-name">Free Campus Wi-Fi</div>
+          <div class="fac-desc">High-speed Wi-Fi across the entire School of Computing — lab, lecture hall, common areas. Because code doesn't write itself and Stack Overflow needs internet.</div>
+          <div class="fac-tag-row"><span class="fac-tag">Free for All Students</span><span class="fac-tag">High-Speed</span><span class="fac-tag">Campus-Wide</span></div>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="img-ph" style="height:180px;"><div class="img-ph-icon">{ }</div><div class="img-ph-label">Server Room</div></div>
+        <div class="fac-body">
+          <div class="fac-num">FAC — 03</div>
+          <div class="fac-name">Dedicated Cybersecurity Servers</div>
+          <div class="fac-desc">Cybersecurity students have exclusive access to a dedicated isolated server environment for penetration testing, forensics tools, network attack simulation, and defensive security practice.</div>
+          <div class="fac-tag-row"><span class="fac-tag">Pentesting Environment</span><span class="fac-tag">Isolated Network</span><span class="fac-tag">CYB Students Only</span></div>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="img-ph" style="height:180px;"><div class="img-ph-icon">//</div><div class="img-ph-label">ICT Office</div></div>
+        <div class="fac-body">
+          <div class="fac-num">FAC — 04</div>
+          <div class="fac-name">ICT Support Office</div>
+          <div class="fac-desc">Dedicated ICT office providing technical support across the faculty — hardware issues, software installation, network troubleshooting, device support. Available during school hours.</div>
+          <div class="fac-tag-row"><span class="fac-tag">Technical Support</span><span class="fac-tag">Hardware & Software</span></div>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="img-ph" style="height:180px;"><div class="img-ph-icon">fn()</div><div class="img-ph-label">Lecture Hall</div></div>
+        <div class="fac-body">
+          <div class="fac-num">FAC — 05</div>
+          <div class="fac-name">Well-Trained Faculty</div>
+          <div class="fac-desc">Lecturers who are not just academics — they are practitioners with real industry experience. Small class sizes mean more personal attention and mentorship for every student.</div>
+          <div class="fac-tag-row"><span class="fac-tag">Industry-Experienced</span><span class="fac-tag">Postgraduate Qualified</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /facilities -->
+
+
+<!-- ═══════════════════ ADMISSION ═══════════════════ -->
+<div class="tab-content" id="tab-admission">
+  <div class="section">
+    <div class="eyebrow">Entry Requirements</div>
+    <div class="sec-title">Admission Requirements</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">Admission into any of the three programmes is processed through the JAMB UTME or Direct Entry routes. Requirements below are as stipulated by NUC and Maduka University's admissions policy.</p>
+    <div class="dept-req-tabs" style="margin-top:32px;">
+      <button class="drt-btn active" onclick="switchReqTab('req-all',this)">All Programmes</button>
+      <button class="drt-btn" onclick="switchReqTab('req-cs',this)">Computer Science</button>
+      <button class="drt-btn" onclick="switchReqTab('req-se',this)">Software Engineering</button>
+      <button class="drt-btn" onclick="switchReqTab('req-cyb',this)">Cybersecurity</button>
+    </div>
+    <div class="req-tab-content active" id="req-all">
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">UTME</span> JAMB Entry Requirements (All Programmes)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Candidates must sit for the JAMB UTME and choose Maduka University as first or second choice institution.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Required JAMB subjects: Mathematics, English Language, and any two of Physics, Chemistry, Biology, or Economics (varies by programme).</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Minimum JAMB cut-off mark as stipulated by JAMB and Maduka University for the relevant academic session.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Five (5) O'Level credit passes at WAEC/NECO in not more than two sittings, including Mathematics and English.</div></div>
+        </div>
+      </div>
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">DIRECT ENTRY</span> Direct Entry Requirements (All Programmes)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">A'Level results in relevant subjects from NABTEB, Cambridge A-Level, or similar for entry into 200 Level.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">OND/HND holders in Computer Science, Information Technology, or related fields may also qualify subject to assessment.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">All Direct Entry candidates must still possess the O'Level requirements (5 credits including Maths and English).</div></div>
+        </div>
+      </div>
+      <div class="req-note">
+        <div class="req-note-title">Important Notice</div>
+        <div class="req-note-text">Requirements are subject to annual review by JAMB and Maduka University. Always verify current cut-off marks on the official JAMB and Maduka University admissions portal before applying.</div>
+      </div>
+    </div>
+    <div class="req-tab-content" id="req-cs">
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">CSC</span> Computer Science — UTME</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">JAMB Subjects: Mathematics, English Language, Physics, and one of Chemistry, Biology, or Economics.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">O'Level Credits: Mathematics, English Language, Physics, and two other science/technical subjects.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Minimum five (5) credit passes at WAEC/NECO in not more than two sittings.</div></div>
+        </div>
+      </div>
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">DIRECT ENTRY</span> Computer Science — Direct Entry</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Two A'Level passes in Mathematics and Physics, plus all O'Level requirements.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">OND/HND in Computer Science or Information Technology from a recognised institution.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="req-tab-content" id="req-se">
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">SEN</span> Software Engineering — UTME</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">JAMB Subjects: Mathematics, English Language, Physics, and one of Chemistry, Economics, or Geography.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">O'Level Credits: Mathematics, English Language, Physics, and two other science or technical subjects.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Minimum five (5) credit passes at WAEC/NECO in not more than two sittings.</div></div>
+        </div>
+      </div>
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">DIRECT ENTRY</span> Software Engineering — Direct Entry</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Two A'Level passes in Mathematics and Physics or Further Mathematics, plus all O'Level requirements.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">OND/HND in Software Engineering, Computer Science, or related disciplines.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="req-tab-content" id="req-cyb">
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">CYB</span> Cybersecurity — UTME</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">JAMB Subjects: Mathematics, English Language, Physics, and one of Chemistry, Economics, or Geography.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">O'Level Credits: Mathematics, English Language, Physics, and two other subjects including at least one science.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Minimum five (5) credit passes at WAEC/NECO in not more than two sittings.</div></div>
+        </div>
+      </div>
+      <div class="req-block">
+        <div class="req-block-title"><span class="req-badge">DIRECT ENTRY</span> Cybersecurity — Direct Entry</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">Two A'Level passes in Mathematics and Physics or Computer Science, plus all O'Level requirements.</div></div>
+          <div class="req-item"><div class="req-check">→</div><div class="req-text">OND/HND in Cybersecurity, Computer Science, IT, or Electrical/Electronics Engineering.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /admission -->
+
+
+<!-- ═══════════════════ RESEARCH ═══════════════════ -->
+<div class="tab-content" id="tab-research">
+  <div class="section">
+    <div class="eyebrow">Scholarly Work</div>
+    <div class="sec-title">Research</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">Our faculty and students produce work across cybersecurity, machine learning, software systems, and more — contributing to Nigeria's growing technology research landscape.</p>
+    <div class="research-grid">
+      <div class="res-featured">
+        <div class="img-ph" style="height:200px;"><div class="img-ph-icon">{ }</div><div class="img-ph-label">Research Image — Coming Soon</div></div>
+        <div class="res-feat-body">
+          <div class="res-feat-meta"><span class="res-cat">Cybersecurity</span><span class="res-date">March 2026</span></div>
+          <div class="res-feat-title">Threat Detection in Nigerian Financial Networks Using Machine Learning</div>
+          <div class="res-feat-excerpt">Examining the effectiveness of supervised machine learning models in detecting fraudulent transaction patterns within Nigerian fintech infrastructure — with focus on low-latency detection for mobile money platforms.</div>
+          <div class="res-authors">By <strong>Dr. Onuoha M. Thomas</strong> &amp; Research Team · School of Computing, Maduka University</div>
+        </div>
+      </div>
+      <div class="res-list">
+        <div class="res-item"><div class="res-item-meta"><span class="res-item-cat">AI & ML</span><span class="res-item-date">Feb 2026</span></div><div class="res-item-title">NLP for Igbo and Yoruba: Challenges and Opportunities</div><div class="res-item-authors">Dr. Onuoha M. Thomas · CSC Department</div></div>
+        <div class="res-item"><div class="res-item-meta"><span class="res-item-cat">Software Engineering</span><span class="res-item-date">Jan 2026</span></div><div class="res-item-title">Offline-First Architecture Patterns for Low-Connectivity Environments in Sub-Saharan Africa</div><div class="res-item-authors">SEN Faculty Research Group</div></div>
+        <div class="res-item"><div class="res-item-meta"><span class="res-item-cat">Cybersecurity</span><span class="res-item-date">Dec 2025</span></div><div class="res-item-title">Social Engineering Attack Vectors Targeting Nigerian University Students</div><div class="res-item-authors">CYB Department · Maduka University</div></div>
+        <div class="res-item"><div class="res-item-meta"><span class="res-item-cat">Computer Science</span><span class="res-item-date">Nov 2025</span></div><div class="res-item-title">Energy-Efficient Scheduling Algorithms for Mobile Edge Computing</div><div class="res-item-authors">CSC Research Group</div></div>
+      </div>
+    </div>
+  </div>
+</div><!-- /research -->
+
+
+<!-- ═══════════════════ COURSE INFO ═══════════════════ -->
+<div class="tab-content" id="tab-courses">
+  <div class="section">
+    <div class="eyebrow">Syllabuses & Content</div>
+    <div class="sec-title">Course Information</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">Full course outlines, syllabuses, and downloadable materials for all three programmes. Select your department to view courses by semester.</p>
+    <div class="course-dept-sel" style="margin-top:32px;">
+      <button class="cds-btn active" onclick="switchCourseTab('course-cs',this)">Computer Science</button>
+      <button class="cds-btn" onclick="switchCourseTab('course-se',this)">Software Engineering</button>
+      <button class="cds-btn" onclick="switchCourseTab('course-cyb',this)">Cybersecurity</button>
+    </div>
+    <div class="course-dept-panel active" id="course-cs">
+      <div class="semester-block"><div class="sem-header"><span class="sem-label">100 Level — Semester 1</span><div class="sem-line"></div></div>
+        <table class="course-table"><thead><tr><th>Code</th><th>Course Title</th><th>Units</th><th>Type</th></tr></thead><tbody>
+          <tr><td class="course-code">CSC 101</td><td class="course-title-cell">Introduction to Computer Science</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">MTH 101</td><td class="course-title-cell">Elementary Mathematics I</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">PHY 101</td><td class="course-title-cell">General Physics I</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">GSS 101</td><td class="course-title-cell">Use of English & Communication Skills</td><td class="course-units">2</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CSC 103</td><td class="course-title-cell">Introduction to Programming (Python)</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">MTH 103</td><td class="course-title-cell">Logic & Set Theory</td><td class="course-units">2</td><td><span class="ct-elective">Elective</span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="semester-block"><div class="sem-header"><span class="sem-label">200 Level — Semester 1</span><div class="sem-line"></div></div>
+        <table class="course-table"><thead><tr><th>Code</th><th>Course Title</th><th>Units</th><th>Type</th></tr></thead><tbody>
+          <tr><td class="course-code">CSC 201</td><td class="course-title-cell">Discrete Mathematics</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CSC 203</td><td class="course-title-cell">Object-Oriented Programming (Java)</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CSC 205</td><td class="course-title-cell">Database Management Systems I</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CSC 207</td><td class="course-title-cell">Operating Systems</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CSC 209</td><td class="course-title-cell">Computer Networks I</td><td class="course-units">3</td><td><span class="ct-elective">Elective</span></td></tr>
+        </tbody></table>
+      </div>
+      <p style="font-size:11px;color:#AAA;font-weight:300;margin-top:8px;">* Preview only. Full 300–400 Level syllabus available in course materials.</p>
+    </div>
+    <div class="course-dept-panel" id="course-se">
+      <div class="semester-block"><div class="sem-header"><span class="sem-label">100 Level — Semester 1</span><div class="sem-line"></div></div>
+        <table class="course-table"><thead><tr><th>Code</th><th>Course Title</th><th>Units</th><th>Type</th></tr></thead><tbody>
+          <tr><td class="course-code">SEN 101</td><td class="course-title-cell">Introduction to Software Engineering</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">SEN 103</td><td class="course-title-cell">Programming Fundamentals (Python)</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">MTH 101</td><td class="course-title-cell">Elementary Mathematics I</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">GSS 101</td><td class="course-title-cell">Use of English & Communication Skills</td><td class="course-units">2</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">SEN 105</td><td class="course-title-cell">Problem Solving & Computational Thinking</td><td class="course-units">2</td><td><span class="ct-elective">Elective</span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="semester-block"><div class="sem-header"><span class="sem-label">200 Level — Semester 1</span><div class="sem-line"></div></div>
+        <table class="course-table"><thead><tr><th>Code</th><th>Course Title</th><th>Units</th><th>Type</th></tr></thead><tbody>
+          <tr><td class="course-code">SEN 201</td><td class="course-title-cell">Software Requirements Engineering</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">SEN 203</td><td class="course-title-cell">Object-Oriented Design & UML</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">SEN 205</td><td class="course-title-cell">Web Development I (HTML, CSS, JS)</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">SEN 207</td><td class="course-title-cell">Agile Methodologies & Project Management</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">SEN 209</td><td class="course-title-cell">Databases for Software Engineers</td><td class="course-units">2</td><td><span class="ct-elective">Elective</span></td></tr>
+        </tbody></table>
+      </div>
+      <p style="font-size:11px;color:#AAA;font-weight:300;margin-top:8px;">* Preview only. Full 300–400 Level syllabus available in course materials.</p>
+    </div>
+    <div class="course-dept-panel" id="course-cyb">
+      <div class="semester-block"><div class="sem-header"><span class="sem-label">100 Level — Semester 1</span><div class="sem-line"></div></div>
+        <table class="course-table"><thead><tr><th>Code</th><th>Course Title</th><th>Units</th><th>Type</th></tr></thead><tbody>
+          <tr><td class="course-code">CYB 101</td><td class="course-title-cell">Introduction to Cybersecurity</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CYB 103</td><td class="course-title-cell">Computing Fundamentals & Linux Basics</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CYB 105</td><td class="course-title-cell">Networking Basics (TCP/IP, OSI Model)</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">MTH 101</td><td class="course-title-cell">Elementary Mathematics I</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">GSS 101</td><td class="course-title-cell">Use of English & Communication Skills</td><td class="course-units">2</td><td><span class="ct-core">Core</span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="semester-block"><div class="sem-header"><span class="sem-label">200 Level — Semester 1</span><div class="sem-line"></div></div>
+        <table class="course-table"><thead><tr><th>Code</th><th>Course Title</th><th>Units</th><th>Type</th></tr></thead><tbody>
+          <tr><td class="course-code">CYB 201</td><td class="course-title-cell">Ethical Hacking & Penetration Testing I</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CYB 203</td><td class="course-title-cell">Network Security & Firewalls</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CYB 205</td><td class="course-title-cell">Cryptography & Information Security</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CYB 207</td><td class="course-title-cell">Digital Forensics I</td><td class="course-units">3</td><td><span class="ct-core">Core</span></td></tr>
+          <tr><td class="course-code">CYB 209</td><td class="course-title-cell">Security Governance & Compliance</td><td class="course-units">2</td><td><span class="ct-elective">Elective</span></td></tr>
+        </tbody></table>
+      </div>
+      <p style="font-size:11px;color:#AAA;font-weight:300;margin-top:8px;">* Preview only. Full syllabus available in course materials.</p>
+    </div>
+    <div class="drive-link-box" style="margin-top:40px;">
+      <div>
+        <div class="dlb-icon">[ Google Drive ]</div>
+        <div class="dlb-title">Full Course Materials & Resources</div>
+        <div class="dlb-sub">Lecture notes, past questions, syllabuses, recommended readings. Updated each semester by faculty.</div>
+      </div>
+      <button class="dlb-btn" onclick="window.open('#','_blank')">Open Course Drive ↗</button>
+    </div>
+  </div>
+</div><!-- /courses -->
+
+
+<!-- ═══════════════════ CAREERS ═══════════════════ -->
+<div class="tab-content" id="tab-careers">
+  <div class="section">
+    <div class="eyebrow">Life After SOC</div>
+    <div class="sec-title">Career Opportunities</div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">A degree from Maduka School of Computing opens doors in Lagos, Abuja, London, and beyond. Here's what your future can look like — and how to get there.</p>
+    <div class="career-grid">
+      <div class="career-dept">
+        <div class="career-dept-header"><div class="cdh-code">CSC — COMPUTER SCIENCE</div><div class="cdh-name">Where CS Graduates Go</div></div>
+        <div class="career-dept-body">
+          <div class="career-path"><div class="cp-icon"><span>AI</span></div><div><div class="cp-title">AI / ML Engineer</div><div class="cp-desc">Build intelligent systems for banks, hospitals, agritech. Python, TensorFlow, PyTorch. High-demand in Nigeria and globally.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>DB</span></div><div><div class="cp-title">Database Administrator</div><div class="cp-desc">Manage and optimise the databases powering Nigerian banks, telcos, and enterprises.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>SYS</span></div><div><div class="cp-title">Systems Analyst</div><div class="cp-desc">Analyse, design, and improve complex IT systems in government, finance, and telecoms.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>RES</span></div><div><div class="cp-title">Research Scientist / Academic</div><div class="cp-desc">Pursue postgraduate studies locally or abroad and contribute to global computing research.</div></div></div>
+        </div>
+      </div>
+      <div class="career-dept">
+        <div class="career-dept-header"><div class="cdh-code">SEN — SOFTWARE ENGINEERING</div><div class="cdh-name">Where SE Graduates Go</div></div>
+        <div class="career-dept-body">
+          <div class="career-path"><div class="cp-icon"><span>DEV</span></div><div><div class="cp-title">Full-Stack Developer</div><div class="cp-desc">Build web and mobile products for startups and enterprises. Most in-demand role in Lagos tech.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>MOB</span></div><div><div class="cp-title">Mobile App Developer</div><div class="cp-desc">Build Android/iOS apps. Flutter, React Native. Huge demand from fintech, health, logistics.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>ARC</span></div><div><div class="cp-title">Software Architect</div><div class="cp-desc">Design the systems that scale. Cloud-native, microservices, API-first. Senior roles at top companies.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>QA</span></div><div><div class="cp-title">QA / Test Engineer</div><div class="cp-desc">Ensure software quality at scale. Automation testing with Cypress, Playwright, Jest.</div></div></div>
+        </div>
+      </div>
+      <div class="career-dept">
+        <div class="career-dept-header"><div class="cdh-code">CYB — CYBERSECURITY</div><div class="cdh-name">Where CYB Graduates Go</div></div>
+        <div class="career-dept-body">
+          <div class="career-path"><div class="cp-icon"><span>PEN</span></div><div><div class="cp-title">Penetration Tester</div><div class="cp-desc">Get paid to legally hack organisations. One of the highest-paying roles in tech.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>SOC</span></div><div><div class="cp-title">SOC Analyst</div><div class="cp-desc">Monitor, detect, and respond to security threats in real time. Banks, telecoms always hiring.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>FOR</span></div><div><div class="cp-title">Digital Forensics Analyst</div><div class="cp-desc">Investigate cybercrime. Growing demand from EFCC, NDIC, and law enforcement agencies.</div></div></div>
+          <div class="career-path"><div class="cp-icon"><span>GRC</span></div><div><div class="cp-title">GRC / Security Consultant</div><div class="cp-desc">Help organisations meet cybersecurity compliance — ISO 27001, NDPR, GDPR.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="inspo-section">
+    <div class="inspo-title">How to Get There</div>
+    <div class="inspo-sub">Your degree is the foundation. Here's what separates the ones who make it from the ones who wait.</div>
+    <div class="inspo-grid">
+      <div class="inspo-card"><div class="inspo-quote">&ldquo;</div><div class="inspo-text">Build things before you graduate. One real project on GitHub does more than ten certificates on your CV. Employers want to see what you've made.</div><div class="inspo-name">Industry Mentor</div><div class="inspo-title-sm">Senior Software Engineer · Lagos</div></div>
+      <div class="inspo-card"><div class="inspo-quote">&ldquo;</div><div class="inspo-text">LinkedIn is not optional. Your first job will likely come from someone you knew online before you even applied. Start from 200 Level.</div><div class="inspo-name">Industry Mentor</div><div class="inspo-title-sm">Cybersecurity Analyst · Abuja</div></div>
+      <div class="inspo-card"><div class="inspo-quote">&ldquo;</div><div class="inspo-text">Apply for internships everywhere, even when you don't feel ready. The imposter syndrome is universal — act anyway.</div><div class="inspo-name">Industry Mentor</div><div class="inspo-title-sm">Tech Lead · UK-Based Nigerian</div></div>
+    </div>
+  </div>
+</div><!-- /careers -->
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div style="display:flex;gap:9px;align-items:flex-start;">
+      <div class="f-ring"><img src="./SOC Logo.png" style="width: inherit; height: inherit;"></div>
+      <div><div class="f-school">School of Computing</div><div class="f-uni">Maduka University</div></div>
+    </div>
+    <div class="f-addr">Along Nsukka–Enugu New Road<br>Ekwegbe, Enugu State, Nigeria<br>soc@madukauniversity.edu.ng</div>
+  </div>
+  <div><div class="f-ct">Academics</div><div class="f-links"><a>Departments</a><a>Facilities</a><a>Admission</a><a>Research</a><a>Courses</a><a>Careers</a></div></div>
+  <div><div class="f-ct">University</div><div class="f-links"><a>Main Site</a><a>Student Portal</a><a>E-Learning</a><a>Library</a></div></div>
+  <div><div class="f-ct">Quick</div><div class="f-links"><a>About</a><a>Communities</a><a>News &amp; Events</a><a>Pay Dues</a><a>Contact</a></div></div>
+</div>
+<div class="f-bottom">
+  <p>© 2026 School of Computing, Maduka University. All rights reserved.</p>
+  <div class="f-powered"><span>Powered by</span><span class="f-zekanik">ZekaniK</span></div>
+</div>
+
+<script>
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top: document.querySelector('.tab-nav').offsetTop - 10, behavior:'smooth'});
+}
+function switchReqTab(id, btn) {
+  document.querySelectorAll('.req-tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.drt-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+function switchCourseTab(id, btn) {
+  document.querySelectorAll('.course-dept-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.cds-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Compiled By SOC//Reference Schedule//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:ev1@compiled-by-soc
+DTSTAMP:20260926T000000Z
+DTSTART;VALUE=DATE:20260414
+DTEND;VALUE=DATE:20260503
+SUMMARY:[Reference example] Second Semester Examinations Begin — April 14
+  to May 2\, 2026
+LOCATION:School of Computing — All Levels
+DESCRIPTION:Illustrative event from the SOC reference. Confirm details with
+  the school.
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

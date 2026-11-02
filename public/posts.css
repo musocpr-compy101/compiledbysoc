@@ -1,0 +1,86 @@
+/* Editorial cards: supplied news references, with distinct desktop/mobile skins. */
+.soc-post,.reference-surface .soc-post,.journal-section .soc-post,.t-home .soc-post{display:flex;flex-direction:column;min-width:0;margin:0;padding:0;border:1.5px solid #111;border-radius:0;background:#fff;color:#111;box-shadow:5px 5px 0 #b8b8b8;transform:none;text-decoration:none;overflow:hidden;gap:0;align-items:stretch}
+.soc-post *, .soc-brief *{box-sizing:border-box}
+.soc-post .soc-post-cover{position:relative;flex:none;display:block;min-height:0;aspect-ratio:16/9;overflow:hidden;background-color:#1c1c1c;background-image:linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);background-size:28px 28px}
+.soc-post .soc-post-cover img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;border-radius:0;filter:none}
+.soc-post .soc-post-cover.has-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#0009);pointer-events:none}
+.soc-cover-mark{position:absolute;inset:0;display:grid;place-items:center;font:600 3rem/1 Consolas,monospace;color:#ffffff0d}
+.soc-cover-meta{position:absolute;z-index:1;left:20px;right:20px;bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.soc-post .soc-post-category,.soc-post .story-category{display:inline-block;position:static;background:#111;color:#fff;border:0;border-radius:0;padding:5px 9px;margin:0;max-width:100%;font:600 .67rem/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.14em;overflow-wrap:anywhere}
+.soc-cover-date{font:400 .75rem/1.4 Consolas,'Liberation Mono',monospace;color:#dedede}
+.soc-post .soc-post-body{position:static;display:flex;flex:1;flex-direction:column;padding:25px 25px 21px;gap:0;background:#fff;border:0;min-width:0}
+.soc-post .soc-post-title,.reference-surface .soc-post .soc-post-title,.journal-section .soc-post .soc-post-title,.t-home .soc-post .soc-post-title{display:block;font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.18rem,1.55vw,1.65rem);font-weight:700;line-height:1.35;letter-spacing:-.035em;text-transform:none;text-wrap:pretty;color:#111;margin:0 0 15px;max-width:none}
+.soc-post .soc-post-title a{color:inherit;text-decoration:none}
+.soc-post .soc-post-title a:hover{text-decoration:underline;text-underline-offset:4px}
+.soc-post .soc-post-excerpt,.reference-surface .soc-post .soc-post-excerpt,.journal-section .soc-post .soc-post-excerpt,.t-home .soc-post .soc-post-excerpt{font:400 .97rem/1.8 Arial,Helvetica,sans-serif;letter-spacing:0;color:#707070;margin:0 0 23px;max-width:70ch}
+.soc-post .soc-post-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;padding-top:2px;border:0;font:400 .78rem/1.5 Arial,Helvetica,sans-serif}
+.soc-post-author{color:#747474;min-width:0}
+.soc-post .soc-post-read{display:inline-flex;align-items:center;justify-content:flex-end;gap:5px;flex-shrink:0;min-height:44px;color:#111;font:700 .83rem/1.4 Arial,Helvetica,sans-serif;text-decoration:none;white-space:nowrap}
+.soc-post .soc-post-read:hover{text-decoration:underline;text-underline-offset:4px}
+.soc-post:focus-visible,.soc-post a:focus-visible{outline:3px solid #111;outline-offset:3px}
+.reference-surface .news-layout{grid-template-columns:minmax(0,1.4fr) minmax(230px,1fr);gap:28px;align-items:start}
+.reference-surface .news-layout.single-column{grid-template-columns:1fr}
+.reference-surface .news-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+.reference-surface .news-grid-section{margin-top:38px;padding-top:30px}
+.reference-surface .news-grid .t-ad{grid-column:1/-1}
+.reference-surface .feat-post .soc-post-cover{aspect-ratio:16/10}
+.reference-surface .feat-post .soc-post-title{font-size:clamp(1.3rem,1.8vw,1.8rem)}
+.reference-surface .sidebar-title{font:700 1rem/1.4 Arial,Helvetica,sans-serif;border:0;margin:0 0 14px;padding:0;color:#111}
+.reference-surface .sidebar{display:block;padding:0;border:1.5px solid #111;border-radius:0;background:#fff;box-shadow:4px 4px 0 #ccc}
+.reference-surface .sidebar .soc-brief{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:start;gap:16px;padding:20px 16px;margin:0;border:0;border-bottom:1px solid #dedede;background:#fff;box-shadow:none;transform:none;color:#111;text-decoration:none}
+.reference-surface .sidebar .soc-brief:last-child{border-bottom:0}
+.reference-surface .sidebar .soc-brief:hover{background:#f6f6f6;transform:none}
+.soc-brief-date{display:flex;flex-direction:column;align-items:flex-start;gap:3px;align-self:stretch;padding-right:12px;border-right:1px solid #ddd;font:400 .68rem/1.5 Consolas,monospace;color:#777;letter-spacing:.11em}
+.soc-brief-copy{min-width:0}
+.reference-surface .soc-brief .sb-title{font:600 .95rem/1.5 Arial,Helvetica,sans-serif;letter-spacing:-.02em;margin:0 0 5px;color:#111}
+.reference-surface .soc-brief .sb-cat{position:static;display:block;font:400 .75rem/1.5 Arial,Helvetica,sans-serif;text-transform:none;letter-spacing:0;color:#757575;background:none;border:0;padding:0;margin:0}
+.journal-section .featured-story.soc-post{display:flex;max-width:none;margin-bottom:32px}
+.journal-section .featured-story.soc-post .soc-post-cover{aspect-ratio:2.6}
+.journal-section .featured-story.soc-post .soc-post-title{font-size:clamp(1.6rem,2.8vw,2.6rem);max-width:38ch}
+.journal-section .featured-story.soc-post .soc-post-body{padding:30px 32px 24px}
+.journal-section .story-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;align-items:stretch}
+.journal-section .story-grid .soc-post .soc-post-body{padding:22px 22px 18px}
+.journal-section .story-grid .soc-post .soc-post-title{font-size:1.35rem}
+.journal-section .more-header{margin:28px 0 20px}
+.t-home .t-feed-list{gap:28px}
+.t-home .t-feed-card.soc-post .soc-post-cover{aspect-ratio:2.1}
+.t-home .t-feed-card.soc-post .soc-post-title{font-size:clamp(1.4rem,2.15vw,2rem)}
+@media(hover:hover) and (min-width:769px){.soc-post:hover{box-shadow:7px 7px 0 #999}.soc-post img{transition:transform .35s ease}.soc-post:hover img{transform:scale(1.025)}}
+@media(max-width:1280px){.reference-surface .news-layout{grid-template-columns:1fr}.reference-surface .sidebar{display:block}.journal-section .story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:768px){
+ .soc-post,.reference-surface .soc-post,.journal-section .soc-post,.t-home .soc-post{border:1px solid #e0e0e0;border-radius:0;box-shadow:none!important;transform:none!important;animation:none;background:#fff}
+ .soc-post .soc-post-cover,.reference-surface .feat-post .soc-post-cover,.journal-section .featured-story.soc-post .soc-post-cover,.t-home .t-feed-card.soc-post .soc-post-cover{aspect-ratio:1.85}
+ .soc-cover-meta{left:16px;right:16px;bottom:15px;gap:9px}
+ .soc-post .soc-post-category,.soc-post .story-category{font-size:.62rem;padding:5px 8px;letter-spacing:.15em}
+ .soc-cover-date{font-size:.69rem;letter-spacing:0}
+ .soc-post .soc-post-body,.reference-surface .soc-post .soc-post-body,.journal-section .featured-story.soc-post .soc-post-body,.journal-section .story-grid .soc-post .soc-post-body{padding:20px 18px 15px}
+ .soc-post .soc-post-title,.reference-surface .soc-post .soc-post-title,.journal-section .soc-post .soc-post-title,.journal-section .featured-story.soc-post .soc-post-title,.journal-section .story-grid .soc-post .soc-post-title,.t-home .soc-post .soc-post-title,.t-home .t-feed-card.soc-post .soc-post-title{font:700 1.17rem/1.4 Arial,Helvetica,sans-serif;letter-spacing:-.035em;margin:0 0 14px;color:#111}
+ .soc-post .soc-post-excerpt,.reference-surface .soc-post .soc-post-excerpt,.journal-section .soc-post .soc-post-excerpt,.t-home .soc-post .soc-post-excerpt{font-size:.94rem;line-height:1.8;color:#717171;margin:0 0 17px}
+ .soc-post .soc-post-footer{font-size:.72rem;gap:10px;flex-wrap:wrap}
+ .soc-post .soc-post-read{font-size:.77rem;min-height:44px}
+ .reference-surface .news-layout{grid-template-columns:1fr;gap:25px}
+ .reference-surface .news-grid{grid-template-columns:1fr;gap:24px}
+ .reference-surface .news-grid-section{margin-top:32px;padding-top:28px;border-top:0}
+ .reference-surface .sidebar{border:1px solid #e0e0e0;border-radius:0;box-shadow:none}
+ .reference-surface .sidebar .soc-brief{grid-template-columns:39px minmax(0,1fr);gap:14px;padding:18px 15px;border-bottom:1px solid #e0e0e0}
+ .reference-surface .soc-brief .sb-title{font-size:.94rem;font-weight:500;line-height:1.5;margin-bottom:5px}
+ .reference-surface .soc-brief .sb-cat{font-size:.76rem;color:#777}
+ .soc-brief-date{font-size:.68rem;padding-right:10px;letter-spacing:.1em}
+ .reference-surface .sidebar-title{font-size:.96rem;margin-bottom:12px}
+ .reference-news-events .editorial-masthead h1,.reference-news-events .editorial-masthead h1 em{font-family:Arial,Helvetica,sans-serif;font-weight:750;letter-spacing:-.045em;text-transform:none;line-height:1.1;font-size:2.6rem}
+ .reference-news-events .editorial-masthead{padding-block:34px 26px;background:#fff;border-bottom:1px solid #e5e5e5}
+ .reference-news-events .editorial-masthead .masthead-deck{font-size:.94rem;line-height:1.7}
+ .journal-section .section-header h2,#your-feed .t-heading-row h2{font:700 2rem/1.15 Arial,Helvetica,sans-serif;letter-spacing:-.04em;text-transform:none}
+ .journal-section .section-header{border-bottom:0;padding-bottom:0;margin-bottom:24px}
+ .journal-section .story-grid{grid-template-columns:1fr;gap:24px}
+ .journal-section .featured-story.soc-post{margin-bottom:24px}
+ .journal-section .more-header{display:flex;align-items:center;margin:28px 0 20px}
+ .journal-section .more-header h3{font:600 1rem/1.4 Arial,Helvetica,sans-serif;margin:0;letter-spacing:-.02em}
+ .journal-section .more-header>span{display:none}
+ .journal-section .topic-filters{gap:6px;flex-wrap:wrap}
+ .journal-section .topic-filters button{font-size:.76rem;padding:10px 12px;min-height:44px}
+ .journal-section .journal-tools{margin-bottom:24px;gap:14px}
+ .t-home .t-feed-list{gap:24px}
+ .reference-article h1,.article-header h1{font-family:Arial,Helvetica,sans-serif;font-weight:700;letter-spacing:-.04em;text-transform:none;line-height:1.2}
+}
+@media(prefers-reduced-motion:reduce){.soc-post img{transition:none}.soc-post:hover img{transform:none}}

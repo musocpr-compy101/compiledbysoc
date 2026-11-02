@@ -1,0 +1,2 @@
+import {canAccess,type StaffIdentity} from '@/lib/access';
+export function AdminNav({me}:{me:StaffIdentity}){return <nav className="app-admin-nav" aria-label="Dashboard"><a href="/admin">Overview</a><a href="/admin/content">Website content</a>{canAccess(me,'content')&&<a href="/admin#posts">Posts & calendar</a>}{canAccess(me,'finance')&&<a href="/admin/finance">Finance</a>}{canAccess(me,'elections')&&<a href="/admin/elections">Elections</a>}{me.role==='admin'&&<a href="/admin/staff">Executive accounts</a>}<a href="/">View website ↗</a></nav>;}
