@@ -1,38 +1,52 @@
 // Named content for /stories/bug-in-the-brief. Keys are stable paths; keys ending in ~ are structural and not editable.
-export const stories_bug_in_the_briefDefaults:Record<string,string>={
- "article-back.href":"/#journal",
- "article-back.text":" Back to the journal",
- "article.article-header.story-category.text":"PERSPECTIVES ",
- "article.article-header.story-category.span.text":"—",
- "article.article-header.story-category.text-2":" 3 MIN READ",
- "article.article-header.h1.text":"Sometimes, the bug is in the brief.",
- "article.article-header.article-deck.text":"Before you rewrite the function, make sure you’re solving the right problem.",
- "article.article-header.story-byline.author-mark.text":"S.",
- "article-header.story-byline.div.span.text":"SOC Editorial",
- "article-header.story-byline.div.small.text":"Sample story",
- "article.article-body.p-1.text":"A team is asked to make a class announcement board. They build categories, notifications, and a polished screen for publishing updates. Everything behaves as planned. Students still miss the announcements.",
- "article.article-body.p-2.text":"This is a hypothetical project, but the uncomfortable question is familiar: what if the implementation is working and the original understanding is not?",
- "article.article-body.h2-1.text":"Listen past the requested feature.",
- "article.article-body.p-3.text":"“We need a dashboard” describes a possible solution. It does not yet describe the problem. Perhaps people cannot find the latest information. Perhaps they do not know which source to trust. Perhaps the information arrives too late to act on.",
- "article.article-body.p-4.text":"Each of those situations asks for something different. Before drawing the dashboard, ask what someone was trying to do the last time the problem happened. A specific story is often easier to work with than a list of desired features.",
- "article.article-body.blockquote.p.text":"A working feature is not automatically a solved problem.",
- "article.article-body.h2-2.text":"Write down the assumption.",
- "article.article-body.p-5.0.text":"Every project carries a few sentences that everyone quietly treats as facts. Students will check the site each morning. The person posting updates will have a laptop. A message marked urgent will actually be urgent.",
- "article.article-body.p-5.1.text":"Put those assumptions where the team can see them. Ask which would hurt the idea most if it were wrong. That is a useful place to investigate before making the interface more elaborate.",
- "article.article-body.p-5.2.text":"Sometimes a short conversation will expose a gap. Sometimes you need to watch someone use the rough version. The point is not to eliminate uncertainty before starting; it is to notice which uncertainty you are building on.",
- "article.article-body.h2-3.text":"Agree on what better looks like.",
- "article.article-body.p-8.text":"“Improve communication” can mean almost anything. “A student can find the most recent room change without asking three people” gives the team an outcome they can discuss and observe.",
- "article.article-body.p-9.text":"Keep that outcome close while making choices. Does another category help? Does the announcement need an expiry date? Should a correction replace the old message or appear beside it? A clear purpose makes these questions less arbitrary.",
- "article.article-body.h2-4.text":"Leave room to change your mind.",
- "article.article-body.p-10.0.text":"Learning that the first idea was incomplete is not wasted work. Refusing to respond to that learning is more expensive. A prototype earns its keep when it teaches you something, even if what it teaches you is that the project needs a different direction.",
- "article.article-body.p-10.1.text":"The next time a feature seems technically correct but strangely unhelpful, pause before rewriting it. Walk back to the person, the situation, and the original question.",
- "article.article-body.p-10.2.text":"You might still find a bug in the code. You might also find a better problem to solve.",
- "article-end.span.text":"Compiled with curiosity. By SOC.",
- "article-end.a.href":"/#journal",
- "article-end.a.text":"More from the journal ",
- "t-ad.aria-label":"Sponsored placement",
- "t-ad.t-tag.text":"Sponsored · house ad",
- "t-ad.strong.text":"Something worth sharing with your next reader.",
- "t-ad.a.href":"/contact/#contact-form",
- "t-ad.a.text":"Advertise with SOC"
+export const stories_bug_in_the_briefDefaults: Record<string, string> = {
+  'article-back.href': '/#journal',
+  'article-back.text': ' Back to the journal',
+  'article.article-header.story-category.text': 'PERSPECTIVES ',
+  'article.article-header.story-category.span.text': '—',
+  'article.article-header.story-category.text-2': ' 3 MIN READ',
+  'article.article-header.h1.text': 'Sometimes, the bug is in the brief.',
+  'article.article-header.article-deck.text':
+    'Before you rewrite the function, make sure you’re solving the right problem.',
+  'article.article-header.story-byline.author-mark.text': 'S.',
+  'article-header.story-byline.div.span.text': 'SOC Editorial',
+  'article-header.story-byline.div.small.text': 'Sample story',
+  'article.article-body.p-1.text':
+    'A team is asked to make a class announcement board. They build categories, notifications, and a polished screen for publishing updates. Everything behaves as planned. Students still miss the announcements.',
+  'article.article-body.p-2.text':
+    'This is a hypothetical project, but the uncomfortable question is familiar: what if the implementation is working and the original understanding is not?',
+  'article.article-body.h2-1.text': 'Listen past the requested feature.',
+  'article.article-body.p-3.text':
+    '“We need a dashboard” describes a possible solution. It does not yet describe the problem. Perhaps people cannot find the latest information. Perhaps they do not know which source to trust. Perhaps the information arrives too late to act on.',
+  'article.article-body.p-4.text':
+    'Each of those situations asks for something different. Before drawing the dashboard, ask what someone was trying to do the last time the problem happened. A specific story is often easier to work with than a list of desired features.',
+  'article.article-body.blockquote.p.text':
+    'A working feature is not automatically a solved problem.',
+  'article.article-body.h2-2.text': 'Write down the assumption.',
+  'article.article-body.p-5.0.text':
+    'Every project carries a few sentences that everyone quietly treats as facts. Students will check the site each morning. The person posting updates will have a laptop. A message marked urgent will actually be urgent.',
+  'article.article-body.p-5.1.text':
+    'Put those assumptions where the team can see them. Ask which would hurt the idea most if it were wrong. That is a useful place to investigate before making the interface more elaborate.',
+  'article.article-body.p-5.2.text':
+    'Sometimes a short conversation will expose a gap. Sometimes you need to watch someone use the rough version. The point is not to eliminate uncertainty before starting; it is to notice which uncertainty you are building on.',
+  'article.article-body.h2-3.text': 'Agree on what better looks like.',
+  'article.article-body.p-8.text':
+    '“Improve communication” can mean almost anything. “A student can find the most recent room change without asking three people” gives the team an outcome they can discuss and observe.',
+  'article.article-body.p-9.text':
+    'Keep that outcome close while making choices. Does another category help? Does the announcement need an expiry date? Should a correction replace the old message or appear beside it? A clear purpose makes these questions less arbitrary.',
+  'article.article-body.h2-4.text': 'Leave room to change your mind.',
+  'article.article-body.p-10.0.text':
+    'Learning that the first idea was incomplete is not wasted work. Refusing to respond to that learning is more expensive. A prototype earns its keep when it teaches you something, even if what it teaches you is that the project needs a different direction.',
+  'article.article-body.p-10.1.text':
+    'The next time a feature seems technically correct but strangely unhelpful, pause before rewriting it. Walk back to the person, the situation, and the original question.',
+  'article.article-body.p-10.2.text':
+    'You might still find a bug in the code. You might also find a better problem to solve.',
+  'article-end.span.text': 'Compiled with curiosity. By SOC.',
+  'article-end.a.href': '/#journal',
+  'article-end.a.text': 'More from the journal ',
+  't-ad.aria-label': 'Sponsored placement',
+  't-ad.t-tag.text': 'Sponsored · house ad',
+  't-ad.strong.text': 'Something worth sharing with your next reader.',
+  't-ad.a.href': '/contact/#contact-form',
+  't-ad.a.text': 'Advertise with SOC',
 };

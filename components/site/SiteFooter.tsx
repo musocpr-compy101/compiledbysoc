@@ -1,9 +1,115 @@
-import {Fragment} from 'react';
-import {pageCopy} from '@/lib/page-copy';
-import {footerDefaults} from '@/content/pages/chrome-footer';
-export async function SiteFooter(){
- const t=await pageCopy('@footer',footerDefaults);
- return (
-  <><footer className="site-footer"><div className="full-footer"><div className="footer-identity"><a className="footer-brand" href={t("site-footer.full-footer.footer-identity.footer-brand.href")} aria-label={t("site-footer.full-footer.footer-identity.footer-brand.aria-label")}><span className="site-logo" aria-hidden="true"><span className="site-logo-c">{t("footer-identity.footer-brand.site-logo.site-logo-c.text")}</span><span className="site-logo-underscore">{t("footer-identity.footer-brand.site-logo.site-logo-underscore.text")}</span></span></a><p>{t("site-footer.full-footer.footer-identity.p-1.text")}<br/>{t("site-footer.full-footer.footer-identity.p-1.text-2")}</p><p>{t("site-footer.full-footer.footer-identity.p-2.text")}<br/>{t("site-footer.full-footer.footer-identity.p-2.text-2")}</p><a href={t("site-footer.full-footer.footer-identity.a.href")}>{t("site-footer.full-footer.footer-identity.a.text")}</a></div><div><h2>{t("site-footer.full-footer.div-1.h2.text")}</h2>{Array.from({length:6},(_,i)=><Fragment key={i}><a href={t(`site-footer.full-footer.div-1.a-1.${i}.href`)}>{t(`site-footer.full-footer.div-1.a-1.${i}.text`)}</a></Fragment>)}</div><div><h2>{t("site-footer.full-footer.div-2.h2.text")}</h2><a href={t("site-footer.full-footer.div-2.a-1.href")} target="_blank" rel="noopener noreferrer">{t("site-footer.full-footer.div-2.a-1.text")}</a>{Array.from({length:3},(_,i)=><Fragment key={i}><button type="button" data-unavailable={t(`site-footer.full-footer.div-2.button-1.${i}.data-unavailable~`)}>{t(`site-footer.full-footer.div-2.button-1.${i}.text`)}</button></Fragment>)}<a href={t("site-footer.full-footer.div-2.a-2.href")}>{t("site-footer.full-footer.div-2.a-2.text")}</a><a href={t("site-footer.full-footer.div-2.a-3.href")}>{t("site-footer.full-footer.div-2.a-3.text")}</a></div><div><h2>{t("site-footer.full-footer.div-3.h2.text")}</h2>{Array.from({length:9},(_,i)=><Fragment key={i}><a href={t(`site-footer.full-footer.div-3.a-1.${i}.href`)}>{t(`site-footer.full-footer.div-3.a-1.${i}.text`)}</a></Fragment>)}</div></div><div className="footer-bottom"><span>{t("site-footer.footer-bottom.span-1.text")}</span><a href={t("site-footer.footer-bottom.a.href")}>{t("site-footer.footer-bottom.a.text")}</a><span>{t("site-footer.footer-bottom.span-2.text")}<strong>{t("site-footer.footer-bottom.span-2.strong.text")}</strong></span></div></footer><a className="t-feedback-float" href={t("t-feedback-float.href")}><span aria-hidden="true">{t("t-feedback-float.span.text")}</span>{t("t-feedback-float.text")}</a></>
- );
+import type { T } from '@/lib/page-copy';
+import { pageCopy } from '@/lib/page-copy';
+import { footerDefaults } from '@/content/pages/chrome-footer';
+export async function SiteFooter() {
+  const t = await pageCopy('@footer', footerDefaults);
+  return (
+    <>
+      <footer className="site-footer">
+        <div className="full-footer">
+          <div className="footer-identity">
+            <a
+              className="footer-brand"
+              href={t('site-footer.full-footer.footer-identity.footer-brand.href')}
+              aria-label={t('site-footer.full-footer.footer-identity.footer-brand.aria-label')}
+            >
+              <span className="site-logo" aria-hidden="true">
+                <span className="site-logo-c">
+                  {t('footer-identity.footer-brand.site-logo.site-logo-c.text')}
+                </span>
+                <span className="site-logo-underscore">
+                  {t('footer-identity.footer-brand.site-logo.site-logo-underscore.text')}
+                </span>
+              </span>
+            </a>
+            <p>
+              {t('site-footer.full-footer.footer-identity.p-1.text')}
+              <br />
+              {t('site-footer.full-footer.footer-identity.p-1.text-2')}
+            </p>
+            <p>
+              {t('site-footer.full-footer.footer-identity.p-2.text')}
+              <br />
+              {t('site-footer.full-footer.footer-identity.p-2.text-2')}
+            </p>
+            <a href={t('site-footer.full-footer.footer-identity.a.href')}>
+              {t('site-footer.full-footer.footer-identity.a.text')}
+            </a>
+          </div>
+          <div>
+            <h2>{t('site-footer.full-footer.div-1.h2.text')}</h2>
+            {Array.from({ length: 6 }, (_, i) => (
+              <FullFooterAItem key={i} t={t} i={i} />
+            ))}
+          </div>
+          <div>
+            <h2>{t('site-footer.full-footer.div-2.h2.text')}</h2>
+            <a
+              href={t('site-footer.full-footer.div-2.a-1.href')}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('site-footer.full-footer.div-2.a-1.text')}
+            </a>
+            {Array.from({ length: 3 }, (_, i) => (
+              <FullFooterButtonItem key={i} t={t} i={i} />
+            ))}
+            <a href={t('site-footer.full-footer.div-2.a-2.href')}>
+              {t('site-footer.full-footer.div-2.a-2.text')}
+            </a>
+            <a href={t('site-footer.full-footer.div-2.a-3.href')}>
+              {t('site-footer.full-footer.div-2.a-3.text')}
+            </a>
+          </div>
+          <div>
+            <h2>{t('site-footer.full-footer.div-3.h2.text')}</h2>
+            {Array.from({ length: 9 }, (_, i) => (
+              <FullFooterAItem2 key={i} t={t} i={i} />
+            ))}
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>{t('site-footer.footer-bottom.span-1.text')}</span>
+          <a href={t('site-footer.footer-bottom.a.href')}>
+            {t('site-footer.footer-bottom.a.text')}
+          </a>
+          <span>
+            {t('site-footer.footer-bottom.span-2.text')}
+            <strong>{t('site-footer.footer-bottom.span-2.strong.text')}</strong>
+          </span>
+        </div>
+      </footer>
+      <a className="t-feedback-float" href={t('t-feedback-float.href')}>
+        <span aria-hidden="true">{t('t-feedback-float.span.text')}</span>
+        {t('t-feedback-float.text')}
+      </a>
+    </>
+  );
+}
+
+function FullFooterAItem({ t, i }: { t: T; i: number }) {
+  return (
+    <a href={t(`site-footer.full-footer.div-1.a-1.${i}.href`)}>
+      {t(`site-footer.full-footer.div-1.a-1.${i}.text`)}
+    </a>
+  );
+}
+
+function FullFooterButtonItem({ t, i }: { t: T; i: number }) {
+  return (
+    <button
+      type="button"
+      data-unavailable={t(`site-footer.full-footer.div-2.button-1.${i}.data-unavailable~`)}
+    >
+      {t(`site-footer.full-footer.div-2.button-1.${i}.text`)}
+    </button>
+  );
+}
+
+function FullFooterAItem2({ t, i }: { t: T; i: number }) {
+  return (
+    <a href={t(`site-footer.full-footer.div-3.a-1.${i}.href`)}>
+      {t(`site-footer.full-footer.div-3.a-1.${i}.text`)}
+    </a>
+  );
 }

@@ -1,35 +1,47 @@
 // Named content for /stories/start-before-ready. Keys are stable paths; keys ending in ~ are structural and not editable.
-export const stories_start_before_readyDefaults:Record<string,string>={
- "article-back.href":"/#journal",
- "article-back.text":" Back to the journal",
- "article.article-header.story-category.text":"EDITOR'S NOTE ",
- "article.article-header.story-category.span.text":"—",
- "article.article-header.story-category.text-2":" 3 MIN READ",
- "article.article-header.h1.text":"You don’t need permission to build something.",
- "article.article-header.article-deck.text":"The side project. The wild idea. The thing you keep putting off until you know enough. This is your sign to start.",
- "article.article-header.story-byline.author-mark.text":"S.",
- "article-header.story-byline.div.span.text":"SOC Editorial",
- "article-header.story-byline.div.small.text":"Sample story",
- "article.article-body.p-1.text":"There is a particular kind of project that lives forever in a notes app. It has a name, a list of features, maybe even a colour palette. It is always about to happen. Right after exams. Right after one more course. Right after you finally feel like a real developer.",
- "article.article-body.p-2.text":"The uncomfortable part is that “ready” does not send a notification. You can keep waiting for it, and the project can keep getting more impressive in your head without getting any more real.",
- "article.article-body.h2-1.text":"Make the first version embarrassingly small.",
- "article.article-body.p-3.text":"If your idea is a campus marketplace, the first question is not how to build every feature a marketplace has ever had. It is whether one person can find something they need from another person. Start with that exchange. Understand it. Then build the smallest thing that makes it easier.",
- "article.article-body.p-4.text":"A small first version is not a lack of ambition. It is a way of giving your ambition something concrete to work with. A working page gives you better questions than a perfect plan does.",
- "article.article-body.blockquote.p.text":"You do not need to know everything. You need a next step small enough to take.",
- "article.article-body.h2-2.text":"Let the work teach you.",
- "article.article-body.p-5.text":"Building exposes the gaps that tutorials can politely hide. You discover that the button works until the connection drops, or that your beautifully named function makes no sense to your teammate. Those moments are not evidence that you should have waited. They are the point of doing the work.",
- "article.article-body.p-6.text":"Keep a short record of what surprised you. Write down the assumption that broke, the question you had to ask, and the trade-off you made. That record will become more useful than a list of technologies in your bio. It shows how you think when the answer is not already in front of you.",
- "article.article-body.h2-3.text":"Find one person to build for.",
- "article.article-body.p-7.0.text":"“Everyone” is a difficult first user. Your coursemate who misses timetable updates is easier to understand. So is the student vendor who spends every evening repeating the same delivery information.",
- "article.article-body.p-7.1.text":"Watch what that person actually does. Ask what gets in their way. Show them an unfinished version and let their confusion improve it. You do not have to accept every suggestion, but you do have to learn the difference between what you imagined and what they need.",
- "article.article-body.p-7.2.text":"This journal starts with the same idea. We are making a place to share what we are learning while we are still learning it. Not after we have every answer. Now.",
- "article.article-body.p-7.3.text":"Open the folder. Make the first commit. Give the idea a chance to exist outside your head.",
- "article-end.span.text":"Compiled with curiosity. By SOC.",
- "article-end.a.href":"/#journal",
- "article-end.a.text":"More from the journal ",
- "t-ad.aria-label":"Sponsored placement",
- "t-ad.t-tag.text":"Sponsored · house ad",
- "t-ad.strong.text":"Something worth sharing with your next reader.",
- "t-ad.a.href":"/contact/#contact-form",
- "t-ad.a.text":"Advertise with SOC"
+export const stories_start_before_readyDefaults: Record<string, string> = {
+  'article-back.href': '/#journal',
+  'article-back.text': ' Back to the journal',
+  'article.article-header.story-category.text': "EDITOR'S NOTE ",
+  'article.article-header.story-category.span.text': '—',
+  'article.article-header.story-category.text-2': ' 3 MIN READ',
+  'article.article-header.h1.text': 'You don’t need permission to build something.',
+  'article.article-header.article-deck.text':
+    'The side project. The wild idea. The thing you keep putting off until you know enough. This is your sign to start.',
+  'article.article-header.story-byline.author-mark.text': 'S.',
+  'article-header.story-byline.div.span.text': 'SOC Editorial',
+  'article-header.story-byline.div.small.text': 'Sample story',
+  'article.article-body.p-1.text':
+    'There is a particular kind of project that lives forever in a notes app. It has a name, a list of features, maybe even a colour palette. It is always about to happen. Right after exams. Right after one more course. Right after you finally feel like a real developer.',
+  'article.article-body.p-2.text':
+    'The uncomfortable part is that “ready” does not send a notification. You can keep waiting for it, and the project can keep getting more impressive in your head without getting any more real.',
+  'article.article-body.h2-1.text': 'Make the first version embarrassingly small.',
+  'article.article-body.p-3.text':
+    'If your idea is a campus marketplace, the first question is not how to build every feature a marketplace has ever had. It is whether one person can find something they need from another person. Start with that exchange. Understand it. Then build the smallest thing that makes it easier.',
+  'article.article-body.p-4.text':
+    'A small first version is not a lack of ambition. It is a way of giving your ambition something concrete to work with. A working page gives you better questions than a perfect plan does.',
+  'article.article-body.blockquote.p.text':
+    'You do not need to know everything. You need a next step small enough to take.',
+  'article.article-body.h2-2.text': 'Let the work teach you.',
+  'article.article-body.p-5.text':
+    'Building exposes the gaps that tutorials can politely hide. You discover that the button works until the connection drops, or that your beautifully named function makes no sense to your teammate. Those moments are not evidence that you should have waited. They are the point of doing the work.',
+  'article.article-body.p-6.text':
+    'Keep a short record of what surprised you. Write down the assumption that broke, the question you had to ask, and the trade-off you made. That record will become more useful than a list of technologies in your bio. It shows how you think when the answer is not already in front of you.',
+  'article.article-body.h2-3.text': 'Find one person to build for.',
+  'article.article-body.p-7.0.text':
+    '“Everyone” is a difficult first user. Your coursemate who misses timetable updates is easier to understand. So is the student vendor who spends every evening repeating the same delivery information.',
+  'article.article-body.p-7.1.text':
+    'Watch what that person actually does. Ask what gets in their way. Show them an unfinished version and let their confusion improve it. You do not have to accept every suggestion, but you do have to learn the difference between what you imagined and what they need.',
+  'article.article-body.p-7.2.text':
+    'This journal starts with the same idea. We are making a place to share what we are learning while we are still learning it. Not after we have every answer. Now.',
+  'article.article-body.p-7.3.text':
+    'Open the folder. Make the first commit. Give the idea a chance to exist outside your head.',
+  'article-end.span.text': 'Compiled with curiosity. By SOC.',
+  'article-end.a.href': '/#journal',
+  'article-end.a.text': 'More from the journal ',
+  't-ad.aria-label': 'Sponsored placement',
+  't-ad.t-tag.text': 'Sponsored · house ad',
+  't-ad.strong.text': 'Something worth sharing with your next reader.',
+  't-ad.a.href': '/contact/#contact-form',
+  't-ad.a.text': 'Advertise with SOC',
 };

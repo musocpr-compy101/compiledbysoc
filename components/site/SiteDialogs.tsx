@@ -1,9 +1,316 @@
-import {Fragment} from 'react';
-import {pageCopy} from '@/lib/page-copy';
-import {navigationDefaults} from '@/content/pages/chrome-navigation';
-export async function SiteDialogs(){
- const t=await pageCopy('@navigation',navigationDefaults);
- return (
-  <><dialog className="cmd-drawer" id="cmd-navigation" aria-labelledby="cmd-navigation-title"><div className="cmd-drawer-top"><h2 id="cmd-navigation-title">{t("cmd-drawer.cmd-drawer-top.cmd-navigation-title.text")}<span aria-hidden="true">{t("cmd-drawer.cmd-drawer-top.cmd-navigation-title.span.text")}</span></h2><button className="cmd-menu-close" type="button" data-cmd-close="" aria-label={t("cmd-drawer.cmd-drawer-top.cmd-menu-close.aria-label")} autoFocus><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg></button></div><nav className="cmd-drawer-links" aria-label={t("cmd-drawer.cmd-drawer-links.aria-label")}><section className="cmd-menu-group" style={{"--menu-order":"0"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="home" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-1.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-1.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-1.cmd-group-title.text")}</a><div className="cmd-group-links"><a href={t("cmd-drawer-links.cmd-menu-group-1.cmd-group-links.a.href")}>{t("cmd-drawer-links.cmd-menu-group-1.cmd-group-links.a.text")}</a></div></section><section className="cmd-menu-group" style={{"--menu-order":"1"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="updates" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-2.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-2.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-2.cmd-group-title.text")}</a><div className="cmd-group-links">{Array.from({length:3},(_,i)=><Fragment key={i}><a href={t(`cmd-drawer-links.cmd-menu-group-2.cmd-group-links.a-1.${i}.href`)}>{t(`cmd-drawer-links.cmd-menu-group-2.cmd-group-links.a-1.${i}.text`)}</a></Fragment>)}</div></section><section className="cmd-menu-group" style={{"--menu-order":"2"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="important stuff" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-3.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-3.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-3.cmd-group-title.text")}</a><div className="cmd-group-links">{Array.from({length:4},(_,i)=><Fragment key={i}><a href={t(`cmd-drawer-links.cmd-menu-group-3.cmd-group-links.a-1.${i}.href`)}>{t(`cmd-drawer-links.cmd-menu-group-3.cmd-group-links.a-1.${i}.text`)}</a></Fragment>)}</div></section><section className="cmd-menu-group" style={{"--menu-order":"3"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="study" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-4.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-4.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-4.cmd-group-title.text")}</a><div className="cmd-group-links">{Array.from({length:4},(_,i)=><Fragment key={i}><a href={t(`cmd-drawer-links.cmd-menu-group-4.cmd-group-links.a-1.${i}.href`)}>{t(`cmd-drawer-links.cmd-menu-group-4.cmd-group-links.a-1.${i}.text`)}</a></Fragment>)}</div></section><section className="cmd-menu-group" style={{"--menu-order":"4"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="pay" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-5.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-5.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-5.cmd-group-title.text")}</a></section><section className="cmd-menu-group" style={{"--menu-order":"5"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="about" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-6.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-6.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-6.cmd-group-title.text")}</a><div className="cmd-group-links">{Array.from({length:4},(_,i)=><Fragment key={i}><a href={t(`cmd-drawer-links.cmd-menu-group-6.cmd-group-links.a-1.${i}.href`)}>{t(`cmd-drawer-links.cmd-menu-group-6.cmd-group-links.a-1.${i}.text`)}</a></Fragment>)}</div></section><section className="cmd-menu-group" style={{"--menu-order":"6"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="community" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-7.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-7.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-7.cmd-group-title.text")}</a><div className="cmd-group-links">{Array.from({length:4},(_,i)=><Fragment key={i}><a href={t(`cmd-drawer-links.cmd-menu-group-7.cmd-group-links.a-1.${i}.href`)}>{t(`cmd-drawer-links.cmd-menu-group-7.cmd-group-links.a-1.${i}.text`)}</a></Fragment>)}</div></section><section className="cmd-menu-group" style={{"--menu-order":"7"} as React.CSSProperties}><a className="cmd-group-title" data-nav-section="contact" href={t("cmd-drawer.cmd-drawer-links.cmd-menu-group-8.cmd-group-title.href")}><span className="cmd-group-number" aria-hidden="true">{t("cmd-drawer-links.cmd-menu-group-8.cmd-group-title.cmd-group-number.text")}</span>{t("cmd-drawer.cmd-drawer-links.cmd-menu-group-8.cmd-group-title.text")}</a></section></nav><p className="cmd-drawer-footer">{t("cmd-drawer.cmd-drawer-footer.text")}<br/>{t("cmd-drawer.cmd-drawer-footer.text-2")}</p></dialog><dialog className="soc-dialog" id="site-search-dialog" aria-labelledby="search-title"><div className="dialog-top"><h2 id="search-title">{t("soc-dialog-1.dialog-top.search-title.text")}</h2><button className="dialog-close" type="button" data-close-dialog="" aria-label={t("soc-dialog-1.dialog-top.dialog-close.aria-label")}>{t("soc-dialog-1.dialog-top.dialog-close.text")}</button></div><label className="sr-only" htmlFor="site-search-input">{t("soc-dialog-1.sr-only.text")}</label><input id="site-search-input" className="dialog-input" type="search" placeholder={t("soc-dialog-1.dialog-input.placeholder")} autoComplete="off"/><p className="dialog-hint" data-search-status="" role="status">{t("soc-dialog-1.dialog-hint.text")}</p><div className="search-results" data-search-results=""/></dialog><dialog className="soc-dialog" id="notice-dialog" aria-labelledby="notice-title"><div className="dialog-top"><h2 id="notice-title">{t("soc-dialog-2.dialog-top.notice-title.text")}</h2><button className="dialog-close" type="button" data-close-dialog="" aria-label={t("soc-dialog-2.dialog-top.dialog-close.aria-label")}>{t("soc-dialog-2.dialog-top.dialog-close.text")}</button></div><p id="notice-message"/><a className="solid-action" href={t("soc-dialog-2.solid-action.href")}>{t("soc-dialog-2.solid-action.text")}</a></dialog><dialog className="soc-dialog" id="pay-dialog" aria-labelledby="pay-title"><div className="dialog-top"><h2 id="pay-title">{t("soc-dialog-3.dialog-top.pay-title.text")}</h2><button className="dialog-close" type="button" data-close-dialog="" aria-label={t("soc-dialog-3.dialog-top.dialog-close.aria-label")}>{t("soc-dialog-3.dialog-top.dialog-close.text")}</button></div><p>{t("soc-dialog-3.p.text")}</p><form data-payment-form=""><label>{t("soc-dialog-3.form.label-1.text")}<input name="name" autoComplete="name" required className="dialog-input"/></label><label>{t("soc-dialog-3.form.label-2.text")}<input name="matric" required className="dialog-input" placeholder={t("soc-dialog-3.form.label-2.dialog-input.placeholder")}/></label><label>{t("soc-dialog-3.form.label-3.text")}<input name="email" type="email" autoComplete="email" required className="dialog-input"/></label><p className="form-notice">{t("soc-dialog-3.form.form-notice.text")}</p><button className="solid-action" type="submit">{t("soc-dialog-3.form.solid-action.text")}</button><p className="form-status" role="status"/></form></dialog></>
- );
+import type { T } from '@/lib/page-copy';
+import { pageCopy } from '@/lib/page-copy';
+import { navigationDefaults } from '@/content/pages/chrome-navigation';
+export async function SiteDialogs() {
+  const t = await pageCopy('@navigation', navigationDefaults);
+  return (
+    <>
+      <dialog className="cmd-drawer" id="cmd-navigation" aria-labelledby="cmd-navigation-title">
+        <div className="cmd-drawer-top">
+          <h2 id="cmd-navigation-title">
+            {t('cmd-drawer.cmd-drawer-top.cmd-navigation-title.text')}
+            <span aria-hidden="true">
+              {t('cmd-drawer.cmd-drawer-top.cmd-navigation-title.span.text')}
+            </span>
+          </h2>
+          <button
+            className="cmd-menu-close"
+            type="button"
+            data-cmd-close=""
+            aria-label={t('cmd-drawer.cmd-drawer-top.cmd-menu-close.aria-label')}
+            autoFocus
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </button>
+        </div>
+        <nav className="cmd-drawer-links" aria-label={t('cmd-drawer.cmd-drawer-links.aria-label')}>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '0' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="home"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-1.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-1.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-1.cmd-group-title.text')}
+            </a>
+            <div className="cmd-group-links">
+              <a href={t('cmd-drawer-links.cmd-menu-group-1.cmd-group-links.a.href')}>
+                {t('cmd-drawer-links.cmd-menu-group-1.cmd-group-links.a.text')}
+              </a>
+            </div>
+          </section>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '1' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="updates"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-2.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-2.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-2.cmd-group-title.text')}
+            </a>
+            <div className="cmd-group-links">
+              {Array.from({ length: 3 }, (_, i) => (
+                <CmdGroupLinksAItem key={i} t={t} i={i} />
+              ))}
+            </div>
+          </section>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '2' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="important stuff"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-3.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-3.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-3.cmd-group-title.text')}
+            </a>
+            <div className="cmd-group-links">
+              {Array.from({ length: 4 }, (_, i) => (
+                <CmdGroupLinksAItem2 key={i} t={t} i={i} />
+              ))}
+            </div>
+          </section>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '3' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="study"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-4.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-4.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-4.cmd-group-title.text')}
+            </a>
+            <div className="cmd-group-links">
+              {Array.from({ length: 4 }, (_, i) => (
+                <CmdGroupLinksAItem3 key={i} t={t} i={i} />
+              ))}
+            </div>
+          </section>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '4' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="pay"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-5.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-5.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-5.cmd-group-title.text')}
+            </a>
+          </section>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '5' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="about"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-6.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-6.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-6.cmd-group-title.text')}
+            </a>
+            <div className="cmd-group-links">
+              {Array.from({ length: 4 }, (_, i) => (
+                <CmdGroupLinksAItem4 key={i} t={t} i={i} />
+              ))}
+            </div>
+          </section>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '6' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="community"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-7.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-7.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-7.cmd-group-title.text')}
+            </a>
+            <div className="cmd-group-links">
+              {Array.from({ length: 4 }, (_, i) => (
+                <CmdGroupLinksAItem5 key={i} t={t} i={i} />
+              ))}
+            </div>
+          </section>
+          <section
+            className="cmd-menu-group"
+            style={{ '--menu-order': '7' } as React.CSSProperties}
+          >
+            <a
+              className="cmd-group-title"
+              data-nav-section="contact"
+              href={t('cmd-drawer.cmd-drawer-links.cmd-menu-group-8.cmd-group-title.href')}
+            >
+              <span className="cmd-group-number" aria-hidden="true">
+                {t('cmd-drawer-links.cmd-menu-group-8.cmd-group-title.cmd-group-number.text')}
+              </span>
+              {t('cmd-drawer.cmd-drawer-links.cmd-menu-group-8.cmd-group-title.text')}
+            </a>
+          </section>
+        </nav>
+        <p className="cmd-drawer-footer">
+          {t('cmd-drawer.cmd-drawer-footer.text')}
+          <br />
+          {t('cmd-drawer.cmd-drawer-footer.text-2')}
+        </p>
+      </dialog>
+      <dialog className="soc-dialog" id="site-search-dialog" aria-labelledby="search-title">
+        <div className="dialog-top">
+          <h2 id="search-title">{t('soc-dialog-1.dialog-top.search-title.text')}</h2>
+          <button
+            className="dialog-close"
+            type="button"
+            data-close-dialog=""
+            aria-label={t('soc-dialog-1.dialog-top.dialog-close.aria-label')}
+          >
+            {t('soc-dialog-1.dialog-top.dialog-close.text')}
+          </button>
+        </div>
+        <label className="sr-only" htmlFor="site-search-input">
+          {t('soc-dialog-1.sr-only.text')}
+        </label>
+        <input
+          id="site-search-input"
+          className="dialog-input"
+          type="search"
+          placeholder={t('soc-dialog-1.dialog-input.placeholder')}
+          autoComplete="off"
+        />
+        <p className="dialog-hint" data-search-status="" role="status">
+          {t('soc-dialog-1.dialog-hint.text')}
+        </p>
+        <div className="search-results" data-search-results="" />
+      </dialog>
+      <dialog className="soc-dialog" id="notice-dialog" aria-labelledby="notice-title">
+        <div className="dialog-top">
+          <h2 id="notice-title">{t('soc-dialog-2.dialog-top.notice-title.text')}</h2>
+          <button
+            className="dialog-close"
+            type="button"
+            data-close-dialog=""
+            aria-label={t('soc-dialog-2.dialog-top.dialog-close.aria-label')}
+          >
+            {t('soc-dialog-2.dialog-top.dialog-close.text')}
+          </button>
+        </div>
+        <p id="notice-message" />
+        <a className="solid-action" href={t('soc-dialog-2.solid-action.href')}>
+          {t('soc-dialog-2.solid-action.text')}
+        </a>
+      </dialog>
+      <dialog className="soc-dialog" id="pay-dialog" aria-labelledby="pay-title">
+        <div className="dialog-top">
+          <h2 id="pay-title">{t('soc-dialog-3.dialog-top.pay-title.text')}</h2>
+          <button
+            className="dialog-close"
+            type="button"
+            data-close-dialog=""
+            aria-label={t('soc-dialog-3.dialog-top.dialog-close.aria-label')}
+          >
+            {t('soc-dialog-3.dialog-top.dialog-close.text')}
+          </button>
+        </div>
+        <p>{t('soc-dialog-3.p.text')}</p>
+        <form data-payment-form="">
+          <label>
+            {t('soc-dialog-3.form.label-1.text')}
+            <input name="name" autoComplete="name" required className="dialog-input" />
+          </label>
+          <label>
+            {t('soc-dialog-3.form.label-2.text')}
+            <input
+              name="matric"
+              required
+              className="dialog-input"
+              placeholder={t('soc-dialog-3.form.label-2.dialog-input.placeholder')}
+            />
+          </label>
+          <label>
+            {t('soc-dialog-3.form.label-3.text')}
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="dialog-input"
+            />
+          </label>
+          <p className="form-notice">{t('soc-dialog-3.form.form-notice.text')}</p>
+          <button className="solid-action" type="submit">
+            {t('soc-dialog-3.form.solid-action.text')}
+          </button>
+          <p className="form-status" role="status" />
+        </form>
+      </dialog>
+    </>
+  );
+}
+
+function CmdGroupLinksAItem({ t, i }: { t: T; i: number }) {
+  return (
+    <a href={t(`cmd-drawer-links.cmd-menu-group-2.cmd-group-links.a-1.${i}.href`)}>
+      {t(`cmd-drawer-links.cmd-menu-group-2.cmd-group-links.a-1.${i}.text`)}
+    </a>
+  );
+}
+
+function CmdGroupLinksAItem2({ t, i }: { t: T; i: number }) {
+  return (
+    <a href={t(`cmd-drawer-links.cmd-menu-group-3.cmd-group-links.a-1.${i}.href`)}>
+      {t(`cmd-drawer-links.cmd-menu-group-3.cmd-group-links.a-1.${i}.text`)}
+    </a>
+  );
+}
+
+function CmdGroupLinksAItem3({ t, i }: { t: T; i: number }) {
+  return (
+    <a href={t(`cmd-drawer-links.cmd-menu-group-4.cmd-group-links.a-1.${i}.href`)}>
+      {t(`cmd-drawer-links.cmd-menu-group-4.cmd-group-links.a-1.${i}.text`)}
+    </a>
+  );
+}
+
+function CmdGroupLinksAItem4({ t, i }: { t: T; i: number }) {
+  return (
+    <a href={t(`cmd-drawer-links.cmd-menu-group-6.cmd-group-links.a-1.${i}.href`)}>
+      {t(`cmd-drawer-links.cmd-menu-group-6.cmd-group-links.a-1.${i}.text`)}
+    </a>
+  );
+}
+
+function CmdGroupLinksAItem5({ t, i }: { t: T; i: number }) {
+  return (
+    <a href={t(`cmd-drawer-links.cmd-menu-group-7.cmd-group-links.a-1.${i}.href`)}>
+      {t(`cmd-drawer-links.cmd-menu-group-7.cmd-group-links.a-1.${i}.text`)}
+    </a>
+  );
 }
